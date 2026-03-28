@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Painel OLX Recife</title>
+    <style>
+      :root {
+        --bg: #f3efe7;
+        --surface: rgba(255, 251, 245, 0.88);
+        --line: rgba(111, 78, 55, 0.16);
+        --ink: #1f2937;
+        --muted: #687280;
+        --brand: #be5a2c;
+        --brand-strong: #8a3c17;
+        --brand-soft: #f7dfd1;
+        --rent: #0f766e;
+        --rent-soft: rgba(15, 118, 110, 0.12);
+        --sale: #a85514;
+        --sale-soft: rgba(168, 85, 20, 0.12);
+        --shadow: 0 24px 50px rgba(77, 52, 35, 0.10);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Segoe UI", Arial, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(190, 90, 44, 0.14), transparent 24%),
+          radial-gradient(circle at top right, rgba(15, 118, 110, 0.12), transparent 22%),
+          linear-gradient(180deg, #faf7f2 0%, var(--bg) 100%);
+      }
+
+      .page {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 32px 18px 72px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        gap: 20px;
+        padding: 32px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(253,246,239,0.90));
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: auto -60px -80px auto;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(190, 90, 44, 0.18), transparent 70%);
+      }
+
+      .hero__eyebrow {
+        margin: 0;
+        color: var(--brand);
+        font: 700 12px/1.2 "Segoe UI", sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .hero__content {
+        display: grid;
+        gap: 10px;
+        max-width: 760px;
+      }
+
+      h1 {
+        margin: 0;
+        font: 700 clamp(32px, 5vw, 56px)/0.95 Georgia, "Times New Roman", serif;
+        color: #21150f;
+      }
+
+      .hero__content p,
+      .hero__meta,
+      .section__head p,
+      .metric__note,
+      .listing-card__place,
+      .update-card__place,
+      .mini-card p,
+      .empty-state {
+        color: var(--muted);
+      }
+
+      .hero__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 14px;
+      }
+
+      .hero__meta span {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.8);
+        border: 1px solid var(--line);
+      }
+
+      .section {
+        margin-top: 26px;
+      }
+
+      .section__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .section__head h2 {
+        margin: 0;
+        font: 700 28px/1.05 Georgia, "Times New Roman", serif;
+      }
+
+      .section__head p {
+        margin: 0;
+        max-width: 700px;
+      }
+
+      .toolbar {
+        margin-top: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .control-bar {
+        display: grid;
+        grid-template-columns: minmax(220px, 1.1fr) minmax(170px, 0.5fr);
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .control-input,
+      .control-select {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(255,255,255,0.78);
+        padding: 14px 16px;
+        font: 600 14px/1.2 "Segoe UI", sans-serif;
+        color: var(--ink);
+      }
+
+      .filter-chip {
+        appearance: none;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.78);
+        color: var(--ink);
+        border-radius: 999px;
+        padding: 12px 16px;
+        font: 700 14px/1 "Segoe UI", sans-serif;
+        cursor: pointer;
+        transition: 160ms ease;
+      }
+
+      .filter-chip:hover {
+        transform: translateY(-1px);
+        border-color: rgba(190, 90, 44, 0.38);
+      }
+
+      .filter-chip.is-active {
+        background: var(--brand);
+        color: white;
+        border-color: var(--brand);
+        box-shadow: 0 12px 24px rgba(190, 90, 44, 0.22);
+      }
+
+      .summary-grid,
+      .metrics-grid,
+      .listing-grid,
+      .updates-grid,
+      .mini-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .summary-grid {
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .listing-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .updates-grid,
+      .mini-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .summary-card,
+      .metric,
+      .listing-card,
+      .update-card,
+      .mini-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: 0 16px 34px rgba(70, 45, 25, 0.06);
+        backdrop-filter: blur(6px);
+        padding: 20px;
+      }
+
+      .summary-card {
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,238,0.82));
+      }
+
+      .summary-card__top,
+      .listing-card__top,
+      .update-card__top,
+      .mini-card__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .summary-card__count,
+      .mini-card__count {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--muted);
+      }
+
+      .summary-card h3,
+      .listing-card h3,
+      .update-card h3,
+      .mini-card h3 {
+        margin: 14px 0 10px;
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .summary-card__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+        gap: 12px;
+      }
+
+      .summary-card__grid div,
+      .info-grid div,
+      .price-grid div {
+        padding: 12px;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.74);
+        border: 1px solid rgba(111, 78, 55, 0.08);
+      }
+
+      .metric__label {
+        margin: 0 0 10px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--brand);
+      }
+
+      .metric__value {
+        display: block;
+        font-size: clamp(26px, 4vw, 38px);
+        line-height: 1;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .metric__note {
+        margin: 10px 0 0;
+        font-size: 14px;
+      }
+
+      .listing-card__place,
+      .update-card__place {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .listing-card__price {
+        font-size: 22px;
+        font-weight: 800;
+        color: #21150f;
+      }
+
+      .mode-pill {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 7px 11px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .mode-pill--venda {
+        color: var(--sale);
+        background: var(--sale-soft);
+      }
+
+      .mode-pill--aluguel {
+        color: var(--rent);
+        background: var(--rent-soft);
+      }
+
+      .feature-list,
+      .tag-row,
+      .cost-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .feature-list span,
+      .cost-list span,
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid rgba(111, 78, 55, 0.10);
+        font-size: 13px;
+      }
+
+      .tag {
+        color: var(--brand-strong);
+        background: rgba(247, 223, 209, 0.86);
+      }
+
+      .info-grid,
+      .price-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .price-grid {
+        grid-template-columns: 1fr;
+      }
+
+      dt {
+        margin: 0 0 6px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      dd {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .card-link {
+        display: inline-flex;
+        margin-top: 16px;
+        color: var(--brand);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .card-link:hover {
+        text-decoration: underline;
+      }
+
+      .update-card__signals {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .update-card__flag {
+        font-size: 12px;
+        font-weight: 800;
+        color: #166534;
+        background: rgba(22, 101, 52, 0.12);
+        border-radius: 999px;
+        padding: 7px 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .update-card__delta {
+        font-size: 14px;
+        font-weight: 800;
+        border-radius: 999px;
+        padding: 8px 10px;
+      }
+
+      .update-card__delta.is-down {
+        color: #166534;
+        background: rgba(22, 101, 52, 0.12);
+      }
+
+      .update-card__delta.is-up {
+        color: #9a3412;
+        background: rgba(154, 52, 18, 0.12);
+      }
+
+      .empty-state {
+        padding: 22px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.72);
+        border: 1px dashed rgba(111, 78, 55, 0.24);
+      }
+
+      [data-hidden="true"] {
+        display: none !important;
+      }
+
+      @media (max-width: 840px) {
+        .control-bar {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .hero {
+          padding: 24px;
+        }
+
+        .section__head {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .summary-card__grid,
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div class="hero__content">
+          <p class="hero__eyebrow">Painel estatico para Vercel</p>
+          <h1>Radar Imobiliario de Recife</h1>
+          <p>Uma visao mais clara do que entrou no banco local, do que mudou de preco e de quais bairros estao mais ativos na sua coleta atual.</p>
+        </div>
+        <div class="hero__meta">
+          <span>Atualizado em 28/03/2026, 12:01</span>
+          <span>200 anuncios ativos no banco</span>
+          <span>Fonte: OLX Recife</span>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2>Filtro rapido</h2>
+            <p>Use os botoes para alternar entre a visao geral, vendas ou alugueis sem recarregar a pagina.</p>
+          </div>
+        </div>
+        <div class="toolbar">
+          
+      <button class="filter-chip is-active" type="button" data-filter="all">
+        Tudo
+      </button>
+    
+      <button class="filter-chip" type="button" data-filter="venda">
+        Vendas
+      </button>
+    
+      <button class="filter-chip" type="button" data-filter="aluguel">
+        Alugueis
+      </button>
+    
+        </div>
+        <div class="control-bar">
+          <input id="search-input" class="control-input" type="search" placeholder="Buscar por titulo, bairro, preco ou detalhe do imovel">
+          <select id="sort-select" class="control-select">
+            <option value="recent">Ordenar por mais recentes</option>
+            <option value="price-desc">Maior preco primeiro</option>
+            <option value="price-asc">Menor preco primeiro</option>
+            <option value="title">Ordem alfabetica</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2>Resumo por tipo</h2>
+            <p>Uma leitura rapida para comparar vendas e alugueis lado a lado.</p>
+          </div>
+        </div>
+        <div class="summary-grid">
+          
+    <article class="summary-card" data-mode="venda">
+      <div class="summary-card__top">
+        <span class="mode-pill mode-pill--venda">Venda</span>
+        <span class="summary-card__count">100 ativos</span>
+      </div>
+      <h3>Vendas</h3>
+      <dl class="summary-card__grid">
+        <div>
+          <dt>Preco medio</dt>
+          <dd>R$ 913.644</dd>
+        </div>
+        <div>
+          <dt>Faixa observada</dt>
+          <dd>R$ 190.000 a R$ 3.900.000</dd>
+        </div>
+        <div>
+          <dt>Atualizacoes</dt>
+          <dd>0</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+    </article>
+  
+    <article class="summary-card" data-mode="aluguel">
+      <div class="summary-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="summary-card__count">100 ativos</span>
+      </div>
+      <h3>Alugueis</h3>
+      <dl class="summary-card__grid">
+        <div>
+          <dt>Preco medio</dt>
+          <dd>R$ 10.178</dd>
+        </div>
+        <div>
+          <dt>Faixa observada</dt>
+          <dd>R$ 500 a R$ 420.000</dd>
+        </div>
+        <div>
+          <dt>Atualizacoes</dt>
+          <dd>0</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+    </article>
+  
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2>Indicadores</h2>
+            <p>Metricas de volume, preco medio e historico de alteracoes separadas por tipo.</p>
+          </div>
+        </div>
+        <div class="metrics-grid">
+          
+    <article class="metric" data-mode="all">
+      <p class="metric__label">Base monitorada</p>
+      <strong class="metric__value">200</strong>
+      <p class="metric__note">Total de anuncios ativos no banco local.</p>
+    </article>
+  
+    <article class="metric" data-mode="all">
+      <p class="metric__label">Modos ativos</p>
+      <strong class="metric__value">2</strong>
+      <p class="metric__note">Quantidade de categorias com dados disponiveis.</p>
+    </article>
+  
+    <article class="metric" data-mode="venda">
+      <p class="metric__label">Vendas monitorados</p>
+      <strong class="metric__value">100</strong>
+      <p class="metric__note">Quantidade atual de anuncios ativos.</p>
+    </article>
+  
+    <article class="metric" data-mode="venda">
+      <p class="metric__label">Preco medio em venda</p>
+      <strong class="metric__value">R$ 913.644</strong>
+      <p class="metric__note">Media baseada no ultimo preco salvo.</p>
+    </article>
+  
+    <article class="metric" data-mode="venda">
+      <p class="metric__label">Alteracoes de preco</p>
+      <strong class="metric__value">0</strong>
+      <p class="metric__note">Mudancas registradas no historico.</p>
+    </article>
+  
+    <article class="metric" data-mode="aluguel">
+      <p class="metric__label">Alugueis monitorados</p>
+      <strong class="metric__value">100</strong>
+      <p class="metric__note">Quantidade atual de anuncios ativos.</p>
+    </article>
+  
+    <article class="metric" data-mode="aluguel">
+      <p class="metric__label">Preco medio em aluguel</p>
+      <strong class="metric__value">R$ 10.178</strong>
+      <p class="metric__note">Media baseada no ultimo preco salvo.</p>
+    </article>
+  
+    <article class="metric" data-mode="aluguel">
+      <p class="metric__label">Alteracoes de preco</p>
+      <strong class="metric__value">0</strong>
+      <p class="metric__note">Mudancas registradas no historico.</p>
+    </article>
+  
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2>Anuncios recentes</h2>
+            <p>Cards padronizados com preco, local, atributos do imovel, badges e link direto para o anuncio.</p>
+          </div>
+        </div>
+        <div class="listing-grid">
+          
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3000" data-date="2026-03-28T15:00:42.401Z" data-search="[tompson-73896] alugo apartamento boa viagem - 2 quartos boa viagem recife, boa viagem r$ 3.000 50m² 2 quartos 1 banheiros 1 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.000</span>
+      </div>
+      <h3>[TOMPSON-73896] Alugo apartamento Boa viagem - 2 Quartos</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>50m²</span><span>2 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:52</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/tompson-73896-alugo-apartamento-boa-viagem-2-quartos-1489591587" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="2700" data-date="2026-03-28T15:00:42.401Z" data-search="seu novo studio em boa viagem espera por você! boa viagem recife, boa viagem r$ 2.700 28m² 1 quartos 1 banheiros 1 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 2.700</span>
+      </div>
+      <h3>Seu novo studio em Boa Viagem espera por você!</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>28m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:51</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/seu-novo-studio-em-boa-viagem-espera-por-voce-1489591235" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="2500" data-date="2026-03-28T15:00:42.401Z" data-search="apartamento 2 quartos nascente | várzea recife várzea recife, várzea r$ 2.500 60m² 2 quartos 2 banheiros 1 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 2.500</span>
+      </div>
+      <h3>Apartamento 2 Quartos Nascente | Várzea Recife</h3>
+      <p class="listing-card__place">Várzea</p>
+      <div class="feature-list"><span>60m²</span><span>2 quartos</span><span>2 banheiros</span><span>1 vagas</span></div>
+      
+      <div class="cost-list"><span>IPTU R$ 113</span><span>Condomínio R$ 320</span></div>
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:40</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-2-quartos-nascente-varzea-recife-1489588150" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="2550" data-date="2026-03-28T15:00:42.401Z" data-search="studio com quarto separado e vista mar em boa viagem! boa viagem recife, boa viagem r$ 2.550 28m² 1 quartos 1 banheiros 1 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 2.550</span>
+      </div>
+      <h3>Studio com Quarto Separado e Vista Mar em Boa Viagem!</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>28m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:39</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/studio-com-quarto-separado-e-vista-mar-em-boa-viagem-1489588115" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3000" data-date="2026-03-28T15:00:42.401Z" data-search="[sobrado-84580] boa viagem- alugo apto- 2 quartos boa viagem recife, boa viagem r$ 3.000 70m² 2 quartos 1 banheiros 2 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.000</span>
+      </div>
+      <h3>[SOBRADO-84580] Boa Viagem- Alugo Apto- 2 Quartos</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>70m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:33</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/sobrado-84580-boa-viagem-alugo-apto-2-quartos-1489586396" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3000" data-date="2026-03-28T15:00:42.401Z" data-search="[sobrado-52050] alugo apto boa viagem- 2 quartos boa viagem recife, boa viagem r$ 3.000 70m² 2 quartos 1 banheiros 2 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.000</span>
+      </div>
+      <h3>[SOBRADO-52050] Alugo apto Boa Viagem- 2 Quartos</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>70m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:32</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/sobrado-52050-alugo-apto-boa-viagem-2-quartos-1489585964" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3000" data-date="2026-03-28T15:00:42.401Z" data-search="[sobrado-55209] 2 quartos- alugo apto boa viagem boa viagem recife, boa viagem r$ 3.000 70m² 2 quartos 1 banheiros 2 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.000</span>
+      </div>
+      <h3>[SOBRADO-55209] 2 Quartos- Alugo Apto Boa Viagem</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>70m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:32</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/sobrado-55209-2-quartos-alugo-apto-boa-viagem-1489585948" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3000" data-date="2026-03-28T15:00:42.401Z" data-search="[sobrado-24968] alugo excelente apto- boa viagem- 2 quartos boa viagem recife, boa viagem r$ 3.000 70m² 2 quartos 1 banheiros 2 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.000</span>
+      </div>
+      <h3>[SOBRADO-24968] Alugo excelente apto- Boa Viagem- 2 Quartos</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>70m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:32</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/sobrado-24968-alugo-excelente-apto-boa-viagem-2-quartos-1489585845" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3000" data-date="2026-03-28T15:00:42.401Z" data-search="[sobrado-88349] excelente apto 2 quartos boa viagem boa viagem recife, boa viagem r$ 3.000 70m² 2 quartos 1 banheiros 2 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.000</span>
+      </div>
+      <h3>[SOBRADO-88349] Excelente apto 2 Quartos Boa Viagem</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>70m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:32</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/sobrado-88349-excelente-apto-2-quartos-boa-viagem-1489585812" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="2556" data-date="2026-03-28T15:00:42.401Z" data-search="apartamento com 3 dormitórios para alugar, 80 m² por r$ 3.600,00/mês - encruzilhada - reci encruzilhada recife, encruzilhada r$ 2.556 80m² 3 quartos 2 banheiros 2 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 2.556</span>
+      </div>
+      <h3>Apartamento com 3 dormitórios para alugar, 80 m² por R$ 3.600,00/mês - Encruzilhada - Reci</h3>
+      <p class="listing-card__place">Encruzilhada</p>
+      <div class="feature-list"><span>80m²</span><span>3 quartos</span><span>2 banheiros</span><span>2 vagas</span></div>
+      <div class="tag-row"><span class="tag">Destaque</span></div>
+      <div class="cost-list"><span>IPTU R$ 360</span><span>Condomínio R$ 684</span></div>
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:21</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-dormitorios-para-alugar-80-m-por-r-3-600-00-mes-encruzilhada-reci-1409354856" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="29000" data-date="2026-03-28T15:00:42.401Z" data-search="oportunidade ímpar! alugo alto nível. mobiliado! 04 suites, 04 vagas, alto nível boa viagem recife, boa viagem r$ 29.000 355m² 4 quartos 4 banheiros 5+ vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 29.000</span>
+      </div>
+      <h3>OPORTUNIDADE ÍMPAR! ALUGO ALTO NÍVEL. MOBILIADO! 04 SUITES, 04 VAGAS, ALTO NÍVEL</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>355m²</span><span>4 quartos</span><span>4 banheiros</span><span>5+ vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:19</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/oportunidade-impar-alugo-alto-nivel-mobiliado-04-suites-04-vagas-alto-nivel-1489582709" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="4500" data-date="2026-03-28T15:00:42.401Z" data-search="aluga-se apartamento mobiliado 2 quartos 43m² na av. navegantes boa viagem recife, boa viagem r$ 4.500 43m² 2 quartos 1 banheiros 2 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 4.500</span>
+      </div>
+      <h3>Aluga-se Apartamento Mobiliado 2 Quartos 43m² na Av. Navegantes</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>43m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:10</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/aluga-se-apartamento-mobiliado-2-quartos-43m-na-av-navegantes-1489579936" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="7500" data-date="2026-03-28T15:00:42.401Z" data-search="aluga-se apartamento mobiliado 3 quartos 90m² no bairro do monteiro monteiro recife, monteiro r$ 7.500 90m² 3 quartos 2 banheiros 3 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 7.500</span>
+      </div>
+      <h3>Aluga-se Apartamento Mobiliado 3 Quartos 90m² no Bairro do Monteiro</h3>
+      <p class="listing-card__place">Monteiro</p>
+      <div class="feature-list"><span>90m²</span><span>3 quartos</span><span>2 banheiros</span><span>3 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:10</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/aluga-se-apartamento-mobiliado-3-quartos-90m-no-bairro-do-monteiro-1489579903" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="5500" data-date="2026-03-28T15:00:42.401Z" data-search="aluga-se apartamento 3 quartos 95m² no bairro da madalena madalena recife, madalena r$ 5.500 95m² 3 quartos 2 banheiros 3 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 5.500</span>
+      </div>
+      <h3>Aluga-se Apartamento 3 Quartos 95m² no Bairro da Madalena</h3>
+      <p class="listing-card__place">Madalena</p>
+      <div class="feature-list"><span>95m²</span><span>3 quartos</span><span>2 banheiros</span><span>3 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:10</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/aluga-se-apartamento-3-quartos-95m-no-bairro-da-madalena-1489579917" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3100" data-date="2026-03-28T15:00:42.401Z" data-search="1 quarto e sala, boa viagem, beach class boa viagem recife, boa viagem r$ 3.100 33m² 1 quartos 1 banheiros 1 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.100</span>
+      </div>
+      <h3>1 Quarto e sala, Boa viagem, Beach Class</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>33m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      <div class="tag-row"><span class="tag">Direto com o proprietário</span><span class="tag">Destaque</span></div>
+      <div class="cost-list"><span>IPTU R$ 190</span><span>Condomínio R$ 806</span></div>
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 11:08</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/1-quarto-e-sala-boa-viagem-beach-class-1488880704" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="2500" data-date="2026-03-28T15:00:42.401Z" data-search="flat boa viagem boa viagem recife, boa viagem r$ 2.500 1 quartos 1 banheiros">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 2.500</span>
+      </div>
+      <h3>FLAT BOA VIAGEM</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>1 quartos</span><span>1 banheiros</span></div>
+      <div class="tag-row"><span class="tag">Direto com o proprietário</span></div>
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 10:39</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/flat-boa-viagem-1489573044" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3600" data-date="2026-03-28T15:00:42.401Z" data-search="[breeze-20078] excelente apto mobiliado em boa viagem- 1 quarto boa viagem recife, boa viagem r$ 3.600 34m² 1 quartos 1 banheiros 1 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.600</span>
+      </div>
+      <h3>[BREEZE-20078] Excelente apto Mobiliado em Boa viagem- 1 Quarto</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>34m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 10:37</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/breeze-20078-excelente-apto-mobiliado-em-boa-viagem-1-quarto-1489572788" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3600" data-date="2026-03-28T15:00:42.401Z" data-search="[breeze-46382] edf breeze- mobiliado- boa viagem boa viagem recife, boa viagem r$ 3.600 34m² 1 quartos 1 banheiros 1 vagas">
+      <div class="listing-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="listing-card__price">R$ 3.600</span>
+      </div>
+      <h3>[BREEZE-46382] Edf Breeze- Mobiliado- Boa Viagem</h3>
+      <p class="listing-card__place">Boa Viagem</p>
+      <div class="feature-list"><span>34m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      
+      
+      <dl class="info-grid">
+        <div>
+          <dt>Publicado</dt>
+          <dd>Hoje, 10:37</dd>
+        </div>
+        <div>
+          <dt>Ultima captura</dt>
+          <dd>28/03/2026, 12:00</dd>
+        </div>
+      </dl>
+      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/breeze-46382-edf-breeze-mobiliado-boa-viagem-1489572791" target="_blank" rel="noreferrer">Ver anuncio</a>
+    </article>
+  
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2>Atualizacoes de preco</h2>
+            <p>Aqui ficam as mudancas recentes capturadas no historico, com preco anterior, preco atual e link do imovel.</p>
+          </div>
+        </div>
+        <div class="updates-grid">
+          <div class="empty-state">Nenhuma atualizacao de preco foi registrada ate agora.</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2>Bairros em destaque</h2>
+            <p>Um resumo simples dos bairros com mais anuncios ativos e o preco medio capturado em cada modo.</p>
+          </div>
+        </div>
+        <div class="mini-grid">
+          
+    <article class="mini-card" data-mode="aluguel" data-kind="neighborhood" data-price="6860" data-date="" data-search="boa viagem aluguel">
+      <div class="mini-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="mini-card__count">67 anuncios</span>
+      </div>
+      <h3>Boa Viagem</h3>
+      <p>Preco medio R$ 6.860</p>
+    </article>
+  
+    <article class="mini-card" data-mode="aluguel" data-kind="neighborhood" data-price="3000" data-date="" data-search="graças aluguel">
+      <div class="mini-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="mini-card__count">5 anuncios</span>
+      </div>
+      <h3>Graças</h3>
+      <p>Preco medio R$ 3.000</p>
+    </article>
+  
+    <article class="mini-card" data-mode="aluguel" data-kind="neighborhood" data-price="3200" data-date="" data-search="casa forte aluguel">
+      <div class="mini-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="mini-card__count">4 anuncios</span>
+      </div>
+      <h3>Casa Forte</h3>
+      <p>Preco medio R$ 3.200</p>
+    </article>
+  
+    <article class="mini-card" data-mode="aluguel" data-kind="neighborhood" data-price="109875" data-date="" data-search="parnamirim aluguel">
+      <div class="mini-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span class="mini-card__count">4 anuncios</span>
+      </div>
+      <h3>Parnamirim</h3>
+      <p>Preco medio R$ 109.875</p>
+    </article>
+  
+    <article class="mini-card" data-mode="venda" data-kind="neighborhood" data-price="1050453" data-date="" data-search="boa viagem venda">
+      <div class="mini-card__top">
+        <span class="mode-pill mode-pill--venda">Venda</span>
+        <span class="mini-card__count">62 anuncios</span>
+      </div>
+      <h3>Boa Viagem</h3>
+      <p>Preco medio R$ 1.050.453</p>
+    </article>
+  
+    <article class="mini-card" data-mode="venda" data-kind="neighborhood" data-price="671000" data-date="" data-search="madalena venda">
+      <div class="mini-card__top">
+        <span class="mode-pill mode-pill--venda">Venda</span>
+        <span class="mini-card__count">4 anuncios</span>
+      </div>
+      <h3>Madalena</h3>
+      <p>Preco medio R$ 671.000</p>
+    </article>
+  
+    <article class="mini-card" data-mode="venda" data-kind="neighborhood" data-price="460000" data-date="" data-search="torre venda">
+      <div class="mini-card__top">
+        <span class="mode-pill mode-pill--venda">Venda</span>
+        <span class="mini-card__count">4 anuncios</span>
+      </div>
+      <h3>Torre</h3>
+      <p>Preco medio R$ 460.000</p>
+    </article>
+  
+    <article class="mini-card" data-mode="venda" data-kind="neighborhood" data-price="713333" data-date="" data-search="casa forte venda">
+      <div class="mini-card__top">
+        <span class="mode-pill mode-pill--venda">Venda</span>
+        <span class="mini-card__count">3 anuncios</span>
+      </div>
+      <h3>Casa Forte</h3>
+      <p>Preco medio R$ 713.333</p>
+    </article>
+  
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const buttons = Array.from(document.querySelectorAll('[data-filter]'));
+        const cards = Array.from(document.querySelectorAll('[data-mode]'));
+        const searchInput = document.getElementById('search-input');
+        const sortSelect = document.getElementById('sort-select');
+        const listingGrid = document.querySelector('.listing-grid');
+        const updatesGrid = document.querySelector('.updates-grid');
+        const neighborhoodGrid = document.querySelector('.mini-grid');
+        let activeFilter = 'all';
+
+        function sortCards(container, selector, mode) {
+          if (!container) {
+            return;
+          }
+
+          const elements = Array.from(container.querySelectorAll(selector));
+          elements.sort((left, right) => {
+            if (mode === 'price-desc') {
+              return Number(right.dataset.price || 0) - Number(left.dataset.price || 0);
+            }
+
+            if (mode === 'price-asc') {
+              return Number(left.dataset.price || 0) - Number(right.dataset.price || 0);
+            }
+
+            if (mode === 'title') {
+              return (left.querySelector('h3')?.textContent || '').localeCompare(right.querySelector('h3')?.textContent || '', 'pt-BR');
+            }
+
+            return (right.dataset.date || '').localeCompare(left.dataset.date || '');
+          });
+
+          elements.forEach((element) => container.appendChild(element));
+        }
+
+        function applyFilters() {
+          const query = (searchInput?.value || '').trim().toLowerCase();
+
+          buttons.forEach((button) => {
+            button.classList.toggle('is-active', button.dataset.filter === activeFilter);
+          });
+
+          cards.forEach((card) => {
+            const modeMatch = activeFilter === 'all' || card.dataset.mode === activeFilter;
+            const queryMatch = !query || (card.dataset.search || '').includes(query);
+            const shouldShow = modeMatch && queryMatch;
+            card.setAttribute('data-hidden', shouldShow ? 'false' : 'true');
+          });
+
+          sortCards(listingGrid, '.listing-card', sortSelect?.value || 'recent');
+          sortCards(updatesGrid, '.update-card', sortSelect?.value || 'recent');
+          sortCards(neighborhoodGrid, '.mini-card', sortSelect?.value || 'recent');
+        }
+
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            activeFilter = button.dataset.filter;
+            applyFilters();
+          });
+        });
+
+        searchInput?.addEventListener('input', applyFilters);
+        sortSelect?.addEventListener('change', applyFilters);
+
+        applyFilters();
+      })();
+    </script>
+  </body>
+</html>
