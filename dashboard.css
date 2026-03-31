@@ -383,9 +383,14 @@ select {
 
 .market-stage__head {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  grid-template-columns: minmax(0, 1.28fr) minmax(320px, 0.72fr);
   gap: 18px;
   align-items: start;
+}
+
+.market-stage__copy {
+  display: grid;
+  gap: 0;
 }
 
 .market-stage__head > div:first-child {
@@ -404,6 +409,75 @@ select {
   max-width: 62ch;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.market-stage__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.market-stage__action {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.market-stage__action--primary {
+  background: linear-gradient(135deg, #567f87, #335f66);
+  color: #ffffff;
+  box-shadow: 0 16px 28px rgba(51, 95, 102, 0.18);
+}
+
+.market-stage__action--ghost {
+  border: 1px solid rgba(34, 55, 60, 0.1);
+  background: rgba(255, 255, 255, 0.86);
+  color: #355861;
+}
+
+.market-stage__action:hover {
+  transform: translateY(-1px);
+}
+
+.market-stage__proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.market-stage__proof article {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(34, 55, 60, 0.08);
+  background: rgba(255, 252, 247, 0.84);
+}
+
+.market-stage__proof strong,
+.market-stage__proof span {
+  display: block;
+}
+
+.market-stage__proof strong {
+  font-size: 24px;
+  line-height: 1;
+  color: #1d3137;
+}
+
+.market-stage__proof span {
+  margin-top: 8px;
+  color: #5c706f;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 .market-stage__tags {
@@ -2680,6 +2754,18 @@ select {
 
   .market-stage__head h1 {
     font-size: clamp(28px, 8vw, 40px);
+  }
+
+  .market-stage__actions {
+    margin-top: 18px;
+  }
+
+  .market-stage__action {
+    width: 100%;
+  }
+
+  .market-stage__proof {
+    grid-template-columns: 1fr;
   }
 
   .market-stage__tags {
