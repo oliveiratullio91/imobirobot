@@ -188,8 +188,8 @@ select {
 
 .surface {
   display: grid;
-  gap: 18px;
-  padding: 18px;
+  gap: 16px;
+  padding: 16px;
   border-radius: 38px;
   background: var(--surface);
   border: 1px solid rgba(255, 255, 255, 0.34);
@@ -302,8 +302,8 @@ select {
 .headline {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.78fr);
-  gap: 18px;
-  padding: 20px 24px;
+  gap: 16px;
+  padding: 18px 22px;
   background:
     radial-gradient(circle at right, rgba(16, 127, 136, 0.14), transparent 34%),
     rgba(255, 255, 255, 0.76);
@@ -324,11 +324,11 @@ select {
 
 .headline__stats {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .headline__stats div {
-  padding: 18px 20px;
+  padding: 16px 18px;
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--line);
@@ -363,6 +363,8 @@ select {
 .opportunity-stack {
   display: grid;
   gap: 16px;
+  align-items: start;
+  align-content: start;
 }
 
 .metric-grid {
@@ -379,6 +381,12 @@ select {
 
 .workspace-grid {
   grid-template-columns: minmax(0, 1.72fr) minmax(320px, 0.68fr);
+}
+
+.analytics-grid > *,
+.lower-grid > *,
+.workspace-grid > * {
+  align-self: start;
 }
 
 .metric-card,
@@ -398,8 +406,8 @@ select {
 }
 
 .metric-card {
-  min-height: 190px;
-  padding: 22px;
+  min-height: 166px;
+  padding: 18px;
   border-radius: 24px;
 }
 
@@ -457,7 +465,7 @@ select {
 
 .metric-card strong {
   display: block;
-  margin-top: 16px;
+  margin-top: 14px;
   font-size: clamp(30px, 3vw, 44px);
   line-height: 1;
 }
@@ -503,7 +511,7 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px 20px;
+  padding: 16px 18px;
   color: #ffffff;
   background:
     radial-gradient(circle at right, rgba(255, 255, 255, 0.18), transparent 34%),
@@ -522,7 +530,7 @@ select {
 }
 
 .panel {
-  padding: 22px;
+  padding: 18px;
   border-radius: var(--radius-lg);
 }
 
@@ -531,7 +539,7 @@ select {
   justify-content: space-between;
   gap: 14px;
   align-items: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .panel__head h2 {
@@ -555,7 +563,7 @@ select {
 .move-card,
 .insight-card,
 .mix-bar {
-  padding: 18px;
+  padding: 16px;
   border-radius: 24px;
 }
 
@@ -601,14 +609,14 @@ select {
 }
 
 .line-chart {
-  margin-top: 18px;
+  margin-top: 14px;
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 
 .line-chart svg {
   width: 100%;
-  height: 170px;
+  height: 154px;
   display: block;
 }
 
@@ -642,11 +650,11 @@ select {
 .line-chart__labels {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .line-chart__labels div {
-  padding: 10px 8px;
+  padding: 8px 6px;
   border-radius: 16px;
   background: rgba(8, 48, 52, 0.04);
   text-align: center;
@@ -671,7 +679,7 @@ select {
 }
 
 .trend-card__footer {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -688,10 +696,10 @@ select {
 }
 
 .growth-kpis {
-  margin-top: 18px;
+  margin-top: 14px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .growth-kpi {
@@ -724,7 +732,7 @@ select {
 }
 
 .growth-columns {
-  margin-top: 18px;
+  margin-top: 14px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: end;
 }
@@ -737,10 +745,10 @@ select {
 
 .growth-column__bar {
   width: 100%;
-  height: 170px;
+  height: 148px;
   display: flex;
   align-items: end;
-  padding: 10px;
+  padding: 8px;
   border-radius: 18px;
   background: linear-gradient(180deg, rgba(15, 127, 136, 0.06), rgba(15, 127, 136, 0.12));
 }
@@ -771,13 +779,13 @@ select {
 }
 
 .growth-source-list {
-  margin-top: 18px;
+  margin-top: 14px;
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .growth-source-row {
-  padding: 14px;
+  padding: 12px;
   border-radius: 18px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.72);
@@ -901,7 +909,7 @@ select {
 
 .workspace-toolbar {
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .board-chip,
@@ -940,12 +948,12 @@ select {
 .workspace-body {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 16px;
 }
 
 .workspace-board-shell {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .listing-board {
@@ -956,9 +964,9 @@ select {
 .listing-card {
   display: grid;
   grid-template-columns: 128px minmax(0, 1fr) auto;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
-  padding: 16px;
+  padding: 14px;
   border-radius: 24px;
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
@@ -975,8 +983,8 @@ select {
 }
 
 .listing-card__media {
-  min-height: 126px;
-  padding: 14px;
+  min-height: 112px;
+  padding: 12px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -1046,7 +1054,7 @@ select {
 }
 
 .listing-card__meta {
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .listing-card__link {
@@ -1082,19 +1090,19 @@ select {
 
 .map-panel {
   display: grid;
-  gap: 16px;
+  gap: 12px;
 }
 
 .map-panel__body {
   display: grid;
   grid-template-columns: minmax(0, 1.38fr) minmax(320px, 0.82fr);
-  gap: 18px;
+  gap: 14px;
   align-items: start;
 }
 
 .map-panel__aside {
   display: grid;
-  gap: 16px;
+  gap: 12px;
   align-content: start;
 }
 
@@ -1111,7 +1119,7 @@ select {
 }
 
 .cue-card {
-  padding: 16px;
+  padding: 14px;
 }
 
 .cue-card span,
@@ -1170,12 +1178,12 @@ select {
 .map-panel__filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .map-canvas {
   position: relative;
-  min-height: 360px;
+  min-height: 332px;
   border-radius: 28px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -1186,11 +1194,11 @@ select {
 }
 
 .map-canvas--live {
-  padding: 10px;
+  padding: 8px;
 }
 
 .listing-map {
-  min-height: 500px;
+  min-height: 440px;
   border-radius: 22px;
   overflow: hidden;
 }
@@ -1336,7 +1344,7 @@ select {
 }
 
 .opportunity-stack {
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .opportunity-stack__head {
@@ -1347,7 +1355,7 @@ select {
 }
 
 .opportunity-card {
-  padding: 18px;
+  padding: 16px;
 }
 
 .opportunity-card__top {
