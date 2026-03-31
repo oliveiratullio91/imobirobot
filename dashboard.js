@@ -1,6 +1,7 @@
 (function () {
   const chips = Array.from(document.querySelectorAll('[data-filter]'));
   const rows = Array.from(document.querySelectorAll('.listing-card'));
+  const heroCards = Array.from(document.querySelectorAll('.hero-listing-card'));
   const detailTriggers = Array.from(document.querySelectorAll('[data-listing-id]'));
   const board = document.querySelector('.listing-board');
   const heroSearch = document.getElementById('hero-search');
@@ -64,6 +65,10 @@
   function syncSearchInputs(source, target) {
     if (!source || !target || target.value === source.value) return;
     target.value = source.value;
+  }
+
+  function matchesSearchQuery(searchText, query) {
+    return !query || String(searchText || '').includes(query);
   }
 
   function setHeaderMenu(open) {
@@ -280,7 +285,44 @@
       });
     }
 
-    return { map, layerGroup };
+    return { map, layerGroup, markers };
+  }
+
+  function refreshHeroShowcase() {
+    const query = (heroSearch?.value || boardSearch?.value || '').trim().toLowerCase();
+
+    heroCards.forEach((card) => {
+      const modeMatch = activeFilter === 'all' || card.dataset.mode === activeFilter;
+      const queryMatch = matchesSearchQuery(card.dataset.search, query);
+      card.setAttribute('data-hidden', modeMatch && queryMatch ? 'false' : 'true');
+    });
+
+    if (!heroMapState) return;
+
+    heroMapState.layerGroup.clearLayers();
+
+    const visibleMarkers = heroMapState.markers.filter(({ item }) => {
+      const modeMatch = activeFilter === 'all' || item.mode === activeFilter;
+      const queryText = [
+        item.title,
+        item.neighborhood,
+        item.location,
+        item.source,
+        item.sourceLabel,
+        item.priceText,
+      ].filter(Boolean).join(' ').toLowerCase();
+      return modeMatch && matchesSearchQuery(queryText, query);
+    });
+
+    visibleMarkers.forEach(({ marker }) => marker.addTo(heroMapState.layerGroup));
+
+    if (!visibleMarkers.length) return;
+
+    const bounds = L.latLngBounds(visibleMarkers.map(({ item }) => [item.lat, item.lng]));
+    heroMapState.map.fitBounds(bounds, {
+      padding: compactViewport.matches ? [18, 18] : [34, 34],
+      maxZoom: compactViewport.matches ? 12 : 13,
+    });
   }
 
   function refreshMap() {
@@ -419,6 +461,7 @@
     sortRows(sortSelect?.value || 'recent');
     updateExpandableSections();
     refreshMap();
+    refreshHeroShowcase();
   }
 
   function buildDetailMarkup(detail) {
@@ -548,6 +591,12 @@
   heroSearch?.addEventListener('input', () => {
     syncSearchInputs(heroSearch, boardSearch);
     applyFilters();
+  });
+
+  heroSearch?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    event.preventDefault();
+    document.getElementById('workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   boardSearch?.addEventListener('input', () => {
