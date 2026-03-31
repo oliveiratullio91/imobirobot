@@ -241,10 +241,14 @@
 
     const map = L.map(container, {
       zoomControl: false,
-      scrollWheelZoom: false,
+      scrollWheelZoom: true,
       dragging: !compactViewport.matches,
       attributionControl: false,
     }).setView([-8.055, -34.895], compactViewport.matches ? 11 : 12);
+
+    L.control.zoom({
+      position: compactViewport.matches ? 'bottomright' : 'topright',
+    }).addTo(map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
