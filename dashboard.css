@@ -248,6 +248,13 @@ select {
   gap: 18px;
   align-items: center;
   padding: 16px 20px;
+  position: sticky;
+  top: 12px;
+  z-index: 60;
+  background: rgba(255, 250, 244, 0.74);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 18px 40px rgba(82, 66, 42, 0.12);
 }
 
 .site-nav {
@@ -327,7 +334,6 @@ select {
   gap: 10px;
 }
 
-.market-header__actions a,
 .market-header__actions span,
 .market-header__actions button {
   min-height: 48px;
@@ -341,13 +347,6 @@ select {
   font-weight: 800;
 }
 
-.market-header__actions a {
-  background: linear-gradient(135deg, #d39b62, #b87739);
-  color: #ffffff;
-  text-decoration: none;
-  border-color: transparent;
-}
-
 .market-header__actions span {
   background: rgba(255, 255, 255, 0.92);
   color: #4d6568;
@@ -356,7 +355,7 @@ select {
 .market-header__actions button {
   width: 48px;
   padding: 0;
-  background: rgba(230, 235, 246, 0.9);
+  background: rgba(236, 239, 244, 0.92);
   color: #5a6780;
   cursor: pointer;
 }
@@ -2420,8 +2419,8 @@ select {
     flex-wrap: wrap;
   }
 
-  .market-header__actions a,
-  .market-header__actions span {
+  .market-header__actions span,
+  .market-header__actions button {
     flex: 1 1 180px;
   }
 
@@ -2464,6 +2463,7 @@ select {
   .market-header {
     gap: 12px;
     padding: 14px;
+    top: 8px;
   }
 
   .market-header__brand-mark {

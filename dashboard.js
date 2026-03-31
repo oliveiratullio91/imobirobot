@@ -138,7 +138,7 @@
         <span>${escapeHtml(item.sourceLabel || 'Origem')} • ${escapeHtml(item.modeLabel || item.mode || 'Radar')}</span>
         <strong>${escapeHtml(item.title || 'Imovel')}</strong>
         <p>${escapeHtml(item.coordLabel || item.neighborhood || item.location || 'Local nao informado')}</p>
-        <small>${escapeHtml(item.priceText || 'Sem preco')} • score ${escapeHtml(String(item.radarScore || 0))} • ${escapeHtml(precisionLabel)}</small>
+        <small>${escapeHtml(item.priceText || 'Sem preco')} • pontuacao ${escapeHtml(String(item.radarScore || 0))} • ${escapeHtml(precisionLabel)}</small>
       </div>
     `;
   }
@@ -157,7 +157,7 @@
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors',
+      attribution: '&copy; colaboradores do OpenStreetMap',
     }).addTo(map);
 
     const markers = mapListings.map((item) => {
@@ -337,7 +337,7 @@
       .map((item) => `
         <article class="detail-timeline__item">
           <div>
-            <strong>${escapeHtml(item.priceText || 'N/A')}</strong>
+        <strong>${escapeHtml(item.priceText || 'N/D')}</strong>
             <p>${escapeHtml(item.capturedAtLabel || 'Sem data')}</p>
           </div>
           <span class="detail-timeline__delta is-${escapeHtml(item.direction || 'flat')}">${escapeHtml(item.changeText || 'Sem variacao')}</span>
@@ -356,17 +356,17 @@
         <div class="detail-modal__hero-metrics">
           <article>
             <span>Preco atual</span>
-            <strong>${escapeHtml(detail.currentPriceText || 'N/A')}</strong>
+            <strong>${escapeHtml(detail.currentPriceText || 'N/D')}</strong>
           </article>
           <article>
             <span>Melhor preco</span>
-            <strong>${escapeHtml(detail.bestPriceText || 'N/A')}</strong>
+            <strong>${escapeHtml(detail.bestPriceText || 'N/D')}</strong>
             <small>${escapeHtml(detail.bestPriceAtLabel || 'Sem data')}</small>
           </article>
           <article>
             <span>Maior preco</span>
-            <strong>${escapeHtml(detail.highestPriceText || 'N/A')}</strong>
-            <small>${escapeHtml(`economia contra pico ${detail.savingsVsPeakText || 'N/A'}`)}</small>
+            <strong>${escapeHtml(detail.highestPriceText || 'N/D')}</strong>
+            <small>${escapeHtml(`economia contra pico ${detail.savingsVsPeakText || 'N/D'}`)}</small>
           </article>
         </div>
       </div>
@@ -380,7 +380,7 @@
           <div class="detail-panel__stats">
             <article>
               <span>Variacao vs melhor preco</span>
-              <strong>${escapeHtml(detail.currentVsBestText || 'N/A')}</strong>
+              <strong>${escapeHtml(detail.currentVsBestText || 'N/D')}</strong>
             </article>
             <article>
               <span>Snapshots</span>
@@ -388,7 +388,7 @@
             </article>
             <article>
               <span>Dias acompanhados</span>
-              <strong>${escapeHtml(detail.trackedDaysLabel || 'N/A')}</strong>
+              <strong>${escapeHtml(detail.trackedDaysLabel || 'N/D')}</strong>
             </article>
             <article>
               <span>Ultima variacao</span>
@@ -400,7 +400,7 @@
             </article>
             <article>
               <span>Precisao</span>
-              <strong>${escapeHtml(detail.locationPrecision || 'fallback')}</strong>
+              <strong>${escapeHtml(detail.locationPrecision || 'aproximado')}</strong>
             </article>
           </div>
           <div class="detail-panel__meta">
