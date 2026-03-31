@@ -197,6 +197,26 @@ select {
   backdrop-filter: blur(18px);
 }
 
+.surface > .workspace-grid {
+  order: 4;
+}
+
+.surface > .mobile-section-toggle[data-section-target="analytics-grid"] {
+  order: 5;
+}
+
+.surface > .analytics-grid {
+  order: 6;
+}
+
+.surface > .mobile-section-toggle[data-section-target="lower-grid"] {
+  order: 7;
+}
+
+.surface > .lower-grid {
+  order: 8;
+}
+
 .topbar,
 .headline,
 .action-banner,
@@ -358,7 +378,7 @@ select {
 }
 
 .workspace-grid {
-  grid-template-columns: minmax(0, 1.52fr) minmax(320px, 0.8fr);
+  grid-template-columns: minmax(0, 1.72fr) minmax(320px, 0.68fr);
 }
 
 .metric-card,
@@ -785,11 +805,17 @@ select {
 
 .workspace-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.workspace-board-shell {
+  display: grid;
+  gap: 12px;
 }
 
 .listing-board {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-content: start;
 }
 
@@ -925,8 +951,21 @@ select {
   gap: 16px;
 }
 
+.map-panel__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.38fr) minmax(320px, 0.82fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.map-panel__aside {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
 .cue-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .cue-card,
@@ -1011,7 +1050,7 @@ select {
 }
 
 .listing-map {
-  min-height: 340px;
+  min-height: 500px;
   border-radius: 22px;
   overflow: hidden;
 }
@@ -1617,7 +1656,9 @@ select {
   .topbar,
   .chart-stack,
   .heat-grid,
-  .growth-columns {
+  .growth-columns,
+  .map-panel__body,
+  .listing-board {
     grid-template-columns: 1fr;
   }
 

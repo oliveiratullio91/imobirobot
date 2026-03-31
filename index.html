@@ -56,7 +56,7 @@
             <div class="headline__copy">
               <p class="eyebrow">Novo workflow em producao</p>
               <h2>Um dashboard com cara de produto para acompanhar venda, aluguel, fontes e movimentos de preco em um so lugar.</h2>
-              <p>Boa Viagem segue aquecido, e o mapa agora ja aproveita 10 localizacoes mais precisas da base.</p>
+              <p>Boa Viagem segue aquecido, e o mapa agora ja aproveita 0 localizacoes mais precisas da base.</p>
             </div>
 
             <div class="headline__stats">
@@ -521,7 +521,102 @@
               </div>
 
               <div class="workspace-body">
-                <div class="listing-board" id="listing-board" data-mobile-limit="4">
+                <button class="mobile-section-toggle" type="button" data-section-target="map-panel" data-section-open="Abrir mapa e mix" data-section-close="Fechar mapa e mix" hidden></button>
+                <aside class="map-panel" id="map-panel" data-mobile-section="true">
+                  <div class="map-panel__head">
+                    <div>
+                      <strong>Recife market map</strong>
+                      <p>Mapa real com os destaques do radar. Quando o anuncio nao expor coordenada, usamos localizacao aproximada por bairro.</p>
+                    </div>
+                    <span>12 destaques</span>
+                  </div>
+
+                  <div class="map-panel__body">
+                    <div class="map-canvas map-canvas--live">
+                      <div id="listing-map" class="listing-map" aria-label="Mapa de oportunidades em Recife"></div>
+                    </div>
+
+                    <div class="map-panel__aside">
+                      <div class="cue-grid">
+    <article class="cue-card">
+      <span>Share lider</span>
+      <strong>OLX 98</strong>
+      <p>Venda domina o inventario agora.</p>
+    </article>
+  
+    <article class="cue-card">
+      <span>Bairro quente</span>
+      <strong>Boa Viagem</strong>
+      <p>74 ativos com ticket medio R$ 5 mil.</p>
+    </article>
+  
+    <article class="cue-card">
+      <span>Entrada baixa</span>
+      <strong>R$ 2.800,00</strong>
+      <p>Boa Viagem em OLX.</p>
+    </article>
+  
+    <article class="cue-card">
+      <span>Consolidacao</span>
+      <strong>0 suspeitos</strong>
+      <p>Leitura dos duplicados provaveis restantes na base ativa apos a consolidacao.</p>
+    </article>
+  </div>
+                      <div class="mix-stack">
+    <article class="mix-bar">
+      <div class="mix-bar__head">
+        <div>
+          <strong>OLX</strong>
+          <small>Venda</small>
+        </div>
+        <span>98</span>
+      </div>
+      <div class="mix-bar__track"><span style="width:100.0%"></span></div>
+      <p>Ticket medio R$ 864.391,84</p>
+    </article>
+  
+    <article class="mix-bar">
+      <div class="mix-bar__head">
+        <div>
+          <strong>OLX</strong>
+          <small>Aluguel</small>
+        </div>
+        <span>96</span>
+      </div>
+      <div class="mix-bar__track"><span style="width:98.0%"></span></div>
+      <p>Ticket medio R$ 5.226,10</p>
+    </article>
+  
+    <article class="mix-bar">
+      <div class="mix-bar__head">
+        <div>
+          <strong>Zap</strong>
+          <small>Venda</small>
+        </div>
+        <span>49</span>
+      </div>
+      <div class="mix-bar__track"><span style="width:50.0%"></span></div>
+      <p>Ticket medio R$ 757.253,61</p>
+    </article>
+  
+    <article class="mix-bar">
+      <div class="mix-bar__head">
+        <div>
+          <strong>Zap</strong>
+          <small>Aluguel</small>
+        </div>
+        <span>45</span>
+      </div>
+      <div class="mix-bar__track"><span style="width:45.9%"></span></div>
+      <p>Ticket medio R$ 4.891,44</p>
+    </article>
+  </div>
+                    </div>
+                  </div>
+                </aside>
+
+                <div class="workspace-board-shell">
+                  <div class="listing-board" id="listing-board" data-mobile-limit="4">
     <article class="listing-card" data-mode="aluguel" data-mobile-item="true" data-listing-id="1489539024" data-price="4000" data-date="2026-03-31T08:25:57.297Z" data-search="imóvel para aluguel com 40 metros quadrados com 1 quarto em boa viagem - recife - pe boa viagem recife, boa viagem olx r$ 4.000 40m² 1 quartos 1 banheiros 1 vagas iptu r$ 2" tabindex="0" role="button" aria-label="Ver historico de Imóvel para aluguel com 40 metros quadrados com 1 quarto em Boa Viagem - Recife - PE">
       <div class="listing-card__media listing-card__media--aluguel">
         <span>OLX</span>
@@ -914,97 +1009,8 @@
       </div>
     </article>
   </div>
-                <button class="section-toggle section-toggle--board" type="button" data-expand-target="listing-board" data-expand-more="Ver mais imoveis" data-expand-less="Ver menos imoveis" hidden></button>
-                <button class="mobile-section-toggle" type="button" data-section-target="map-panel" data-section-open="Abrir mapa e mix" data-section-close="Fechar mapa e mix" hidden></button>
-                <aside class="map-panel" id="map-panel" data-mobile-section="true">
-                  <div class="map-panel__head">
-                    <div>
-                      <strong>Recife market map</strong>
-                      <p>Mapa real com os destaques do radar. Quando o anuncio nao expor coordenada, usamos localizacao aproximada por bairro.</p>
-                    </div>
-                    <span>12 destaques</span>
-                  </div>
-
-                  <div class="map-canvas map-canvas--live">
-                    <div id="listing-map" class="listing-map" aria-label="Mapa de oportunidades em Recife"></div>
-                  </div>
-
-                  <div class="cue-grid">
-    <article class="cue-card">
-      <span>Share lider</span>
-      <strong>OLX 98</strong>
-      <p>Venda domina o inventario agora.</p>
-    </article>
-  
-    <article class="cue-card">
-      <span>Bairro quente</span>
-      <strong>Boa Viagem</strong>
-      <p>74 ativos com ticket medio R$ 5 mil.</p>
-    </article>
-  
-    <article class="cue-card">
-      <span>Entrada baixa</span>
-      <strong>R$ 2.800,00</strong>
-      <p>Boa Viagem em OLX.</p>
-    </article>
-  
-    <article class="cue-card">
-      <span>Consolidacao</span>
-      <strong>0 suspeitos</strong>
-      <p>Leitura dos duplicados provaveis restantes na base ativa apos a consolidacao.</p>
-    </article>
-  </div>
-
-                  <div class="mix-stack">
-    <article class="mix-bar">
-      <div class="mix-bar__head">
-        <div>
-          <strong>OLX</strong>
-          <small>Venda</small>
-        </div>
-        <span>98</span>
-      </div>
-      <div class="mix-bar__track"><span style="width:100.0%"></span></div>
-      <p>Ticket medio R$ 864.391,84</p>
-    </article>
-  
-    <article class="mix-bar">
-      <div class="mix-bar__head">
-        <div>
-          <strong>OLX</strong>
-          <small>Aluguel</small>
-        </div>
-        <span>96</span>
-      </div>
-      <div class="mix-bar__track"><span style="width:98.0%"></span></div>
-      <p>Ticket medio R$ 5.226,10</p>
-    </article>
-  
-    <article class="mix-bar">
-      <div class="mix-bar__head">
-        <div>
-          <strong>Zap</strong>
-          <small>Venda</small>
-        </div>
-        <span>49</span>
-      </div>
-      <div class="mix-bar__track"><span style="width:50.0%"></span></div>
-      <p>Ticket medio R$ 757.253,61</p>
-    </article>
-  
-    <article class="mix-bar">
-      <div class="mix-bar__head">
-        <div>
-          <strong>Zap</strong>
-          <small>Aluguel</small>
-        </div>
-        <span>45</span>
-      </div>
-      <div class="mix-bar__track"><span style="width:45.9%"></span></div>
-      <p>Ticket medio R$ 4.891,44</p>
-    </article>
-  </div>
-                </aside>
+                  <button class="section-toggle section-toggle--board" type="button" data-expand-target="listing-board" data-expand-more="Ver mais imoveis" data-expand-less="Ver menos imoveis" hidden></button>
+                </div>
               </div>
             </section>
 
