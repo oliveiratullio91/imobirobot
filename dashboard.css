@@ -2144,16 +2144,17 @@ select {
 .listing-card__panel {
   position: relative;
   z-index: 1;
-  width: 100%;
+  width: min(84%, 720px);
   display: grid;
-  gap: 14px;
-  padding: 18px;
-  margin-top: 88px;
+  gap: 12px;
+  padding: 16px 18px;
+  margin-top: 104px;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.48);
-  background: linear-gradient(180deg, rgba(255, 252, 248, 0.94), rgba(255, 249, 242, 0.9));
-  box-shadow: 0 14px 28px rgba(38, 33, 24, 0.12);
-  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 250, 243, 0.34));
+  box-shadow: 0 18px 34px rgba(24, 30, 30, 0.16);
+  backdrop-filter: blur(20px) saturate(135%);
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
 }
 
 .listing-card__header {
@@ -3705,8 +3706,10 @@ select {
   }
 
   .listing-card__panel {
+    width: calc(100% - 8px);
+    gap: 10px;
     margin-top: 72px;
-    padding: 14px;
+    padding: 12px;
     border-radius: 20px;
   }
 
