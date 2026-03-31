@@ -8,6 +8,7 @@
   const boardSearch = document.getElementById('board-search');
   const sortSelect = document.getElementById('board-sort');
   const boardCount = document.getElementById('board-count');
+  const workspaceEmpty = document.getElementById('workspace-empty');
   const expandButtons = Array.from(document.querySelectorAll('[data-expand-target]'));
   const mobileSectionButtons = Array.from(document.querySelectorAll('[data-section-target]'));
   const mapFilterButtons = Array.from(document.querySelectorAll('[data-map-filter]'));
@@ -456,6 +457,10 @@
 
     if (boardCount) {
       boardCount.textContent = `${new Intl.NumberFormat('pt-BR').format(visible)} resultados`;
+    }
+
+    if (workspaceEmpty) {
+      workspaceEmpty.hidden = visible !== 0;
     }
 
     sortRows(sortSelect?.value || 'recent');

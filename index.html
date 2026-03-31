@@ -255,6 +255,27 @@
             <a href="#workspace">Ver imoveis</a>
           </section>
 
+          <section class="journey-strip">
+            <article class="journey-card">
+              <span>Etapa 1</span>
+              <strong>Descubra onde vale captar agora</strong>
+              <p>4 oportunidades e 1.720 entradas novas ja priorizadas pelo radar.</p>
+              <a href="#signals">Ir para oportunidades</a>
+            </article>
+            <article class="journey-card">
+              <span>Etapa 2</span>
+              <strong>Valide preco, bairro e localizacao</strong>
+              <p>12 pontos no mapa e 2.694 movimentos de preco ajudam a decidir mais rapido.</p>
+              <a href="#workspace">Abrir mapa e painel</a>
+            </article>
+            <article class="journey-card">
+              <span>Etapa 3</span>
+              <strong>Abra o anuncio e avance para o contato</strong>
+              <p>Clique no imovel, veja historico, confirme o timing e siga para o anuncio original com contexto pronto para abordagem.</p>
+              <a href="#recent-moves">Ver sinais recentes</a>
+            </article>
+          </section>
+
           <button class="mobile-section-toggle" type="button" data-section-target="analytics-grid" data-section-open="Abrir leitura de mercado" data-section-close="Fechar leitura de mercado" hidden></button>
           <section class="analytics-grid" id="analytics-grid" data-mobile-section="true">
             <section class="panel panel--wide">
@@ -792,6 +813,20 @@
                 </aside>
 
                 <div class="workspace-board-shell">
+                  <div class="workspace-guide">
+                    <article>
+                      <strong>1. Filtre o mercado</strong>
+                      <p>Use busca, modo e ordenacao para reduzir a base ao recorte que faz sentido para a sua captacao.</p>
+                    </article>
+                    <article>
+                      <strong>2. Abra o historico</strong>
+                      <p>Entre no card para ver timeline de preco, melhor valor ja visto e sinais de republicacao.</p>
+                    </article>
+                    <article>
+                      <strong>3. Avance para o anuncio</strong>
+                      <p>Quando o timing fizer sentido, use o link do anuncio original e siga para a abordagem comercial.</p>
+                    </article>
+                  </div>
                   <div class="listing-board" id="listing-board" data-mobile-limit="4">
     <article class="listing-card" data-mode="aluguel" data-mobile-item="true" data-listing-id="1409354856" data-price="2556" data-date="2026-03-31T15:02:07.951Z" data-search="apartamento com 3 dormitórios para alugar, 80 m² por r$ 3.600,00/mês - encruzilhada - reci encruzilhada recife, encruzilhada olx r$ 2.556 80m² 3 quartos 2 banheiros 2 vagas iptu r$ 360 destaque" data-neighborhood="encruzilhada" data-rooms="3" data-area="80" tabindex="0" role="button" aria-label="Ver historico de Apartamento com 3 dormitórios para alugar, 80 m² por R$ 3.600,00/mês - Encruzilhada - Reci">
       <div class="listing-card__media listing-card__media--aluguel">
@@ -1185,6 +1220,10 @@
       </div>
     </article>
   </div>
+                  <div class="workspace-empty" id="workspace-empty" hidden>
+                    <strong>Nenhum imovel encontrado nesse recorte.</strong>
+                    <p>Ajuste a busca, troque o modo ou volte para "Tudo" para abrir mais oportunidades.</p>
+                  </div>
                   <button class="section-toggle section-toggle--board" type="button" data-expand-target="listing-board" data-expand-more="Ver mais imoveis" data-expand-less="Ver menos imoveis" hidden></button>
                 </div>
               </div>
