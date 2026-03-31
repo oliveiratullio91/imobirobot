@@ -3,1703 +3,878 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Painel OLX Recife</title>
-    <style>
-      :root {
-        --bg: #f3efe7;
-        --surface: rgba(255, 251, 245, 0.88);
-        --line: rgba(111, 78, 55, 0.16);
-        --ink: #1f2937;
-        --muted: #687280;
-        --brand: #be5a2c;
-        --brand-strong: #8a3c17;
-        --brand-soft: #f7dfd1;
-        --rent: #0f766e;
-        --rent-soft: rgba(15, 118, 110, 0.12);
-        --sale: #a85514;
-        --sale-soft: rgba(168, 85, 20, 0.12);
-        --shadow: 0 24px 50px rgba(77, 52, 35, 0.10);
-      }
-
-      * { box-sizing: border-box; }
-
-      body {
-        margin: 0;
-        color: var(--ink);
-        font-family: "Segoe UI", Arial, sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(190, 90, 44, 0.14), transparent 24%),
-          radial-gradient(circle at top right, rgba(15, 118, 110, 0.12), transparent 22%),
-          linear-gradient(180deg, #faf7f2 0%, var(--bg) 100%);
-      }
-
-      .page {
-        max-width: 1240px;
-        margin: 0 auto;
-        padding: 32px 18px 72px;
-      }
-
-      .hero {
-        position: relative;
-        overflow: hidden;
-        display: grid;
-        gap: 20px;
-        padding: 32px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(253,246,239,0.90));
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        box-shadow: var(--shadow);
-      }
-
-      .hero::after {
-        content: "";
-        position: absolute;
-        inset: auto -60px -80px auto;
-        width: 220px;
-        height: 220px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(190, 90, 44, 0.18), transparent 70%);
-      }
-
-      .hero__eyebrow {
-        margin: 0;
-        color: var(--brand);
-        font: 700 12px/1.2 "Segoe UI", sans-serif;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      .hero__content {
-        display: grid;
-        gap: 10px;
-        max-width: 760px;
-      }
-
-      h1 {
-        margin: 0;
-        font: 700 clamp(32px, 5vw, 56px)/0.95 Georgia, "Times New Roman", serif;
-        color: #21150f;
-      }
-
-      .hero__content p,
-      .hero__meta,
-      .section__head p,
-      .metric__note,
-      .listing-card__place,
-      .update-card__place,
-      .mini-card p,
-      .empty-state {
-        color: var(--muted);
-      }
-
-      .hero__meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        font-size: 14px;
-      }
-
-      .hero__meta span {
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.8);
-        border: 1px solid var(--line);
-      }
-
-      .section {
-        margin-top: 26px;
-      }
-
-      .section__head {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        gap: 12px;
-        margin-bottom: 14px;
-      }
-
-      .section__head h2 {
-        margin: 0;
-        font: 700 28px/1.05 Georgia, "Times New Roman", serif;
-      }
-
-      .section__head p {
-        margin: 0;
-        max-width: 700px;
-      }
-
-      .toolbar {
-        margin-top: 22px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .control-bar {
-        display: grid;
-        grid-template-columns: minmax(220px, 1.1fr) minmax(170px, 0.5fr);
-        gap: 12px;
-        margin-top: 14px;
-      }
-
-      .control-input,
-      .control-select {
-        width: 100%;
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        background: rgba(255,255,255,0.78);
-        padding: 14px 16px;
-        font: 600 14px/1.2 "Segoe UI", sans-serif;
-        color: var(--ink);
-      }
-
-      .filter-chip {
-        appearance: none;
-        border: 1px solid var(--line);
-        background: rgba(255,255,255,0.78);
-        color: var(--ink);
-        border-radius: 999px;
-        padding: 12px 16px;
-        font: 700 14px/1 "Segoe UI", sans-serif;
-        cursor: pointer;
-        transition: 160ms ease;
-      }
-
-      .filter-chip:hover {
-        transform: translateY(-1px);
-        border-color: rgba(190, 90, 44, 0.38);
-      }
-
-      .filter-chip.is-active {
-        background: var(--brand);
-        color: white;
-        border-color: var(--brand);
-        box-shadow: 0 12px 24px rgba(190, 90, 44, 0.22);
-      }
-
-      .summary-grid,
-      .metrics-grid,
-      .listing-grid,
-      .updates-grid,
-      .mini-grid {
-        display: grid;
-        gap: 16px;
-      }
-
-      .summary-grid {
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      }
-
-      .metrics-grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      }
-
-      .listing-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      }
-
-      .updates-grid,
-      .mini-grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      }
-
-      .summary-card,
-      .metric,
-      .listing-card,
-      .update-card,
-      .mini-card {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        box-shadow: 0 16px 34px rgba(70, 45, 25, 0.06);
-        backdrop-filter: blur(6px);
-        padding: 20px;
-      }
-
-      .summary-card {
-        background:
-          linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,238,0.82));
-      }
-
-      .summary-card__top,
-      .listing-card__top,
-      .update-card__top,
-      .mini-card__top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .summary-card__count,
-      .mini-card__count {
-        font-size: 13px;
-        font-weight: 800;
-        color: var(--muted);
-      }
-
-      .summary-card h3,
-      .listing-card h3,
-      .update-card h3,
-      .mini-card h3 {
-        margin: 14px 0 10px;
-        font-size: 22px;
-        line-height: 1.2;
-      }
-
-      .summary-card__grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(140px, 1fr));
-        gap: 12px;
-      }
-
-      .summary-card__grid div,
-      .info-grid div,
-      .price-grid div {
-        padding: 12px;
-        border-radius: 14px;
-        background: rgba(255,255,255,0.74);
-        border: 1px solid rgba(111, 78, 55, 0.08);
-      }
-
-      .metric__label {
-        margin: 0 0 10px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--brand);
-      }
-
-      .metric__value {
-        display: block;
-        font-size: clamp(26px, 4vw, 38px);
-        line-height: 1;
-        overflow-wrap: anywhere;
-        word-break: break-word;
-      }
-
-      .metric__note {
-        margin: 10px 0 0;
-        font-size: 14px;
-      }
-
-      .listing-card__place,
-      .update-card__place {
-        margin: 0;
-        font-size: 14px;
-      }
-
-      .listing-card__price {
-        font-size: 22px;
-        font-weight: 800;
-        color: #21150f;
-      }
-
-      .mode-pill {
-        display: inline-flex;
-        align-items: center;
-        border-radius: 999px;
-        padding: 7px 11px;
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .mode-pill--venda {
-        color: var(--sale);
-        background: var(--sale-soft);
-      }
-
-      .mode-pill--aluguel {
-        color: var(--rent);
-        background: var(--rent-soft);
-      }
-
-      .feature-list,
-      .tag-row,
-      .cost-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 14px;
-      }
-
-      .feature-list span,
-      .cost-list span,
-      .tag {
-        display: inline-flex;
-        align-items: center;
-        padding: 8px 10px;
-        border-radius: 12px;
-        background: rgba(255,255,255,0.78);
-        border: 1px solid rgba(111, 78, 55, 0.10);
-        font-size: 13px;
-      }
-
-      .tag {
-        color: var(--brand-strong);
-        background: rgba(247, 223, 209, 0.86);
-      }
-
-      .info-grid,
-      .price-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 16px;
-      }
-
-      .price-grid {
-        grid-template-columns: 1fr;
-      }
-
-      dt {
-        margin: 0 0 6px;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      dd {
-        margin: 0;
-        font-size: 14px;
-        font-weight: 600;
-        overflow-wrap: anywhere;
-        word-break: break-word;
-      }
-
-      .card-link {
-        display: inline-flex;
-        margin-top: 16px;
-        color: var(--brand);
-        text-decoration: none;
-        font-weight: 700;
-      }
-
-      .card-link:hover {
-        text-decoration: underline;
-      }
-
-      .update-card__signals {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .update-card__flag {
-        font-size: 12px;
-        font-weight: 800;
-        color: #166534;
-        background: rgba(22, 101, 52, 0.12);
-        border-radius: 999px;
-        padding: 7px 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-
-      .update-card__delta {
-        font-size: 14px;
-        font-weight: 800;
-        border-radius: 999px;
-        padding: 8px 10px;
-      }
-
-      .update-card__delta.is-down {
-        color: #166534;
-        background: rgba(22, 101, 52, 0.12);
-      }
-
-      .update-card__delta.is-up {
-        color: #9a3412;
-        background: rgba(154, 52, 18, 0.12);
-      }
-
-      .empty-state {
-        padding: 22px;
-        border-radius: 20px;
-        background: rgba(255,255,255,0.72);
-        border: 1px dashed rgba(111, 78, 55, 0.24);
-      }
-
-      [data-hidden="true"] {
-        display: none !important;
-      }
-
-      @media (max-width: 840px) {
-        .control-bar {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .hero {
-          padding: 24px;
-        }
-
-        .section__head {
-          align-items: start;
-          flex-direction: column;
-        }
-
-        .summary-card__grid,
-        .info-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
+    <title>Radar Imobiliario Recife</title>
+    <link rel="stylesheet" href="./dashboard.css">
   </head>
   <body>
-    <main class="page">
-      <header class="hero">
-        <div class="hero__content">
-          <p class="hero__eyebrow">Painel estatico para Vercel</p>
-          <h1>Radar Imobiliario de Recife</h1>
-          <p>Uma visao mais clara do que entrou no banco local, do que mudou de preco e de quais bairros estao mais ativos na sua coleta atual.</p>
-        </div>
-        <div class="hero__meta">
-          <span>Atualizado em 30/03/2026, 04:01</span>
-          <span>192 anuncios ativos no banco</span>
-          <span>Fonte: OLX Recife</span>
-        </div>
-      </header>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">IR</div>
+        <nav class="sidebar__nav">
+          <a href="#overview">Overview</a>
+          <a href="#market">Market</a>
+          <a href="#board">Board</a>
+          <a href="#moves">Moves</a>
+        </nav>
+        <div class="sidebar__status">Atualizado<br>30/03/2026, 21:41</div>
+      </aside>
 
-      <section class="section">
-        <div class="section__head">
+      <main class="main">
+        <header class="masthead" id="overview">
           <div>
-            <h2>Filtro rapido</h2>
-            <p>Use os botoes para alternar entre a visao geral, vendas ou alugueis sem recarregar a pagina.</p>
+            <p class="masthead__eyebrow">Radar diario Recife</p>
+            <h1>Dashboard do novo workflow</h1>
+            <p>Um painel estatico com cara de produto para acompanhar OLX + Zap, ler o pulso de venda e aluguel e navegar os imoveis mais recentes do banco local.</p>
           </div>
-        </div>
-        <div class="toolbar">
-          
-      <button class="filter-chip is-active" type="button" data-filter="all">
-        Tudo
-      </button>
-    
-      <button class="filter-chip" type="button" data-filter="venda">
-        Vendas
-      </button>
-    
-      <button class="filter-chip" type="button" data-filter="aluguel">
-        Alugueis
-      </button>
-    
-        </div>
-        <div class="control-bar">
-          <input id="search-input" class="control-input" type="search" placeholder="Buscar por titulo, bairro, preco ou detalhe do imovel">
-          <select id="sort-select" class="control-select">
-            <option value="recent">Ordenar por mais recentes</option>
-            <option value="price-desc">Maior preco primeiro</option>
-            <option value="price-asc">Menor preco primeiro</option>
-            <option value="title">Ordem alfabetica</option>
-          </select>
-        </div>
-      </section>
+          <div class="masthead__meta">
+            <span>294 ativos</span>
+            <span>996 novos 24h</span>
+            <span>1.531 mudancas 24h</span>
+            <span>OLX + Zap</span>
+          </div>
+        </header>
 
-      <section class="section">
-        <div class="section__head">
-          <div>
-            <h2>Resumo por tipo</h2>
-            <p>Uma leitura rapida para comparar vendas e alugueis lado a lado.</p>
-          </div>
-        </div>
-        <div class="summary-grid">
-          
-    <article class="summary-card" data-mode="venda">
-      <div class="summary-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <span class="summary-card__count">96 ativos</span>
+        <section class="overview-grid">
+    <article class="metric-card metric-card--teal">
+      <div class="metric-card__top">
+        <span>Total de ativos</span>
+        <em>996 novos 24h</em>
       </div>
-      <h3>Vendas</h3>
-      <dl class="summary-card__grid">
-        <div>
-          <dt>Preco medio</dt>
-          <dd>R$ 928.728</dd>
-        </div>
-        <div>
-          <dt>Faixa observada</dt>
-          <dd>R$ 20.000 a R$ 5.890.000</dd>
-        </div>
-        <div>
-          <dt>Atualizacoes</dt>
-          <dd>272</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
+      <strong>294</strong>
+      <p>Base viva monitorada pelo helper local.</p>
     </article>
   
-    <article class="summary-card" data-mode="aluguel">
-      <div class="summary-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="summary-card__count">96 ativos</span>
+    <article class="metric-card metric-card--sale">
+      <div class="metric-card__top">
+        <span>Venda ativa</span>
+        <em>R$ 817,1 mil</em>
       </div>
-      <h3>Alugueis</h3>
-      <dl class="summary-card__grid">
-        <div>
-          <dt>Preco medio</dt>
-          <dd>R$ 5.261</dd>
-        </div>
-        <div>
-          <dt>Faixa observada</dt>
-          <dd>R$ 400 a R$ 32.000</dd>
-        </div>
-        <div>
-          <dt>Atualizacoes</dt>
-          <dd>128</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
+      <strong>152</strong>
+      <p>Inventario ativo consolidado para venda.</p>
     </article>
   
-        </div>
-      </section>
+    <article class="metric-card metric-card--rent">
+      <div class="metric-card__top">
+        <span>Aluguel ativo</span>
+        <em>R$ 4,5 mil</em>
+      </div>
+      <strong>142</strong>
+      <p>Inventario ativo consolidado para aluguel.</p>
+    </article>
+  
+    <article class="metric-card metric-card--good">
+      <div class="metric-card__top">
+        <span>Mudancas 24h</span>
+        <em>276 quedas</em>
+      </div>
+      <strong>1.531</strong>
+      <p>Historico recente de alteracoes de preco.</p>
+    </article>
+  </section>
 
-      <section class="section">
-        <div class="section__head">
+        <section class="hero-strip">
           <div>
-            <h2>Indicadores</h2>
-            <p>Metricas de volume, preco medio e historico de alteracoes separadas por tipo.</p>
+            <strong>996 novos anuncios e 1.531 mudancas de preco nas ultimas 24 horas.</strong>
+            <p>Boa Viagem segue aquecido, e o board abaixo ja esta pronto para filtrar venda e aluguel.</p>
           </div>
-        </div>
-        <div class="metrics-grid">
-          
-    <article class="metric" data-mode="all">
-      <p class="metric__label">Base monitorada</p>
-      <strong class="metric__value">192</strong>
-      <p class="metric__note">Total de anuncios ativos no banco local.</p>
-    </article>
-  
-    <article class="metric" data-mode="all">
-      <p class="metric__label">Modos ativos</p>
-      <strong class="metric__value">2</strong>
-      <p class="metric__note">Quantidade de categorias com dados disponiveis.</p>
-    </article>
-  
-    <article class="metric" data-mode="venda">
-      <p class="metric__label">Vendas monitorados</p>
-      <strong class="metric__value">96</strong>
-      <p class="metric__note">Quantidade atual de anuncios ativos.</p>
-    </article>
-  
-    <article class="metric" data-mode="venda">
-      <p class="metric__label">Preco medio em venda</p>
-      <strong class="metric__value">R$ 928.728</strong>
-      <p class="metric__note">Media baseada no ultimo preco salvo.</p>
-    </article>
-  
-    <article class="metric" data-mode="venda">
-      <p class="metric__label">Alteracoes de preco</p>
-      <strong class="metric__value">272</strong>
-      <p class="metric__note">Mudancas registradas no historico.</p>
-    </article>
-  
-    <article class="metric" data-mode="aluguel">
-      <p class="metric__label">Alugueis monitorados</p>
-      <strong class="metric__value">96</strong>
-      <p class="metric__note">Quantidade atual de anuncios ativos.</p>
-    </article>
-  
-    <article class="metric" data-mode="aluguel">
-      <p class="metric__label">Preco medio em aluguel</p>
-      <strong class="metric__value">R$ 5.261</strong>
-      <p class="metric__note">Media baseada no ultimo preco salvo.</p>
-    </article>
-  
-    <article class="metric" data-mode="aluguel">
-      <p class="metric__label">Alteracoes de preco</p>
-      <strong class="metric__value">128</strong>
-      <p class="metric__note">Mudancas registradas no historico.</p>
-    </article>
-  
-        </div>
-      </section>
+          <a href="#board">Abrir board</a>
+        </section>
 
-      <section class="section">
-        <div class="section__head">
-          <div>
-            <h2>Anuncios recentes</h2>
-            <p>Cards padronizados com preco, local, atributos do imovel, badges e link direto para o anuncio.</p>
-          </div>
-        </div>
-        <div class="listing-grid">
-          
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3800" data-date="2026-03-30T07:00:56.637Z" data-search="vita club - mobiliado. imbiribeira recife, imbiribeira r$ 3.800 63m² 2 quartos 1 banheiros 2 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 3.800</span>
+        <section class="analytics-grid" id="market">
+          <section class="panel">
+            <div class="panel__head">
+              <div>
+                <h2>Ritmo de captacao</h2>
+                <p>Novos anuncios por dia para venda e aluguel nos ultimos 7 dias.</p>
+              </div>
+              <span>Ultimos 7 dias</span>
+            </div>
+            <div class="trend-stack">
+              
+    <div class="trend-card">
+      <div class="trend-card__header">
+        <strong>Venda</strong>
+        <span>3.149 novos</span>
       </div>
-      <h3>Vita Club - MOBILIADO.</h3>
-      <p class="listing-card__place">Imbiribeira</p>
-      <div class="feature-list"><span>63m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
-      <div class="tag-row"><span class="tag">Destaque</span></div>
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Hoje, 00:10</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/vita-club-mobiliado-1475405255" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3200" data-date="2026-03-30T07:00:56.637Z" data-search="mobiliado alto padrao em boa vagem boa viagem recife, boa viagem r$ 3.200 26m² 1 quartos 1 banheiros 1 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 3.200</span>
+      <div class="trend-bars">
+        
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:2.9%"></span></div>
+                <strong>19</strong>
+                <small>30/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:97.0%"></span></div>
+                <strong>643</strong>
+                <small>29/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:100.0%"></span></div>
+                <strong>663</strong>
+                <small>28/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:75.3%"></span></div>
+                <strong>499</strong>
+                <small>27/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:100.0%"></span></div>
+                <strong>663</strong>
+                <small>28/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:97.0%"></span></div>
+                <strong>643</strong>
+                <small>29/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:2.9%"></span></div>
+                <strong>19</strong>
+                <small>30/03</small>
+              </div>
+            
       </div>
-      <h3>MOBILIADO ALTO PADRAO EM BOA VAGEM</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>26m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
-      
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Hoje, 02:13</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/mobiliado-alto-padrao-em-boa-vagem-1488740844" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
+    </div>
   
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="2100" data-date="2026-03-30T07:00:56.637Z" data-search="apto mobiliado em boa viagem boa viagem recife, boa viagem r$ 2.100 30m² 1 quartos 1 banheiros">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 2.100</span>
+              
+    <div class="trend-card">
+      <div class="trend-card__header">
+        <strong>Aluguel</strong>
+        <span>1.393 novos</span>
       </div>
-      <h3>Apto Mobiliado em boa Viagem</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>30m²</span><span>1 quartos</span><span>1 banheiros</span></div>
-      
-      <div class="cost-list"><span>IPTU R$ 102</span><span>Condomínio R$ 421</span></div>
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Hoje, 02:13</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apto-mobiliado-em-boa-viagem-1489132040" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="5000" data-date="2026-03-30T07:00:56.637Z" data-search="apartamento com 1 dormitório para alugar, 38 m² por r$ 5.000,00/mês - boa viagem - recife/ boa viagem recife, boa viagem r$ 5.000 38m² 1 quartos 1 banheiros 1 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 5.000</span>
+      <div class="trend-bars">
+        
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:3.1%"></span></div>
+                <strong>10</strong>
+                <small>30/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:100.0%"></span></div>
+                <strong>324</strong>
+                <small>29/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:77.2%"></span></div>
+                <strong>250</strong>
+                <small>28/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:69.4%"></span></div>
+                <strong>225</strong>
+                <small>27/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:77.2%"></span></div>
+                <strong>250</strong>
+                <small>28/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:100.0%"></span></div>
+                <strong>324</strong>
+                <small>29/03</small>
+              </div>
+            
+              <div class="trend-bars__item">
+                <div class="trend-bars__bar"><span style="height:3.1%"></span></div>
+                <strong>10</strong>
+                <small>30/03</small>
+              </div>
+            
       </div>
-      <h3>Apartamento com 1 dormitório para alugar, 38 m² por R$ 5.000,00/mês - Boa Viagem - Recife/</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>38m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
-      <div class="tag-row"><span class="tag">Destaque</span></div>
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 21:51</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-1-dormitorio-para-alugar-38-m-por-r-5-000-00-mes-boa-viagem-recife-1388794526" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
+    </div>
   
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3600" data-date="2026-03-30T07:00:56.637Z" data-search="apartamento para locação no mesquita residence, boa viagem, recife, pe imbiribeira recife, imbiribeira r$ 3.600 70m² 2 quartos 3 banheiros 2 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 3.600</span>
-      </div>
-      <h3>Apartamento para locação no MESQUITA RESIDENCE, BOA VIAGEM, Recife, PE</h3>
-      <p class="listing-card__place">Imbiribeira</p>
-      <div class="feature-list"><span>70m²</span><span>2 quartos</span><span>3 banheiros</span><span>2 vagas</span></div>
-      
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 16:52</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-para-locacao-no-mesquita-residence-boa-viagem-recife-pe-1489847612" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="4200" data-date="2026-03-30T07:00:56.637Z" data-search="imóvel para aluguel com 56 metros quadrados com 2 quartos em boa viagem - recife - pe boa viagem recife, boa viagem r$ 4.200 56m² 2 quartos 1 banheiros 1 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 4.200</span>
-      </div>
-      <h3>Imóvel para aluguel com 56 metros quadrados com 2 quartos em Boa Viagem - Recife - PE</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>56m²</span><span>2 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
-      
-      <div class="cost-list"><span>IPTU R$ 2</span><span>Condomínio R$ 1</span></div>
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:32</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-com-56-metros-quadrados-com-2-quartos-em-boa-viagem-recife-pe-1489834863" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="9000" data-date="2026-03-30T07:00:56.637Z" data-search="icon - boa viagem , 300 m2 da praia boa viagem recife, boa viagem r$ 9.000 56m² 2 quartos 2 banheiros 2 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 9.000</span>
-      </div>
-      <h3>Icon - Boa Viagem , 300 m2 da praia</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>56m²</span><span>2 quartos</span><span>2 banheiros</span><span>2 vagas</span></div>
-      <div class="tag-row"><span class="tag">Direto com o proprietário</span><span class="tag">Destaque</span></div>
-      <div class="cost-list"><span>IPTU R$ 1.002.000</span><span>Condomínio R$ 60.050.060</span></div>
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 16:10</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/icon-boa-viagem-300-m2-da-praia-1477860350" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="600" data-date="2026-03-30T07:00:56.637Z" data-search="kitnet todo cerâmica próximo a rural e a ufpe várzea recife, várzea r$ 600 33m² 1 quartos 1 banheiros">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 600</span>
-      </div>
-      <h3>Kitnet todo cerâmica próximo a Rural e a UFPE</h3>
-      <p class="listing-card__place">Várzea</p>
-      <div class="feature-list"><span>33m²</span><span>1 quartos</span><span>1 banheiros</span></div>
-      <div class="tag-row"><span class="tag">Direto com o proprietário</span></div>
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 14:46</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/kitnet-todo-ceramica-proximo-a-rural-e-a-ufpe-1489827362" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="32000" data-date="2026-03-30T07:00:56.637Z" data-search="imóvel para aluguel e venda possui 187 metros quadrados com 4 quartos em boa viagem - reci boa viagem recife, boa viagem r$ 32.000 187m² 4 quartos 3 banheiros 5+ vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 32.000</span>
-      </div>
-      <h3>Imóvel para aluguel e venda possui 187 metros quadrados com 4 quartos em Boa Viagem - Reci</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>187m²</span><span>4 quartos</span><span>3 banheiros</span><span>5+ vagas</span></div>
-      
-      <div class="cost-list"><span>IPTU R$ 2</span><span>Condomínio R$ 1</span></div>
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:49</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-e-venda-possui-187-metros-quadrados-com-4-quartos-em-boa-viagem-reci-1489837731" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3600" data-date="2026-03-30T07:00:56.637Z" data-search="[breeze-28456] alugo apto 1 quarto boa viagem- mobiliado boa viagem recife, boa viagem r$ 3.600 34m² 1 quartos 1 banheiros 1 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 3.600</span>
-      </div>
-      <h3>[BREEZE-28456] Alugo apto 1 quarto Boa viagem- Mobiliado</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>34m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
-      
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:48</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/breeze-28456-alugo-apto-1-quarto-boa-viagem-mobiliado-1489837569" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="1900" data-date="2026-03-30T07:00:56.637Z" data-search="quartos para executivos/estudantes em boa viagem - cult student housing pina recife, pina r$ 1.900">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 1.900</span>
-      </div>
-      <h3>Quartos para Executivos/Estudantes em Boa Viagem - Cult Student Housing</h3>
-      <p class="listing-card__place">Pina</p>
-      <div class="feature-list"><span>Detalhes nao informados</span></div>
-      <div class="tag-row"><span class="tag">Destaque</span></div>
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:48</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/quartos-para-executivos-estudantes-em-boa-viagem-cult-student-housing-433470757" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="4000" data-date="2026-03-30T07:00:56.637Z" data-search="imóvel para aluguel com 44 metros quadrados com 2 quartos em torre - recife - pe torre recife, torre r$ 4.000 44m² 2 quartos 1 banheiros 1 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 4.000</span>
-      </div>
-      <h3>Imóvel para aluguel com 44 metros quadrados com 2 quartos em Torre - Recife - PE</h3>
-      <p class="listing-card__place">Torre</p>
-      <div class="feature-list"><span>44m²</span><span>2 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
-      <div class="tag-row"><span class="tag">Destaque</span></div>
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:32</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-com-44-metros-quadrados-com-2-quartos-em-torre-recife-pe-1483601011" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="10000" data-date="2026-03-30T07:00:56.637Z" data-search="[chances-05739] alugo apartamento boa viagem - 3 quartos sendo 3 suítes boa viagem recife, boa viagem r$ 10.000 136m² 3 quartos 2 banheiros 4 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 10.000</span>
-      </div>
-      <h3>[CHANCES-05739] Alugo apartamento Boa viagem - 3 Quartos sendo 3 suítes</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>136m²</span><span>3 quartos</span><span>2 banheiros</span><span>4 vagas</span></div>
-      
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:32</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/chances-05739-alugo-apartamento-boa-viagem-3-quartos-sendo-3-suites-1489834859" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="995" data-date="2026-03-30T07:00:56.637Z" data-search="quartos vagos em ap na torre/madalena madalena recife, madalena r$ 995">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 995</span>
-      </div>
-      <h3>Quartos vagos em ap na Torre/Madalena</h3>
-      <p class="listing-card__place">Madalena</p>
-      <div class="feature-list"><span>Detalhes nao informados</span></div>
-      <div class="tag-row"><span class="tag">Direto com o proprietário</span></div>
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:30</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/quartos-vagos-em-ap-na-torre-madalena-1489834576" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="600" data-date="2026-03-30T07:00:56.637Z" data-search="casa no cordeiro cordeiro recife, cordeiro r$ 600 1 quartos">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 600</span>
-      </div>
-      <h3>Casa no Cordeiro</h3>
-      <p class="listing-card__place">Cordeiro</p>
-      <div class="feature-list"><span>1 quartos</span></div>
-      <div class="tag-row"><span class="tag">Direto com o proprietário</span></div>
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:26</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/casa-no-cordeiro-1489834006" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3000" data-date="2026-03-30T07:00:56.637Z" data-search="[sobrado-65402] boa viagem- alugo apto- 2 quartos boa viagem recife, boa viagem r$ 3.000 70m² 2 quartos 1 banheiros 2 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 3.000</span>
-      </div>
-      <h3>[SOBRADO-65402] Boa Viagem- Alugo Apto- 2 Quartos</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>70m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
-      
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:26</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/sobrado-65402-boa-viagem-alugo-apto-2-quartos-1489833731" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="800" data-date="2026-03-30T07:00:56.637Z" data-search="? vaga de quarto disponível! ? boa viagem recife, boa viagem r$ 800">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 800</span>
-      </div>
-      <h3>? VAGA DE QUARTO DISPONÍVEL! ?</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>Detalhes nao informados</span></div>
-      <div class="tag-row"><span class="tag">Direto com o proprietário</span></div>
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:19</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/vaga-de-quarto-disponivel-1489832591" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-    <article class="listing-card" data-mode="aluguel" data-kind="listing" data-price="3000" data-date="2026-03-30T07:00:56.637Z" data-search="[sobrado-18418] 2 quartos- alugo apto boa viagem boa viagem recife, boa viagem r$ 3.000 70m² 2 quartos 1 banheiros 2 vagas">
-      <div class="listing-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="listing-card__price">R$ 3.000</span>
-      </div>
-      <h3>[SOBRADO-18418] 2 Quartos- Alugo Apto Boa Viagem</h3>
-      <p class="listing-card__place">Boa Viagem</p>
-      <div class="feature-list"><span>70m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
-      
-      
-      <dl class="info-grid">
-        <div>
-          <dt>Publicado</dt>
-          <dd>Ontem, 15:19</dd>
-        </div>
-        <div>
-          <dt>Ultima captura</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/sobrado-18418-2-quartos-alugo-apto-boa-viagem-1489832537" target="_blank" rel="noreferrer">Ver anuncio</a>
-    </article>
-  
-        </div>
-      </section>
+            </div>
+          </section>
 
-      <section class="section">
-        <div class="section__head">
-          <div>
-            <h2>Atualizacoes de preco</h2>
-            <p>Aqui ficam as mudancas recentes capturadas no historico, com preco anterior, preco atual e link do imovel.</p>
-          </div>
+          <section class="panel">
+            <div class="panel__head">
+              <div>
+                <h2>Mix por fonte</h2>
+                <p>Distribuicao de inventario ativo entre OLX e Zap.</p>
+              </div>
+              <span>Origem + modo</span>
+            </div>
+            <div class="source-stack">
+    <article class="source-card">
+      <div class="source-card__top">
+        <div>
+          <span>OLX</span>
+          <h3>Venda</h3>
         </div>
-        <div class="updates-grid">
-          
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="450000" data-date="2026-03-30T07:00:29.691Z" data-search="apartamento mobiliado à venda no edifício rio reno parnamirim, recife/pe parnamirim recife, parnamirim r$ 450.000 r$ 470.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          
-          <span class="update-card__delta is-up">+R$ 20.000</span>
-        </div>
+        <b>98</b>
       </div>
-      <h3>Apartamento Mobiliado à Venda no Edifício Rio Reno Parnamirim, Recife/PE</h3>
-      <p class="update-card__place">Parnamirim</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 450.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 470.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-mobiliado-a-venda-no-edificio-rio-reno-parnamirim-recife-pe-1426378594" target="_blank" rel="noreferrer">Abrir anuncio</a>
+      <p>Ticket medio R$ 877.812,80</p>
+      <div class="source-card__bar"><span style="width:100.0%"></span></div>
     </article>
   
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="650000" data-date="2026-03-30T07:00:29.691Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 650.000 r$ 550.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 100.000</span>
+    <article class="source-card">
+      <div class="source-card__top">
+        <div>
+          <span>OLX</span>
+          <h3>Aluguel</h3>
         </div>
+        <b>96</b>
       </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 650.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 550.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487493037" target="_blank" rel="noreferrer">Abrir anuncio</a>
+      <p>Ticket medio R$ 4.450,84</p>
+      <div class="source-card__bar"><span style="width:98.0%"></span></div>
     </article>
   
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="1406320" data-date="2026-03-30T07:00:29.691Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 1.406.320 r$ 1.250.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 156.320</span>
+    <article class="source-card">
+      <div class="source-card__top">
+        <div>
+          <span>Zap</span>
+          <h3>Venda</h3>
         </div>
+        <b>54</b>
       </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 1.406.320</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 1.250.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487492961" target="_blank" rel="noreferrer">Abrir anuncio</a>
+      <p>Ticket medio R$ 704.707,81</p>
+      <div class="source-card__bar"><span style="width:55.1%"></span></div>
     </article>
   
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="380000" data-date="2026-03-30T07:00:29.691Z" data-search="flat com 1 quarto em boa viagem boa viagem recife, boa viagem r$ 380.000 r$ 385.500">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          
-          <span class="update-card__delta is-up">+R$ 5.500</span>
+    <article class="source-card">
+      <div class="source-card__top">
+        <div>
+          <span>Zap</span>
+          <h3>Aluguel</h3>
         </div>
+        <b>46</b>
       </div>
-      <h3>Flat com 1 quarto em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 380.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 385.500</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/flat-com-1-quarto-em-boa-viagem-1487675332" target="_blank" rel="noreferrer">Abrir anuncio</a>
+      <p>Ticket medio R$ 4.459,57</p>
+      <div class="source-card__bar"><span style="width:46.9%"></span></div>
     </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="450000" data-date="2026-03-30T07:00:18.419Z" data-search="apartamento mobiliado à venda no edifício rio reno parnamirim, recife/pe parnamirim recife, parnamirim r$ 470.000 r$ 450.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 20.000</span>
-        </div>
-      </div>
-      <h3>Apartamento Mobiliado à Venda no Edifício Rio Reno Parnamirim, Recife/PE</h3>
-      <p class="update-card__place">Parnamirim</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 470.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 450.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-mobiliado-a-venda-no-edificio-rio-reno-parnamirim-recife-pe-1426378594" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="650000" data-date="2026-03-30T07:00:18.419Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 650.000 r$ 550.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 100.000</span>
-        </div>
-      </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 650.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 550.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487493037" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="1406320" data-date="2026-03-30T07:00:18.419Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 1.406.320 r$ 1.250.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 156.320</span>
-        </div>
-      </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 1.406.320</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 1.250.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487492961" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="380000" data-date="2026-03-30T07:00:18.419Z" data-search="flat com 1 quarto em boa viagem boa viagem recife, boa viagem r$ 380.000 r$ 385.500">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          
-          <span class="update-card__delta is-up">+R$ 5.500</span>
-        </div>
-      </div>
-      <h3>Flat com 1 quarto em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 380.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 385.500</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 04:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/flat-com-1-quarto-em-boa-viagem-1487675332" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="650000" data-date="2026-03-30T06:00:29.479Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 650.000 r$ 550.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 100.000</span>
-        </div>
-      </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 650.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 550.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 03:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487493037" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="1406320" data-date="2026-03-30T06:00:29.479Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 1.406.320 r$ 1.250.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 156.320</span>
-        </div>
-      </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 1.406.320</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 1.250.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 03:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487492961" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="380000" data-date="2026-03-30T06:00:29.479Z" data-search="flat com 1 quarto em boa viagem boa viagem recife, boa viagem r$ 380.000 r$ 385.500">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          
-          <span class="update-card__delta is-up">+R$ 5.500</span>
-        </div>
-      </div>
-      <h3>Flat com 1 quarto em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 380.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 385.500</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 03:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/flat-com-1-quarto-em-boa-viagem-1487675332" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="650000" data-date="2026-03-30T06:00:18.267Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 650.000 r$ 550.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 100.000</span>
-        </div>
-      </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 650.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 550.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 03:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487493037" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="1406320" data-date="2026-03-30T06:00:18.267Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 1.406.320 r$ 1.250.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 156.320</span>
-        </div>
-      </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 1.406.320</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 1.250.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 03:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487492961" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="380000" data-date="2026-03-30T06:00:18.267Z" data-search="flat com 1 quarto em boa viagem boa viagem recife, boa viagem r$ 380.000 r$ 385.500">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          
-          <span class="update-card__delta is-up">+R$ 5.500</span>
-        </div>
-      </div>
-      <h3>Flat com 1 quarto em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 380.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 385.500</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 03:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/flat-com-1-quarto-em-boa-viagem-1487675332" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="650000" data-date="2026-03-30T05:00:29.459Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 650.000 r$ 550.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 100.000</span>
-        </div>
-      </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 650.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 550.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 02:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487493037" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="1406320" data-date="2026-03-30T05:00:29.459Z" data-search="apartamento com 3 quartos em boa viagem boa viagem recife, boa viagem r$ 1.406.320 r$ 1.250.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 156.320</span>
-        </div>
-      </div>
-      <h3>Apartamento com 3 quartos em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 1.406.320</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 1.250.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 02:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-quartos-em-boa-viagem-1487492961" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="380000" data-date="2026-03-30T05:00:29.459Z" data-search="flat com 1 quarto em boa viagem boa viagem recife, boa viagem r$ 380.000 r$ 385.500">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          
-          <span class="update-card__delta is-up">+R$ 5.500</span>
-        </div>
-      </div>
-      <h3>Flat com 1 quarto em Boa Viagem</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 380.000</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 385.500</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 02:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/flat-com-1-quarto-em-boa-viagem-1487675332" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-    <article class="update-card" data-mode="venda" data-kind="update" data-price="1409400" data-date="2026-03-30T05:00:29.459Z" data-search="imóvel para venda possui 107 metros quadrados com 3 quartos em boa viagem - recife - pe boa viagem recife, boa viagem r$ 1.409.400 r$ 1.314.000">
-      <div class="update-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <div class="update-card__signals">
-          <span class="update-card__flag">Queda</span>
-          <span class="update-card__delta is-down">-R$ 95.400</span>
-        </div>
-      </div>
-      <h3>Imóvel para venda possui 107 metros quadrados com 3 quartos em Boa Viagem - Recife - PE</h3>
-      <p class="update-card__place">Boa Viagem</p>
-      <dl class="price-grid">
-        <div>
-          <dt>Preco anterior</dt>
-          <dd>R$ 1.409.400</dd>
-        </div>
-        <div>
-          <dt>Preco atual</dt>
-          <dd>R$ 1.314.000</dd>
-        </div>
-        <div>
-          <dt>Atualizado em</dt>
-          <dd>30/03/2026, 02:00</dd>
-        </div>
-      </dl>
-      <a class="card-link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-venda-possui-107-metros-quadrados-com-3-quartos-em-boa-viagem-recife-pe-1455468112" target="_blank" rel="noreferrer">Abrir anuncio</a>
-    </article>
-  
-        </div>
-      </section>
+  </div>
+          </section>
+        </section>
 
-      <section class="section">
-        <div class="section__head">
-          <div>
-            <h2>Bairros em destaque</h2>
-            <p>Um resumo simples dos bairros com mais anuncios ativos e o preco medio capturado em cada modo.</p>
-          </div>
-        </div>
-        <div class="mini-grid">
-          
-    <article class="mini-card" data-mode="aluguel" data-kind="neighborhood" data-price="6420" data-date="" data-search="boa viagem aluguel">
-      <div class="mini-card__top">
+        <section class="analytics-grid">
+          <section class="panel">
+            <div class="panel__head">
+              <div>
+                <h2>Bairros em foco</h2>
+                <p>Os bairros mais quentes por modo com faixa de preco e origem dominante.</p>
+              </div>
+            </div>
+            <div class="neighborhood-grid">
+    <article class="heat-card" data-mode="aluguel">
+      <div class="heat-card__top">
         <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="mini-card__count">44 anuncios</span>
+        <span>78 ativos</span>
       </div>
       <h3>Boa Viagem</h3>
-      <p>Preco medio R$ 6.420</p>
+      <p>Preco medio R$ 4.973,97</p>
+      <small>Fonte dominante OLX</small>
     </article>
   
-    <article class="mini-card" data-mode="aluguel" data-kind="neighborhood" data-price="3469" data-date="" data-search="pina aluguel">
-      <div class="mini-card__top">
+    <article class="heat-card" data-mode="aluguel">
+      <div class="heat-card__top">
         <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="mini-card__count">7 anuncios</span>
+        <span>9 ativos</span>
+      </div>
+      <h3>Graças</h3>
+      <p>Preco medio R$ 3.188,89</p>
+      <small>Fonte dominante OLX</small>
+    </article>
+  
+    <article class="heat-card" data-mode="aluguel">
+      <div class="heat-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <span>8 ativos</span>
       </div>
       <h3>Pina</h3>
-      <p>Preco medio R$ 3.469</p>
+      <p>Preco medio R$ 3.350,00</p>
+      <small>Fonte dominante OLX</small>
     </article>
   
-    <article class="mini-card" data-mode="aluguel" data-kind="neighborhood" data-price="3325" data-date="" data-search="imbiribeira aluguel">
-      <div class="mini-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="mini-card__count">6 anuncios</span>
-      </div>
-      <h3>Imbiribeira</h3>
-      <p>Preco medio R$ 3.325</p>
-    </article>
-  
-    <article class="mini-card" data-mode="aluguel" data-kind="neighborhood" data-price="3633" data-date="" data-search="madalena aluguel">
-      <div class="mini-card__top">
-        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
-        <span class="mini-card__count">6 anuncios</span>
-      </div>
-      <h3>Madalena</h3>
-      <p>Preco medio R$ 3.633</p>
-    </article>
-  
-    <article class="mini-card" data-mode="venda" data-kind="neighborhood" data-price="1055179" data-date="" data-search="boa viagem venda">
-      <div class="mini-card__top">
+    <article class="heat-card" data-mode="venda">
+      <div class="heat-card__top">
         <span class="mode-pill mode-pill--venda">Venda</span>
-        <span class="mini-card__count">45 anuncios</span>
+        <span>50 ativos</span>
       </div>
       <h3>Boa Viagem</h3>
-      <p>Preco medio R$ 1.055.179</p>
+      <p>Preco medio R$ 928.806,72</p>
+      <small>Fonte dominante OLX</small>
     </article>
   
-    <article class="mini-card" data-mode="venda" data-kind="neighborhood" data-price="1074165" data-date="" data-search="várzea venda">
-      <div class="mini-card__top">
+    <article class="heat-card" data-mode="venda">
+      <div class="heat-card__top">
         <span class="mode-pill mode-pill--venda">Venda</span>
-        <span class="mini-card__count">6 anuncios</span>
+        <span>11 ativos</span>
       </div>
-      <h3>Várzea</h3>
-      <p>Preco medio R$ 1.074.165</p>
+      <h3>Rosarinho</h3>
+      <p>Preco medio R$ 829.727,18</p>
+      <small>Fonte dominante OLX</small>
     </article>
   
-    <article class="mini-card" data-mode="venda" data-kind="neighborhood" data-price="496000" data-date="" data-search="boa vista venda">
-      <div class="mini-card__top">
+    <article class="heat-card" data-mode="venda">
+      <div class="heat-card__top">
         <span class="mode-pill mode-pill--venda">Venda</span>
-        <span class="mini-card__count">5 anuncios</span>
+        <span>10 ativos</span>
       </div>
-      <h3>Boa Vista</h3>
-      <p>Preco medio R$ 496.000</p>
+      <h3>Casa Amarela</h3>
+      <p>Preco medio R$ 596.859,80</p>
+      <small>Fonte dominante OLX</small>
+    </article>
+  </div>
+          </section>
+
+          <section class="panel" id="moves">
+            <div class="panel__head">
+              <div>
+                <h2>Moves recentes</h2>
+                <p>Ultimas mudancas de preco para leitura rapida do que ficou mais barato ou mais caro.</p>
+              </div>
+            </div>
+            <div class="move-stack">
+    <article class="move-card" data-mode="aluguel">
+      <div class="move-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <strong class="is-up">+R$ 500,00</strong>
+      </div>
+      <h3>Imóvel para aluguel possui 57 metros quadrados com 2 quartos em Boa Viagem - Recife - PE</h3>
+      <p>Boa Viagem</p>
+      <div class="move-card__prices">R$ 4.800 -> R$ 5.300</div>
     </article>
   
-    <article class="mini-card" data-mode="venda" data-kind="neighborhood" data-price="741973" data-date="" data-search="pina venda">
-      <div class="mini-card__top">
-        <span class="mode-pill mode-pill--venda">Venda</span>
-        <span class="mini-card__count">5 anuncios</span>
+    <article class="move-card" data-mode="aluguel">
+      <div class="move-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <strong class="is-down">-R$ 200,00</strong>
       </div>
-      <h3>Pina</h3>
-      <p>Preco medio R$ 741.973</p>
+      <h3>Apartamento para alugar com 55 m², 2 quartos, 2 banheiros, 1 vaga em Pina, Recife</h3>
+      <p>Pina</p>
+      <div class="move-card__prices">R$ 4.500 -> R$ 4.300</div>
     </article>
   
+    <article class="move-card" data-mode="aluguel">
+      <div class="move-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <strong class="is-up">+R$ 300,00</strong>
+      </div>
+      <h3>Apartamento para alugar com 75 m², 3 quartos, 2 banheiros, 1 vaga em Pina, Recife</h3>
+      <p>Pina</p>
+      <div class="move-card__prices">R$ 3.700 -> R$ 4.000</div>
+    </article>
+  
+    <article class="move-card" data-mode="aluguel">
+      <div class="move-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <strong class="is-down">-R$ 1.100,00</strong>
+      </div>
+      <h3>Apartamento para alugar com 50 m², 2 quartos, 1 banheiro, 1 vaga em Boa Viagem, Recife</h3>
+      <p>Boa Viagem</p>
+      <div class="move-card__prices">R$ 3.600 -> R$ 2.500</div>
+    </article>
+  
+    <article class="move-card" data-mode="aluguel">
+      <div class="move-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <strong class="is-down">-R$ 500,00</strong>
+      </div>
+      <h3>Apartamento para alugar com 55 m², 2 quartos, 2 banheiros, 1 vaga em Pina, Recife</h3>
+      <p>Pina</p>
+      <div class="move-card__prices">R$ 4.300 -> R$ 3.800</div>
+    </article>
+  
+    <article class="move-card" data-mode="aluguel">
+      <div class="move-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <strong class="is-down">-R$ 21,00</strong>
+      </div>
+      <h3>Apartamento para alugar com 52 m², 2 quartos, 1 banheiro, 1 vaga em Boa Viagem, Recife</h3>
+      <p>Boa Viagem</p>
+      <div class="move-card__prices">R$ 5.020 -> R$ 4.999</div>
+    </article>
+  
+    <article class="move-card" data-mode="aluguel">
+      <div class="move-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <strong class="is-down">-R$ 800,00</strong>
+      </div>
+      <h3>Apartamento para alugar com 50 m², 2 quartos, 1 banheiro, 1 vaga em Boa Viagem, Recife</h3>
+      <p>Boa Viagem</p>
+      <div class="move-card__prices">R$ 3.600 -> R$ 2.800</div>
+    </article>
+  
+    <article class="move-card" data-mode="aluguel">
+      <div class="move-card__top">
+        <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+        <strong class="is-down">-R$ 1.000,00</strong>
+      </div>
+      <h3>Apartamento para alugar com 220 m², 4 quartos, 1 banheiro, 3 vagas em Boa Viagem, Recife</h3>
+      <p>Boa Viagem</p>
+      <div class="move-card__prices">R$ 18.500 -> R$ 17.500</div>
+    </article>
+  </div>
+          </section>
+        </section>
+
+        <section class="board-grid" id="board">
+          <section class="panel">
+            <div class="panel__head">
+              <div>
+                <h2>Listing board</h2>
+                <p>Uma mesa operacional para filtrar, buscar e abrir anuncios recentes sem sair do dashboard.</p>
+              </div>
+              <span>Ativos recentes</span>
+            </div>
+            <div class="board-toolbar">
+              <div class="board-filters">
+                <button class="board-chip is-active" type="button" data-filter="all">Tudo</button>
+                <button class="board-chip" type="button" data-filter="venda">Venda</button>
+                <button class="board-chip" type="button" data-filter="aluguel">Aluguel</button>
+              </div>
+              <div class="board-controls">
+                <input id="board-search" type="search" class="board-search" placeholder="Buscar por titulo, bairro, preco ou origem">
+                <select id="board-sort" class="board-sort">
+                  <option value="recent">Mais recentes</option>
+                  <option value="price-desc">Maior preco</option>
+                  <option value="price-asc">Menor preco</option>
+                  <option value="title">Titulo A-Z</option>
+                </select>
+              </div>
+            </div>
+            <div class="listing-board">
+    <article class="listing-row" data-mode="aluguel" data-price="4300" data-date="2026-03-31T00:17:30.255Z" data-search="imóvel para aluguel com 55 metros quadrados com 2 quartos em boa viagem - recife - pe boa viagem recife, boa viagem olx r$ 4.300 55m² 2 quartos 1 banheiros 2 vagas destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Imóvel para aluguel com 55 metros quadrados com 2 quartos em Boa Viagem - Recife - PE</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 4.300</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
         </div>
-      </section>
-    </main>
+        <div class="listing-row__meta"><span>55m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-com-55-metros-quadrados-com-2-quartos-em-boa-viagem-recife-pe-1481907772" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="4220" data-date="2026-03-31T00:17:30.255Z" data-search="apartamento para locação no beach class hotels &amp; residence, boa viagem, recife, pe boa viagem recife, boa viagem olx r$ 4.220 40m² 1 quartos 1 banheiros 1 vagas">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Apartamento para locação no BEACH CLASS HOTELS &amp; RESIDENCE, BOA VIAGEM, Recife, PE</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 4.220</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>40m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-para-locacao-no-beach-class-hotels-residence-boa-viagem-recife-pe-1490098899" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="5300" data-date="2026-03-31T00:17:30.255Z" data-search="imóvel para aluguel possui 57 metros quadrados com 2 quartos em boa viagem - recife - pe boa viagem recife, boa viagem olx r$ 5.300 57m² 2 quartos 2 banheiros 1 vagas iptu r$ 1 condomínio r$ 1">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Imóvel para aluguel possui 57 metros quadrados com 2 quartos em Boa Viagem - Recife - PE</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 5.300</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>57m²</span><span>2 quartos</span><span>2 banheiros</span><span>1 vagas</span><span>IPTU R$ 1</span><span>Condomínio R$ 1</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-possui-57-metros-quadrados-com-2-quartos-em-boa-viagem-recife-pe-1490110552" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="3200" data-date="2026-03-31T00:17:30.255Z" data-search="alugo studio novo mobiliado nas graças - recife - pe graças recife, graças olx r$ 3.200 33m² 1 quartos 1 banheiros 1 vagas">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Alugo Studio novo MOBILIADO nas Graças - Recife - PE</h3>
+            <p>Graças</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 3.200</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>33m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/alugo-studio-novo-mobiliado-nas-gracas-recife-pe-1490091913" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="3000" data-date="2026-03-31T00:17:30.255Z" data-search="[tompson-58493] alugo apto boa viagem - 2 quartos boa viagem recife, boa viagem olx r$ 3.000 50m² 2 quartos 1 banheiros 1 vagas">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>[TOMPSON-58493] Alugo Apto Boa viagem - 2 Quartos</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 3.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>50m²</span><span>2 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/tompson-58493-alugo-apto-boa-viagem-2-quartos-1490130305" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="3000" data-date="2026-03-31T00:17:30.255Z" data-search="[tompson-19353] alugo apto 2 quartos- boa viagem - 2 quartos boa viagem recife, boa viagem olx r$ 3.000 50m² 2 quartos 1 banheiros 1 vagas">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>[TOMPSON-19353] Alugo apto 2 quartos- Boa viagem - 2 Quartos</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 3.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>50m²</span><span>2 quartos</span><span>1 banheiros</span><span>1 vagas</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/tompson-19353-alugo-apto-2-quartos-boa-viagem-2-quartos-1490130181" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="4000" data-date="2026-03-31T00:17:30.255Z" data-search="oferta única! alugo 03 qts, 01 suíte, 70 mt2 util, lazer completo! madalena recife, madalena olx r$ 4.000 70m² 3 quartos 1 banheiros 2 vagas">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>OFERTA ÚNICA! ALUGO 03 QTS, 01 SUÍTE, 70 MT2 UTIL, LAZER COMPLETO!</h3>
+            <p>Madalena</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 4.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>70m²</span><span>3 quartos</span><span>1 banheiros</span><span>2 vagas</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/oferta-unica-alugo-03-qts-01-suite-70-mt2-util-lazer-completo-1490129905" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="1350" data-date="2026-03-31T00:17:30.255Z" data-search="aluga-se uma casa campo grande recife, campo grande olx r$ 1.350 3 quartos 2 banheiros direto com o proprietário">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>aluga-se uma casa</h3>
+            <p>Campo Grande</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 1.350</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>3 quartos</span><span>2 banheiros</span><span>Direto com o proprietário</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/aluga-se-uma-casa-1490127808" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="800" data-date="2026-03-31T00:17:30.255Z" data-search="semana santa gravatá boa viagem recife, boa viagem olx r$ 800 120m² 3 quartos 3 banheiros direto com o proprietário">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Semana santa Gravatá</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 800</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>120m²</span><span>3 quartos</span><span>3 banheiros</span><span>Direto com o proprietário</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/semana-santa-gravata-1490127355" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="4400" data-date="2026-03-31T00:17:30.255Z" data-search="imóvel para aluguel tem 55 metros quadrados com 2 quartos em pina - recife - pe pina recife, pina olx r$ 4.400 55m² 2 quartos 1 banheiros 2 vagas destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Imóvel para aluguel tem 55 metros quadrados com 2 quartos em Pina - Recife - PE</h3>
+            <p>Pina</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 4.400</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>55m²</span><span>2 quartos</span><span>1 banheiros</span><span>2 vagas</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-tem-55-metros-quadrados-com-2-quartos-em-pina-recife-pe-1476506298" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="3000" data-date="2026-03-31T00:17:30.255Z" data-search="imóvel para aluguel com 35 metros quadrados com 1 quarto em graças - recife - pe graças recife, graças olx r$ 3.000 35m² 1 quartos 1 banheiros destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Imóvel para aluguel com 35 metros quadrados com 1 quarto em Graças - Recife - PE</h3>
+            <p>Graças</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 3.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>35m²</span><span>1 quartos</span><span>1 banheiros</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-com-35-metros-quadrados-com-1-quarto-em-gracas-recife-pe-1476520794" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="2500" data-date="2026-03-31T00:17:30.255Z" data-search="allure residence boa viagem recife, boa viagem olx r$ 2.500 24m² 1 quartos 1 banheiros 1 vagas iptu r$ 100 condomínio r$ 450">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>ALLURE RESIDENCE</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 2.500</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>24m²</span><span>1 quartos</span><span>1 banheiros</span><span>1 vagas</span><span>IPTU R$ 100</span><span>Condomínio R$ 450</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/allure-residence-1490126837" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="5000" data-date="2026-03-31T00:17:30.255Z" data-search="apartamento 150 metros exelente localização nagegantes boa viagem boa viagem recife, boa viagem olx r$ 5.000 150m² 4 quartos 1 banheiros 3 vagas destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>APARTAMENTO 150 METROS EXELENTE LOCALIZAÇÃO NAGEGANTES BOA VIAGEM</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 5.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>150m²</span><span>4 quartos</span><span>1 banheiros</span><span>3 vagas</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-150-metros-exelente-localizacao-nagegantes-boa-viagem-1477011220" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="4000" data-date="2026-03-31T00:17:30.255Z" data-search="imóvel para aluguel possui 71 metros quadrados com 3 quartos em boa viagem - recife - pe boa viagem recife, boa viagem olx r$ 4.000 71m² 3 quartos 1 banheiros 3 vagas destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Imóvel para aluguel possui 71 metros quadrados com 3 quartos em Boa Viagem - Recife - PE</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 4.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>71m²</span><span>3 quartos</span><span>1 banheiros</span><span>3 vagas</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-possui-71-metros-quadrados-com-3-quartos-em-boa-viagem-recife-pe-1482975770" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="3600" data-date="2026-03-31T00:17:30.255Z" data-search="92m² em boa viagem: espaço de sobra e localização estratégica. boa viagem recife, boa viagem olx r$ 3.600 92m² 3 quartos 1 banheiros 2 vagas destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>92m² em Boa Viagem: Espaço de sobra e localização estratégica.</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 3.600</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>92m²</span><span>3 quartos</span><span>1 banheiros</span><span>2 vagas</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/92m-em-boa-viagem-espaco-de-sobra-e-localizacao-estrategica-1482642307" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="10000" data-date="2026-03-31T00:17:30.255Z" data-search="apartamento locação 203m² | 4 suítes | 3 vagas | conforto e espaço parnamirim recife, parnamirim olx r$ 10.000 203m² 4 quartos 3 banheiros 4 vagas condomínio r$ 950 destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Apartamento locação 203m² | 4 Suítes | 3 Vagas | Conforto e Espaço</h3>
+            <p>Parnamirim</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 10.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>203m²</span><span>4 quartos</span><span>3 banheiros</span><span>4 vagas</span><span>Condomínio R$ 950</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-locacao-203m-4-suites-3-vagas-conforto-e-espaco-1483272841" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="10000" data-date="2026-03-31T00:17:30.255Z" data-search="imóvel para aluguel e venda tem 682 metros quadrados com 4 quartos em hipódromo - recife - hipódromo recife, hipódromo olx r$ 10.000 682m² 4 quartos 5+ banheiros 3 vagas destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Imóvel para aluguel e venda tem 682 metros quadrados com 4 quartos em Hipódromo - Recife -</h3>
+            <p>Hipódromo</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 10.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>682m²</span><span>4 quartos</span><span>5+ banheiros</span><span>3 vagas</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/imovel-para-aluguel-e-venda-tem-682-metros-quadrados-com-4-quartos-em-hipodromo-recife-1482263224" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  
+    <article class="listing-row" data-mode="aluguel" data-price="5000" data-date="2026-03-31T00:17:30.255Z" data-search="apartamento boa viagem recife, boa viagem olx r$ 5.000 148m² 4 quartos 1 banheiros 1 vagas iptu r$ 300 condomínio r$ 1.050 destaque">
+      <div class="listing-row__visual listing-row__visual--aluguel">OLX</div>
+      <div class="listing-row__body">
+        <div class="listing-row__head">
+          <div>
+            <div class="listing-row__chips">
+              <span class="mode-pill mode-pill--aluguel">Aluguel</span>
+              <span class="source-pill">OLX</span>
+            </div>
+            <h3>Apartamento</h3>
+            <p>Boa Viagem</p>
+          </div>
+          <div class="listing-row__price">
+            <strong>R$ 5.000</strong>
+            <span>30/03/2026, 21:17</span>
+          </div>
+        </div>
+        <div class="listing-row__meta"><span>148m²</span><span>4 quartos</span><span>1 banheiros</span><span>1 vagas</span><span>IPTU R$ 300</span><span>Condomínio R$ 1.050</span><span>Destaque</span></div>
+      </div>
+      <a class="listing-row__link" href="https://pe.olx.com.br/grande-recife/imoveis/apartamento-1483245694" target="_blank" rel="noreferrer">Abrir</a>
+    </article>
+  </div>
+          </section>
 
-    <script>
-      (function () {
-        const buttons = Array.from(document.querySelectorAll('[data-filter]'));
-        const cards = Array.from(document.querySelectorAll('[data-mode]'));
-        const searchInput = document.getElementById('search-input');
-        const sortSelect = document.getElementById('sort-select');
-        const listingGrid = document.querySelector('.listing-grid');
-        const updatesGrid = document.querySelector('.updates-grid');
-        const neighborhoodGrid = document.querySelector('.mini-grid');
-        let activeFilter = 'all';
-
-        function sortCards(container, selector, mode) {
-          if (!container) {
-            return;
-          }
-
-          const elements = Array.from(container.querySelectorAll(selector));
-          elements.sort((left, right) => {
-            if (mode === 'price-desc') {
-              return Number(right.dataset.price || 0) - Number(left.dataset.price || 0);
-            }
-
-            if (mode === 'price-asc') {
-              return Number(left.dataset.price || 0) - Number(right.dataset.price || 0);
-            }
-
-            if (mode === 'title') {
-              return (left.querySelector('h3')?.textContent || '').localeCompare(right.querySelector('h3')?.textContent || '', 'pt-BR');
-            }
-
-            return (right.dataset.date || '').localeCompare(left.dataset.date || '');
-          });
-
-          elements.forEach((element) => container.appendChild(element));
-        }
-
-        function applyFilters() {
-          const query = (searchInput?.value || '').trim().toLowerCase();
-
-          buttons.forEach((button) => {
-            button.classList.toggle('is-active', button.dataset.filter === activeFilter);
-          });
-
-          cards.forEach((card) => {
-            const modeMatch = activeFilter === 'all' || card.dataset.mode === activeFilter;
-            const queryMatch = !query || (card.dataset.search || '').includes(query);
-            const shouldShow = modeMatch && queryMatch;
-            card.setAttribute('data-hidden', shouldShow ? 'false' : 'true');
-          });
-
-          sortCards(listingGrid, '.listing-card', sortSelect?.value || 'recent');
-          sortCards(updatesGrid, '.update-card', sortSelect?.value || 'recent');
-          sortCards(neighborhoodGrid, '.mini-card', sortSelect?.value || 'recent');
-        }
-
-        buttons.forEach((button) => {
-          button.addEventListener('click', () => {
-            activeFilter = button.dataset.filter;
-            applyFilters();
-          });
-        });
-
-        searchInput?.addEventListener('input', applyFilters);
-        sortSelect?.addEventListener('change', applyFilters);
-
-        applyFilters();
-      })();
-    </script>
+          <aside class="panel">
+            <div class="panel__head">
+              <div>
+                <h2>Signals</h2>
+                <p>Pistas curtas para guiar seu olhar no board.</p>
+              </div>
+            </div>
+            <div class="insight-stack">
+    <article class="insight-card">
+      <span>Bairro em foco</span>
+      <h3>Boa Viagem puxa o radar</h3>
+      <p>78 ativos em aluguel com ticket medio R$ 4.973,97.</p>
+    </article>
+  
+    <article class="insight-card">
+      <span>Pressao de preco</span>
+      <h3>Existe uma queda recente para revisar</h3>
+      <p>Apartamento para alugar com 55 m², 2 quartos, 2 banheiros, 1 vaga em Pina, Recife mexeu -R$ 200,00 e merece uma leitura manual.</p>
+    </article>
+  
+    <article class="insight-card">
+      <span>Origem dominante</span>
+      <h3>OLX esta puxando o fluxo</h3>
+      <p>98 ativos em venda com ticket medio R$ 877.812,80.</p>
+    </article>
+  </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+    <script src="./dashboard.js"></script>
   </body>
 </html>
