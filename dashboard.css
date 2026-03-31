@@ -2296,6 +2296,53 @@ select {
   padding: 16px;
 }
 
+.opportunity-card__signal {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.opportunity-card__signal span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.opportunity-card__signal strong {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(8, 48, 52, 0.06);
+  color: #31585c;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.opportunity-card__reasons {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.opportunity-card__reasons span {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(77, 127, 134, 0.08);
+  color: #355a61;
+  font-size: 11px;
+  font-weight: 800;
+}
+
 .opportunity-card__top {
   display: flex;
   justify-content: space-between;
@@ -2556,6 +2603,93 @@ select {
 
 .detail-panel__stats {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.detail-panel__radar {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(34, 55, 60, 0.08);
+  background: linear-gradient(180deg, rgba(241, 248, 248, 0.96), rgba(251, 247, 241, 0.96));
+}
+
+.detail-panel__radar-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.detail-panel__radar-head span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.detail-panel__radar-head strong {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #567f87, #335f66);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.detail-panel__radar-metrics {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.detail-panel__radar-metrics article {
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(34, 55, 60, 0.06);
+}
+
+.detail-panel__radar-metrics span,
+.detail-panel__radar-metrics strong {
+  display: block;
+}
+
+.detail-panel__radar-metrics span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.detail-panel__radar-metrics strong {
+  margin-top: 8px;
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.detail-panel__radar-reasons {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-panel__radar-reasons span {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(77, 127, 134, 0.1);
+  color: #355a61;
+  font-size: 11px;
+  font-weight: 800;
 }
 
 .detail-panel__stats article {
@@ -2836,6 +2970,10 @@ select {
   .detail-modal__grid,
   .detail-panel__stats {
     grid-template-columns: 1fr;
+  }
+
+  .detail-panel__radar-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -3291,6 +3429,10 @@ select {
     margin: 10px auto;
     padding: 14px;
     border-radius: 24px;
+  }
+
+  .detail-panel__radar-metrics {
+    grid-template-columns: 1fr;
   }
 
   [data-mobile-section="true"][data-mobile-section-hidden="true"] {

@@ -518,6 +518,33 @@
             <strong>Resumo do imovel</strong>
             <a class="detail-panel__action" href="${escapeHtml(detail.url || '#')}" target="_blank" rel="noreferrer">Abrir anuncio</a>
           </div>
+          <div class="detail-panel__radar">
+            <div class="detail-panel__radar-head">
+              <span>Radar</span>
+              <strong>${escapeHtml(detail.radarConfidence || 'Inicial')}</strong>
+            </div>
+            <div class="detail-panel__radar-metrics">
+              <article>
+                <span>Desconto</span>
+                <strong>${escapeHtml(detail.radarDiscountText || 'N/D')}</strong>
+              </article>
+              <article>
+                <span>Preco / m2</span>
+                <strong>${escapeHtml(detail.radarPricePerM2Text || 'N/D')}</strong>
+              </article>
+              <article>
+                <span>Media local</span>
+                <strong>${escapeHtml(detail.radarBenchmarkText || 'N/D')}</strong>
+              </article>
+              <article>
+                <span>Amostra</span>
+                <strong>${escapeHtml(`${detail.radarSampleSizeLabel || '0'} comps`)}</strong>
+              </article>
+            </div>
+            <div class="detail-panel__radar-reasons">
+              ${(detail.radarReasons || []).map((reason) => `<span>${escapeHtml(reason)}</span>`).join('')}
+            </div>
+          </div>
           <div class="detail-panel__stats">
             <article>
               <span>Variacao vs melhor preco</span>
