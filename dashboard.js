@@ -11,7 +11,11 @@
   const mobileSectionButtons = Array.from(document.querySelectorAll('[data-section-target]'));
   const mapFilterButtons = Array.from(document.querySelectorAll('[data-map-filter]'));
   const sidebarLinks = Array.from(document.querySelectorAll('.site-nav a[href^="#"]'));
+  const siteNav = document.getElementById('site-nav');
+  const headerElement = document.querySelector('.market-header');
+  const headerMenuToggle = document.getElementById('header-menu-toggle');
   const detailDataElement = document.getElementById('listing-details-data');
+  const heroMapDataElement = document.getElementById('hero-map-listings-data');
   const mapDataElement = document.getElementById('map-listings-data');
   const detailModal = document.getElementById('listing-detail-modal');
   const detailContent = document.getElementById('listing-detail-content');
@@ -31,10 +35,19 @@
       return [];
     }
   })();
+  const heroMapListings = (() => {
+    try {
+      const parsed = JSON.parse(heroMapDataElement?.textContent || '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  })();
 
   let activeFilter = 'all';
   let activeMapFilter = 'all';
   let mapState = null;
+  let heroMapState = null;
   const compactViewport = window.matchMedia('(max-width: 760px)');
   const expandedSections = new Map();
   const mobileSectionState = new Map();
@@ -51,6 +64,13 @@
   function syncSearchInputs(source, target) {
     if (!source || !target || target.value === source.value) return;
     target.value = source.value;
+  }
+
+  function setHeaderMenu(open) {
+    if (!headerElement || !siteNav || !headerMenuToggle) return;
+    headerElement.classList.toggle('is-nav-open', open);
+    siteNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    headerMenuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
   function setActiveSidebarLink(targetId) {
@@ -122,6 +142,21 @@
     });
   }
 
+  function createHeroMarkerIcon(item) {
+    const modeClass = item.mode === 'venda' ? 'marker-badge--sale' : 'marker-badge--rent';
+    return L.divIcon({
+      className: 'hero-listing-map__marker-shell',
+      html: `
+        <button class="hero-listing-map__marker ${escapeHtml(modeClass)}" type="button" aria-label="${escapeHtml(item.title || 'Imovel')}">
+          <span>${escapeHtml(item.modeLabel || item.mode || 'Radar')}</span>
+          <strong>${escapeHtml(item.priceText || '')}</strong>
+        </button>
+      `,
+      iconSize: [104, 52],
+      iconAnchor: [52, 26],
+    });
+  }
+
   function buildPopupHtml(item) {
     const precisionLabel = item.coordPrecision === 'exact'
       ? 'local exato'
@@ -188,6 +223,50 @@
     };
 
     return state;
+  }
+
+  function initializeHeroMap() {
+    const container = document.getElementById('hero-listing-map');
+    if (!container || typeof L === 'undefined' || !heroMapListings.length) return null;
+
+    const map = L.map(container, {
+      zoomControl: false,
+      scrollWheelZoom: false,
+      dragging: !compactViewport.matches,
+      attributionControl: false,
+    }).setView([-8.055, -34.895], compactViewport.matches ? 11 : 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; colaboradores do OpenStreetMap',
+    }).addTo(map);
+
+    const markers = heroMapListings
+      .filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng))
+      .map((item) => {
+        const marker = L.marker([item.lat, item.lng], {
+          icon: createHeroMarkerIcon(item),
+          keyboard: false,
+        });
+
+        marker.on('click', () => {
+          openDetail(item.listing_id);
+        });
+
+        return { item, marker };
+      });
+
+    const layerGroup = L.layerGroup(markers.map(({ marker }) => marker)).addTo(map);
+
+    if (markers.length) {
+      const bounds = L.latLngBounds(markers.map(({ item }) => [item.lat, item.lng]));
+      map.fitBounds(bounds, {
+        padding: compactViewport.matches ? [18, 18] : [34, 34],
+        maxZoom: compactViewport.matches ? 12 : 13,
+      });
+    }
+
+    return { map, layerGroup };
   }
 
   function refreshMap() {
@@ -527,10 +606,18 @@
   sidebarLinks.forEach((link) => {
     link.addEventListener('click', () => {
       const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
+      if (compactViewport.matches) {
+        setHeaderMenu(false);
+      }
       if (targetId) {
         window.setTimeout(() => setActiveSidebarLink(targetId), 20);
       }
     });
+  });
+
+  headerMenuToggle?.addEventListener('click', () => {
+    const isOpen = headerElement?.classList.contains('is-nav-open') === true;
+    setHeaderMenu(!isOpen);
   });
 
   document.addEventListener('keydown', (event) => {
@@ -546,17 +633,33 @@
     compactViewport.addEventListener('change', () => {
       updateExpandableSections();
       updateMobileSections();
+      if (!compactViewport.matches) {
+        setHeaderMenu(false);
+      }
+      if (heroMapState?.map) {
+        heroMapState.map.dragging[compactViewport.matches ? 'disable' : 'enable']();
+        window.setTimeout(() => heroMapState.map.invalidateSize(), 40);
+      }
     });
   } else if (typeof compactViewport.addListener === 'function') {
     compactViewport.addListener(() => {
       updateExpandableSections();
       updateMobileSections();
+      if (!compactViewport.matches) {
+        setHeaderMenu(false);
+      }
+      if (heroMapState?.map) {
+        heroMapState.map.dragging[compactViewport.matches ? 'disable' : 'enable']();
+        window.setTimeout(() => heroMapState.map.invalidateSize(), 40);
+      }
     });
   }
 
+  heroMapState = initializeHeroMap();
   mapState = initializeMap();
   syncMapFilterButtons();
   applyFilters();
   updateMobileSections();
+  setHeaderMenu(false);
   syncSidebarByScroll();
 })();
