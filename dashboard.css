@@ -197,15 +197,15 @@ select {
   backdrop-filter: blur(18px);
 }
 
-.surface > .workspace-grid {
+.surface > .mobile-section-toggle[data-section-target="analytics-grid"] {
   order: 4;
 }
 
-.surface > .mobile-section-toggle[data-section-target="analytics-grid"] {
+.surface > .analytics-grid {
   order: 5;
 }
 
-.surface > .analytics-grid {
+.surface > .workspace-grid {
   order: 6;
 }
 
@@ -612,11 +612,23 @@ select {
   display: block;
 }
 
+.line-chart__area {
+  opacity: 0.18;
+}
+
 .line-chart polyline {
   fill: none;
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.trend-card--sale .line-chart__area {
+  fill: var(--sale);
+}
+
+.trend-card--rent .line-chart__area {
+  fill: var(--rent);
 }
 
 .trend-card--sale .line-chart polyline {
@@ -638,6 +650,11 @@ select {
   border-radius: 16px;
   background: rgba(8, 48, 52, 0.04);
   text-align: center;
+}
+
+.line-chart__labels div.is-peak {
+  background: rgba(15, 127, 136, 0.1);
+  border: 1px solid rgba(15, 127, 136, 0.16);
 }
 
 .line-chart__labels strong {
@@ -749,6 +766,10 @@ select {
   color: #31585c;
   font-size: 14px;
   font-weight: 700;
+}
+
+.move-card {
+  cursor: pointer;
 }
 
 .insight-card span {
