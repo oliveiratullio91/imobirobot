@@ -87,12 +87,22 @@
   }
 
   function buildPopupHtml(item) {
+    const precisionLabel = item.coordPrecision === 'exact'
+      ? 'local exato'
+      : item.coordPrecision === 'geocoded_address'
+        ? 'endereco geocodificado'
+        : item.coordPrecision === 'geocoded_query'
+          ? 'busca geocodificada'
+          : item.coordPrecision === 'neighborhood'
+            ? 'bairro aproximado'
+            : 'centro aproximado';
+
     return `
       <div class="listing-map__popup">
         <span>${escapeHtml(item.sourceLabel || 'Origem')} • ${escapeHtml(item.modeLabel || item.mode || 'Radar')}</span>
         <strong>${escapeHtml(item.title || 'Imovel')}</strong>
-        <p>${escapeHtml(item.neighborhood || item.location || 'Local nao informado')}</p>
-        <small>${escapeHtml(item.priceText || 'Sem preco')} • score ${escapeHtml(String(item.radarScore || 0))}</small>
+        <p>${escapeHtml(item.coordLabel || item.neighborhood || item.location || 'Local nao informado')}</p>
+        <small>${escapeHtml(item.priceText || 'Sem preco')} • score ${escapeHtml(String(item.radarScore || 0))} • ${escapeHtml(precisionLabel)}</small>
       </div>
     `;
   }
@@ -253,6 +263,14 @@
             <article>
               <span>Ultima variacao</span>
               <strong class="is-${escapeHtml(detail.latestChangeDirection || 'flat')}">${escapeHtml(detail.latestChangeText || 'Sem variacao')}</strong>
+            </article>
+            <article>
+              <span>Mapa</span>
+              <strong>${escapeHtml(detail.locationLabel || detail.neighborhood || 'Recife')}</strong>
+            </article>
+            <article>
+              <span>Precisao</span>
+              <strong>${escapeHtml(detail.locationPrecision || 'fallback')}</strong>
             </article>
           </div>
           <div class="detail-panel__meta">
