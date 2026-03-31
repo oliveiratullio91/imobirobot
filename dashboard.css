@@ -255,6 +255,7 @@ select {
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   box-shadow: 0 18px 40px rgba(82, 66, 42, 0.12);
+  overflow: visible;
 }
 
 .site-nav {
@@ -2545,14 +2546,18 @@ select {
 
   .site-nav {
     display: none;
-    grid-column: 1 / -1;
-    width: 100%;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    width: auto;
     gap: 8px;
     padding: 10px;
     border-radius: 18px;
     border: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.92);
     box-shadow: var(--shadow-md);
+    z-index: 80;
   }
 
   .market-header.is-nav-open .site-nav {
@@ -2589,6 +2594,14 @@ select {
 
   .market-showcase {
     padding: 14px;
+  }
+
+  .market-header__brand strong {
+    font-size: 15px;
+  }
+
+  .market-header__brand span {
+    font-size: 11px;
   }
 
   .market-stage__head h1 {

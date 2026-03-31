@@ -73,6 +73,16 @@
     headerMenuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
+  function invalidateMaps() {
+    if (heroMapState?.map) {
+      heroMapState.map.invalidateSize();
+    }
+
+    if (mapState?.map) {
+      mapState.map.invalidateSize();
+    }
+  }
+
   function setActiveSidebarLink(targetId) {
     sidebarLinks.forEach((link) => {
       const isActive = link.getAttribute('href') === `#${targetId}`;
@@ -620,8 +630,15 @@
     setHeaderMenu(!isOpen);
   });
 
+  document.addEventListener('click', (event) => {
+    if (!headerElement?.classList.contains('is-nav-open')) return;
+    if (headerElement.contains(event.target)) return;
+    setHeaderMenu(false);
+  });
+
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
+      setHeaderMenu(false);
       closeDetail();
     }
   });
@@ -638,7 +655,7 @@
       }
       if (heroMapState?.map) {
         heroMapState.map.dragging[compactViewport.matches ? 'disable' : 'enable']();
-        window.setTimeout(() => heroMapState.map.invalidateSize(), 40);
+        window.setTimeout(invalidateMaps, 40);
       }
     });
   } else if (typeof compactViewport.addListener === 'function') {
@@ -650,7 +667,7 @@
       }
       if (heroMapState?.map) {
         heroMapState.map.dragging[compactViewport.matches ? 'disable' : 'enable']();
-        window.setTimeout(() => heroMapState.map.invalidateSize(), 40);
+        window.setTimeout(invalidateMaps, 40);
       }
     });
   }
@@ -662,4 +679,9 @@
   updateMobileSections();
   setHeaderMenu(false);
   syncSidebarByScroll();
+  window.addEventListener('resize', invalidateMaps);
+  window.addEventListener('load', () => {
+    invalidateMaps();
+    window.setTimeout(invalidateMaps, 180);
+  });
 })();
