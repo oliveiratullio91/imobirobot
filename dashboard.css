@@ -1287,6 +1287,12 @@ select {
   font-weight: 800;
 }
 
+.map-panel__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .map-canvas {
   position: relative;
   min-height: 360px;

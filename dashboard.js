@@ -9,6 +9,7 @@
   const boardCount = document.getElementById('board-count');
   const expandButtons = Array.from(document.querySelectorAll('[data-expand-target]'));
   const mobileSectionButtons = Array.from(document.querySelectorAll('[data-section-target]'));
+  const mapFilterButtons = Array.from(document.querySelectorAll('[data-map-filter]'));
   const detailDataElement = document.getElementById('listing-details-data');
   const mapDataElement = document.getElementById('map-listings-data');
   const detailModal = document.getElementById('listing-detail-modal');
@@ -31,6 +32,7 @@
   })();
 
   let activeFilter = 'all';
+  let activeMapFilter = 'all';
   let mapState = null;
   const compactViewport = window.matchMedia('(max-width: 760px)');
   const expandedSections = new Map();
@@ -164,9 +166,21 @@
 
     mapState.layerGroup.clearLayers();
 
-    const visibleMarkers = mapState.markers.filter(({ item }) => (
+    let visibleMarkers = mapState.markers.filter(({ item }) => (
       activeFilter === 'all' || item.mode === activeFilter
     ));
+
+    if (activeMapFilter === 'venda' || activeMapFilter === 'aluguel') {
+      visibleMarkers = visibleMarkers.filter(({ item }) => item.mode === activeMapFilter);
+    } else if (activeMapFilter === 'top-score') {
+      visibleMarkers = [...visibleMarkers]
+        .sort((left, right) => Number(right.item.radarScore || 0) - Number(left.item.radarScore || 0))
+        .slice(0, 8);
+    } else if (activeMapFilter === 'best-discount') {
+      visibleMarkers = [...visibleMarkers]
+        .sort((left, right) => Number(right.item.discountPct || 0) - Number(left.item.discountPct || 0))
+        .slice(0, 8);
+    }
 
     visibleMarkers.forEach(({ marker }) => marker.addTo(mapState.layerGroup));
 
@@ -176,6 +190,12 @@
     mapState.map.fitBounds(bounds, {
       padding: [26, 26],
       maxZoom: 14,
+    });
+  }
+
+  function syncMapFilterButtons() {
+    mapFilterButtons.forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.mapFilter === activeMapFilter);
     });
   }
 
@@ -437,6 +457,14 @@
     });
   });
 
+  mapFilterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeMapFilter = button.dataset.mapFilter || 'all';
+      syncMapFilterButtons();
+      refreshMap();
+    });
+  });
+
   detailTriggers.forEach((trigger) => {
     const listingId = trigger.dataset.listingId;
     if (!listingId) return;
@@ -486,6 +514,7 @@
   }
 
   mapState = initializeMap();
+  syncMapFilterButtons();
   applyFilters();
   updateMobileSections();
 })();
