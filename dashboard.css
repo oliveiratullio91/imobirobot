@@ -369,6 +369,7 @@ select {
 
 .metric-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .analytics-grid {
@@ -555,6 +556,7 @@ select {
 
 .chart-stack {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .trend-card,
@@ -700,9 +702,15 @@ select {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
 }
 
 .growth-kpi {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
   padding: 14px;
   border-radius: 18px;
   border: 1px solid var(--line);
@@ -856,6 +864,24 @@ select {
 
 .heat-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
+.heat-card,
+.insight-card,
+.move-card,
+.cue-card,
+.opportunity-card {
+  height: 100%;
+}
+
+.heat-card,
+.insight-card,
+.cue-card,
+.opportunity-card {
+  display: flex;
+  flex-direction: column;
 }
 
 .heat-card small {
@@ -864,6 +890,13 @@ select {
   color: #416466;
   font-size: 12px;
   font-weight: 800;
+}
+
+.heat-card p,
+.cue-card p,
+.insight-card p,
+.opportunity-card p {
+  flex: 1;
 }
 
 .move-card__top strong {
@@ -959,13 +992,18 @@ select {
 .listing-board {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-content: start;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
 }
 
 .listing-card {
   display: grid;
   grid-template-columns: 128px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto 1fr auto;
   gap: 14px;
-  align-items: center;
+  align-items: start;
+  align-content: start;
+  height: 100%;
   padding: 14px;
   border-radius: 24px;
   transition: transform 180ms ease, box-shadow 180ms ease;
@@ -1027,11 +1065,19 @@ select {
   margin: 10px 0 0;
   font-size: 22px;
   line-height: 1.2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .listing-card p {
   margin: 8px 0 0;
   color: var(--muted);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .listing-card__price {
@@ -1108,6 +1154,8 @@ select {
 
 .cue-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  grid-auto-rows: 1fr;
 }
 
 .cue-card,
@@ -1726,6 +1774,24 @@ select {
 .opportunity-stack > [data-mobile-limit] {
   display: grid;
   gap: 16px;
+}
+
+.sidebar__nav a {
+  scroll-margin-top: 24px;
+}
+
+@media (max-width: 1320px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workspace-grid {
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.82fr);
+  }
+
+  .listing-board {
+    grid-template-columns: 1fr;
+  }
 }
 
 .section-toggle {

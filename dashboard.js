@@ -10,6 +10,7 @@
   const expandButtons = Array.from(document.querySelectorAll('[data-expand-target]'));
   const mobileSectionButtons = Array.from(document.querySelectorAll('[data-section-target]'));
   const mapFilterButtons = Array.from(document.querySelectorAll('[data-map-filter]'));
+  const sidebarLinks = Array.from(document.querySelectorAll('.sidebar__nav a[href^="#"]'));
   const detailDataElement = document.getElementById('listing-details-data');
   const mapDataElement = document.getElementById('map-listings-data');
   const detailModal = document.getElementById('listing-detail-modal');
@@ -50,6 +51,34 @@
   function syncSearchInputs(source, target) {
     if (!source || !target || target.value === source.value) return;
     target.value = source.value;
+  }
+
+  function setActiveSidebarLink(targetId) {
+    sidebarLinks.forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${targetId}`;
+      link.classList.toggle('is-active', isActive);
+    });
+  }
+
+  function syncSidebarByScroll() {
+    const targets = sidebarLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    if (!targets.length) return;
+
+    const activeSection = targets.reduce((best, section) => {
+      const rect = section.getBoundingClientRect();
+      const distance = Math.abs(rect.top - 140);
+      if (!best || distance < best.distance) {
+        return { id: section.id, distance };
+      }
+      return best;
+    }, null);
+
+    if (activeSection?.id) {
+      setActiveSidebarLink(activeSection.id);
+    }
   }
 
   function sortRows(mode) {
@@ -495,11 +524,23 @@
     trigger.addEventListener('click', closeDetail);
   });
 
+  sidebarLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
+      if (targetId) {
+        window.setTimeout(() => setActiveSidebarLink(targetId), 20);
+      }
+    });
+  });
+
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       closeDetail();
     }
   });
+
+  window.addEventListener('scroll', syncSidebarByScroll, { passive: true });
+  window.addEventListener('hashchange', syncSidebarByScroll);
 
   if (typeof compactViewport.addEventListener === 'function') {
     compactViewport.addEventListener('change', () => {
@@ -517,4 +558,5 @@
   syncMapFilterButtons();
   applyFilters();
   updateMobileSections();
+  syncSidebarByScroll();
 })();
