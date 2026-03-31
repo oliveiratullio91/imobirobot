@@ -1,7 +1,6 @@
 (function () {
   const chips = Array.from(document.querySelectorAll('[data-filter]'));
   const rows = Array.from(document.querySelectorAll('.listing-card'));
-  const mapPins = Array.from(document.querySelectorAll('.map-pin'));
   const detailTriggers = Array.from(document.querySelectorAll('[data-listing-id]'));
   const board = document.querySelector('.listing-board');
   const heroSearch = document.getElementById('hero-search');
@@ -9,6 +8,7 @@
   const sortSelect = document.getElementById('board-sort');
   const boardCount = document.getElementById('board-count');
   const detailDataElement = document.getElementById('listing-details-data');
+  const mapDataElement = document.getElementById('map-listings-data');
   const detailModal = document.getElementById('listing-detail-modal');
   const detailContent = document.getElementById('listing-detail-content');
   const detailCloseTriggers = Array.from(document.querySelectorAll('[data-detail-close="true"]'));
@@ -19,7 +19,17 @@
       return {};
     }
   })();
+  const mapListings = (() => {
+    try {
+      const parsed = JSON.parse(mapDataElement?.textContent || '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  })();
+
   let activeFilter = 'all';
+  let mapState = null;
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -60,6 +70,100 @@
     sorted.forEach((row) => board.appendChild(row));
   }
 
+  function createMarkerIcon(item) {
+    const modeClass = item.mode === 'venda' ? 'marker-badge--sale' : 'marker-badge--rent';
+    const score = Number(item.radarScore || 0);
+    return L.divIcon({
+      className: 'listing-map__marker-shell',
+      html: `
+        <button class="listing-map__marker ${escapeHtml(modeClass)}" type="button" aria-label="${escapeHtml(item.title || 'Imovel')}">
+          <span>${escapeHtml(item.modeLabel || item.mode || 'Radar')}</span>
+          <strong>${escapeHtml(String(score))}</strong>
+        </button>
+      `,
+      iconSize: [54, 54],
+      iconAnchor: [27, 27],
+    });
+  }
+
+  function buildPopupHtml(item) {
+    return `
+      <div class="listing-map__popup">
+        <span>${escapeHtml(item.sourceLabel || 'Origem')} • ${escapeHtml(item.modeLabel || item.mode || 'Radar')}</span>
+        <strong>${escapeHtml(item.title || 'Imovel')}</strong>
+        <p>${escapeHtml(item.neighborhood || item.location || 'Local nao informado')}</p>
+        <small>${escapeHtml(item.priceText || 'Sem preco')} • score ${escapeHtml(String(item.radarScore || 0))}</small>
+      </div>
+    `;
+  }
+
+  function initializeMap() {
+    const container = document.getElementById('listing-map');
+    if (!container || typeof L === 'undefined' || !mapListings.length) return null;
+
+    const map = L.map(container, {
+      zoomControl: false,
+      scrollWheelZoom: true,
+      attributionControl: true,
+    }).setView([-8.055, -34.895], 12);
+
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors',
+    }).addTo(map);
+
+    const markers = mapListings.map((item) => {
+      const marker = L.marker([item.lat, item.lng], {
+        icon: createMarkerIcon(item),
+        keyboard: false,
+      });
+
+      marker.bindPopup(buildPopupHtml(item), {
+        closeButton: false,
+        offset: [0, -18],
+      });
+
+      marker.on('click', () => {
+        openDetail(item.listing_id);
+      });
+
+      return {
+        item,
+        marker,
+      };
+    });
+
+    const state = {
+      map,
+      markers,
+      layerGroup: L.layerGroup().addTo(map),
+    };
+
+    return state;
+  }
+
+  function refreshMap() {
+    if (!mapState) return;
+
+    mapState.layerGroup.clearLayers();
+
+    const visibleMarkers = mapState.markers.filter(({ item }) => (
+      activeFilter === 'all' || item.mode === activeFilter
+    ));
+
+    visibleMarkers.forEach(({ marker }) => marker.addTo(mapState.layerGroup));
+
+    if (!visibleMarkers.length) return;
+
+    const bounds = L.latLngBounds(visibleMarkers.map(({ item }) => [item.lat, item.lng]));
+    mapState.map.fitBounds(bounds, {
+      padding: [26, 26],
+      maxZoom: 14,
+    });
+  }
+
   function applyFilters() {
     const query = (boardSearch?.value || heroSearch?.value || '').trim().toLowerCase();
     let visible = 0;
@@ -76,16 +180,12 @@
       if (shouldShow) visible += 1;
     });
 
-    mapPins.forEach((pin) => {
-      const modeMatch = activeFilter === 'all' || pin.dataset.targetMode === activeFilter;
-      pin.setAttribute('data-hidden', modeMatch ? 'false' : 'true');
-    });
-
     if (boardCount) {
       boardCount.textContent = `${new Intl.NumberFormat('pt-BR').format(visible)} resultados`;
     }
 
     sortRows(sortSelect?.value || 'recent');
+    refreshMap();
   }
 
   function buildDetailMarkup(detail) {
@@ -216,15 +316,6 @@
 
   sortSelect?.addEventListener('change', applyFilters);
 
-  mapPins.forEach((pin) => {
-    pin.addEventListener('click', () => {
-      const targetMode = pin.dataset.targetMode || 'all';
-      activeFilter = targetMode;
-      applyFilters();
-      document.getElementById('workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
   detailTriggers.forEach((trigger) => {
     const listingId = trigger.dataset.listingId;
     if (!listingId) return;
@@ -261,5 +352,6 @@
     }
   });
 
+  mapState = initializeMap();
   applyFilters();
 })();

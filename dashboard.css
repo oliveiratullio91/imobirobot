@@ -1006,6 +1006,82 @@ select {
     linear-gradient(145deg, #f5f9f8 0%, #eef4f3 100%);
 }
 
+.map-canvas--live {
+  padding: 10px;
+}
+
+.listing-map {
+  min-height: 340px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.listing-map .leaflet-control-attribution {
+  font-size: 10px;
+}
+
+.listing-map__marker-shell {
+  background: transparent;
+  border: 0;
+}
+
+.listing-map__marker {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  border: 0;
+  border-radius: 18px;
+  color: #ffffff;
+  box-shadow: 0 18px 34px rgba(5, 28, 30, 0.22);
+}
+
+.listing-map__marker span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.84;
+}
+
+.listing-map__marker strong {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.marker-badge--sale {
+  background: linear-gradient(145deg, var(--sale), var(--sale-strong));
+}
+
+.marker-badge--rent {
+  background: linear-gradient(145deg, var(--rent), var(--rent-strong));
+}
+
+.listing-map__popup span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.listing-map__popup strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.listing-map__popup p,
+.listing-map__popup small {
+  display: block;
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .map-canvas__grid {
   position: absolute;
   inset: 0;
