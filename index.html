@@ -29,12 +29,12 @@
             </nav>
 
             <div class="market-header__search">
-              <input id="hero-search" type="search" placeholder="Pesquise cidade, bairro, origem ou preco">
+              <input id="hero-search" type="search" placeholder="Busque por bairro, rua, origem ou faixa de preco">
             </div>
 
             <div class="market-header__actions">
               <span>24/03 - 30/03</span>
-              <button type="button" aria-label="Perfil do usuario">TO</button>
+              <span class="market-header__status">Demo ativa</span>
               <button class="market-header__menu-toggle" id="header-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">Menu</button>
             </div>
           </header>
@@ -47,8 +47,8 @@
                   <h1>Capte oportunidades em Recife antes que o mercado ajuste o preco.</h1>
                   <p>Monitore venda e aluguel em OLX + Zap, acompanhe historico de preco e priorize os melhores contatos com um radar unico para corretores, captadores e operacoes imobiliarias.</p>
                   <div class="market-stage__actions">
-                    <a class="market-stage__action market-stage__action--primary" href="#signals">Ver oportunidades</a>
-                    <a class="market-stage__action market-stage__action--ghost" href="#workspace">Explorar painel</a>
+                    <a class="market-stage__action market-stage__action--primary" href="#signals">Abrir radar de oportunidades</a>
+                    <a class="market-stage__action market-stage__action--ghost" href="#workspace">Ver base monitorada</a>
                   </div>
                   <div class="market-stage__proof">
                     <article>
@@ -253,7 +253,7 @@
               <strong>1.805 novos anuncios, 505 quedas e 475 altas nas ultimas 24 horas.</strong>
               <p>Ultima sincronizacao util: 31/03/2026, 13:01. Fontes monitoradas: OLX + Zap.</p>
             </div>
-            <a href="#workspace">Ver imoveis</a>
+            <a href="#workspace">Abrir base ativa</a>
           </section>
 
           <section class="journey-strip">
@@ -1404,7 +1404,7 @@
   
     <article class="credibility-card">
       <span>Localizacao validada</span>
-      <strong>13</strong>
+      <strong>7</strong>
       <p>Imoveis com localizacao melhor que fallback, priorizando endereco e recorte de Recife.</p>
     </article>
   
@@ -1459,12 +1459,16 @@
               <p>Base viva em OLX + Zap, historico de preco, mapa validado e leitura de oportunidade pronta para time comercial.</p>
             </div>
             <div class="closing-cta__actions">
-              <a href="#overview">Voltar ao topo</a>
-              <a href="#signals">Abrir oportunidades</a>
+              <a href="#overview">Ver demonstracao</a>
+              <a href="#signals">Abrir oportunidades agora</a>
             </div>
           </section>
         </section>
       </main>
+    </div>
+    <div class="mobile-quick-actions" aria-label="Atalhos rapidos">
+      <a href="#signals">Oportunidades</a>
+      <a href="#workspace">Painel</a>
     </div>
     <div class="detail-modal" id="listing-detail-modal" hidden>
       <div class="detail-modal__backdrop" data-detail-close="true"></div>

@@ -393,6 +393,11 @@ select {
   color: #4d6568;
 }
 
+.market-header__actions .market-header__status {
+  background: linear-gradient(135deg, rgba(77, 127, 134, 0.14), rgba(95, 143, 102, 0.12));
+  color: #2f5c61;
+}
+
 .market-header__actions button {
   width: 48px;
   padding: 0;
@@ -1459,6 +1464,10 @@ select {
   background: linear-gradient(135deg, #567f87, #335f66);
   color: #ffffff;
   box-shadow: 0 14px 28px rgba(51, 95, 102, 0.18);
+}
+
+.mobile-quick-actions {
+  display: none;
 }
 
 .panel {
@@ -3541,6 +3550,45 @@ select {
 
   .closing-cta__actions a {
     width: 100%;
+  }
+
+  .mobile-quick-actions {
+    position: sticky;
+    bottom: 10px;
+    z-index: 70;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 10px 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background: rgba(255, 250, 244, 0.92);
+    border: 1px solid rgba(34, 55, 60, 0.08);
+    box-shadow: 0 18px 30px rgba(34, 55, 60, 0.12);
+    backdrop-filter: blur(14px);
+  }
+
+  .mobile-quick-actions a {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .mobile-quick-actions a:first-child {
+    background: linear-gradient(135deg, #567f87, #335f66);
+    color: #ffffff;
+  }
+
+  .mobile-quick-actions a:last-child {
+    border: 1px solid rgba(34, 55, 60, 0.08);
+    background: rgba(255, 255, 255, 0.88);
+    color: #355861;
   }
 
   .detail-panel__radar-metrics {
