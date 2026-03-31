@@ -701,12 +701,16 @@
   sidebarLinks.forEach((link) => {
     link.addEventListener('click', () => {
       const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
-      if (compactViewport.matches) {
-        setHeaderMenu(false);
-      }
+      setHeaderMenu(false);
       if (targetId) {
         window.setTimeout(() => setActiveSidebarLink(targetId), 20);
       }
+    });
+  });
+
+  Array.from(document.querySelectorAll('.site-nav a:not([href^="#"])')).forEach((link) => {
+    link.addEventListener('click', () => {
+      setHeaderMenu(false);
     });
   });
 
