@@ -1,10 +1,18 @@
 (function () {
   const chips = Array.from(document.querySelectorAll('[data-filter]'));
-  const rows = Array.from(document.querySelectorAll('.listing-row'));
-  const searchInput = document.getElementById('board-search');
-  const sortSelect = document.getElementById('board-sort');
+  const rows = Array.from(document.querySelectorAll('.listing-card'));
+  const mapPins = Array.from(document.querySelectorAll('.map-pin'));
   const board = document.querySelector('.listing-board');
+  const heroSearch = document.getElementById('hero-search');
+  const boardSearch = document.getElementById('board-search');
+  const sortSelect = document.getElementById('board-sort');
+  const boardCount = document.getElementById('board-count');
   let activeFilter = 'all';
+
+  function syncSearchInputs(source, target) {
+    if (!source || !target || target.value === source.value) return;
+    target.value = source.value;
+  }
 
   function sortRows(mode) {
     if (!board) return;
@@ -32,7 +40,8 @@
   }
 
   function applyFilters() {
-    const query = (searchInput?.value || '').trim().toLowerCase();
+    const query = (boardSearch?.value || heroSearch?.value || '').trim().toLowerCase();
+    let visible = 0;
 
     chips.forEach((chip) => {
       chip.classList.toggle('is-active', chip.dataset.filter === activeFilter);
@@ -41,8 +50,19 @@
     rows.forEach((row) => {
       const modeMatch = activeFilter === 'all' || row.dataset.mode === activeFilter;
       const queryMatch = !query || (row.dataset.search || '').includes(query);
-      row.setAttribute('data-hidden', modeMatch && queryMatch ? 'false' : 'true');
+      const shouldShow = modeMatch && queryMatch;
+      row.setAttribute('data-hidden', shouldShow ? 'false' : 'true');
+      if (shouldShow) visible += 1;
     });
+
+    mapPins.forEach((pin) => {
+      const modeMatch = activeFilter === 'all' || pin.dataset.targetMode === activeFilter;
+      pin.setAttribute('data-hidden', modeMatch ? 'false' : 'true');
+    });
+
+    if (boardCount) {
+      boardCount.textContent = `${new Intl.NumberFormat('pt-BR').format(visible)} resultados`;
+    }
 
     sortRows(sortSelect?.value || 'recent');
   }
@@ -54,8 +74,26 @@
     });
   });
 
-  searchInput?.addEventListener('input', applyFilters);
+  heroSearch?.addEventListener('input', () => {
+    syncSearchInputs(heroSearch, boardSearch);
+    applyFilters();
+  });
+
+  boardSearch?.addEventListener('input', () => {
+    syncSearchInputs(boardSearch, heroSearch);
+    applyFilters();
+  });
+
   sortSelect?.addEventListener('change', applyFilters);
+
+  mapPins.forEach((pin) => {
+    pin.addEventListener('click', () => {
+      const targetMode = pin.dataset.targetMode || 'all';
+      activeFilter = targetMode;
+      applyFilters();
+      document.getElementById('workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
   applyFilters();
 })();
