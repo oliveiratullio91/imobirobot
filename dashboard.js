@@ -8,6 +8,7 @@
   const sortSelect = document.getElementById('board-sort');
   const boardCount = document.getElementById('board-count');
   const expandButtons = Array.from(document.querySelectorAll('[data-expand-target]'));
+  const mobileSectionButtons = Array.from(document.querySelectorAll('[data-section-target]'));
   const detailDataElement = document.getElementById('listing-details-data');
   const mapDataElement = document.getElementById('map-listings-data');
   const detailModal = document.getElementById('listing-detail-modal');
@@ -33,6 +34,7 @@
   let mapState = null;
   const compactViewport = window.matchMedia('(max-width: 760px)');
   const expandedSections = new Map();
+  const mobileSectionState = new Map();
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -219,6 +221,39 @@
     expandButtons.forEach(updateExpandableSection);
   }
 
+  function updateMobileSection(button) {
+    const targetId = button?.dataset.sectionTarget;
+    const section = targetId ? document.getElementById(targetId) : null;
+    if (!button || !section) return;
+
+    const compact = compactViewport.matches;
+    const expanded = mobileSectionState.get(targetId) === true;
+
+    if (!compact) {
+      section.dataset.mobileSectionHidden = 'false';
+      button.hidden = true;
+      return;
+    }
+
+    section.dataset.mobileSectionHidden = expanded ? 'false' : 'true';
+    button.hidden = false;
+    button.textContent = expanded
+      ? (button.dataset.sectionClose || 'Fechar secao')
+      : (button.dataset.sectionOpen || 'Abrir secao');
+    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+
+    if (expanded && targetId === 'map-panel' && mapState?.map) {
+      window.setTimeout(() => {
+        mapState.map.invalidateSize();
+        refreshMap();
+      }, 80);
+    }
+  }
+
+  function updateMobileSections() {
+    mobileSectionButtons.forEach(updateMobileSection);
+  }
+
   function applyFilters() {
     const query = (boardSearch?.value || heroSearch?.value || '').trim().toLowerCase();
     let visible = 0;
@@ -389,6 +424,19 @@
     });
   });
 
+  mobileSectionButtons.forEach((button) => {
+    const targetId = button.dataset.sectionTarget;
+    if (!targetId) return;
+    if (!mobileSectionState.has(targetId)) {
+      mobileSectionState.set(targetId, false);
+    }
+
+    button.addEventListener('click', () => {
+      mobileSectionState.set(targetId, !(mobileSectionState.get(targetId) === true));
+      updateMobileSection(button);
+    });
+  });
+
   detailTriggers.forEach((trigger) => {
     const listingId = trigger.dataset.listingId;
     if (!listingId) return;
@@ -426,11 +474,18 @@
   });
 
   if (typeof compactViewport.addEventListener === 'function') {
-    compactViewport.addEventListener('change', updateExpandableSections);
+    compactViewport.addEventListener('change', () => {
+      updateExpandableSections();
+      updateMobileSections();
+    });
   } else if (typeof compactViewport.addListener === 'function') {
-    compactViewport.addListener(updateExpandableSections);
+    compactViewport.addListener(() => {
+      updateExpandableSections();
+      updateMobileSections();
+    });
   }
 
   mapState = initializeMap();
   applyFilters();
+  updateMobileSections();
 })();

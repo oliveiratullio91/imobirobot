@@ -56,7 +56,7 @@
             <div class="headline__copy">
               <p class="eyebrow">Novo workflow em producao</p>
               <h2>Um dashboard com cara de produto para acompanhar venda, aluguel, fontes e movimentos de preco em um so lugar.</h2>
-              <p>Boa Viagem segue aquecido, e o mapa agora ja aproveita 11 localizacoes mais precisas da base.</p>
+              <p>Boa Viagem segue aquecido, e o mapa agora ja aproveita 10 localizacoes mais precisas da base.</p>
             </div>
 
             <div class="headline__stats">
@@ -145,7 +145,8 @@
             <a href="#workspace">Review listings</a>
           </section>
 
-          <section class="analytics-grid" id="market">
+          <button class="mobile-section-toggle" type="button" data-section-target="analytics-grid" data-section-open="Abrir leitura de mercado" data-section-close="Fechar leitura de mercado" hidden></button>
+          <section class="analytics-grid" id="analytics-grid" data-mobile-section="true">
             <section class="panel panel--wide">
               <div class="panel__head">
                 <div>
@@ -324,7 +325,8 @@
             </section>
           </section>
 
-          <section class="lower-grid">
+          <button class="mobile-section-toggle" type="button" data-section-target="lower-grid" data-section-open="Abrir bairros e movimentos" data-section-close="Fechar bairros e movimentos" hidden></button>
+          <section class="lower-grid" id="lower-grid" data-mobile-section="true">
             <section class="panel">
               <div class="panel__head">
                 <div>
@@ -913,7 +915,8 @@
     </article>
   </div>
                 <button class="section-toggle section-toggle--board" type="button" data-expand-target="listing-board" data-expand-more="Ver mais imoveis" data-expand-less="Ver menos imoveis" hidden></button>
-                <aside class="map-panel">
+                <button class="mobile-section-toggle" type="button" data-section-target="map-panel" data-section-open="Abrir mapa e mix" data-section-close="Fechar mapa e mix" hidden></button>
+                <aside class="map-panel" id="map-panel" data-mobile-section="true">
                   <div class="map-panel__head">
                     <div>
                       <strong>Recife market map</strong>
@@ -1005,7 +1008,8 @@
               </div>
             </section>
 
-            <aside class="panel panel--signals">
+            <button class="mobile-section-toggle" type="button" data-section-target="signals-panel" data-section-open="Abrir insights e oportunidades" data-section-close="Fechar insights e oportunidades" hidden></button>
+            <aside class="panel panel--signals" id="signals-panel" data-mobile-section="true">
               <div class="panel__head">
                 <div>
                   <h2>AI suggestion</h2>
