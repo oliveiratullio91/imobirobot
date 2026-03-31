@@ -1573,6 +1573,49 @@ select {
   border-radius: 24px;
 }
 
+.card-cover {
+  position: relative;
+  overflow: hidden;
+  min-height: 148px;
+  margin: -16px -16px 14px;
+  border-radius: 22px 22px 18px 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
+    linear-gradient(145deg, var(--teal), #164b52);
+}
+
+.card-cover--venda {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
+    linear-gradient(145deg, var(--sale), var(--sale-strong));
+}
+
+.card-cover--aluguel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
+    linear-gradient(145deg, var(--rent), var(--rent-strong));
+}
+
+.card-cover.has-photo {
+  background: linear-gradient(180deg, rgba(11, 17, 19, 0.04), rgba(11, 17, 19, 0.18));
+}
+
+.card-cover__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-cover__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 20, 22, 0.06), rgba(8, 20, 22, 0.32)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.24), transparent 44%);
+}
+
 .trend-card__header,
 .mix-bar__head,
 .heat-card__top,
@@ -3761,6 +3804,12 @@ select {
     border-radius: 18px;
   }
 
+  .card-cover {
+    min-height: 124px;
+    margin: -14px -14px 12px;
+    border-radius: 18px 18px 16px 16px;
+  }
+
   .listing-card__footer {
     grid-column: auto;
     justify-content: stretch;
@@ -3907,6 +3956,10 @@ select {
   .move-card,
   .heat-card {
     padding: 14px;
+  }
+
+  .card-cover {
+    min-height: 116px;
   }
 
   .detail-timeline__item {
