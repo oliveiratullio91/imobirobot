@@ -352,6 +352,7 @@ select {
 .analytics-grid,
 .lower-grid,
 .workspace-grid,
+.signals-grid,
 .chart-stack,
 .heat-grid,
 .move-stack,
@@ -381,12 +382,17 @@ select {
 }
 
 .workspace-grid {
-  grid-template-columns: minmax(0, 1.72fr) minmax(320px, 0.68fr);
+  grid-template-columns: 1fr;
+}
+
+.signals-grid {
+  grid-template-columns: minmax(0, 0.96fr) minmax(320px, 1.04fr);
 }
 
 .analytics-grid > *,
 .lower-grid > *,
-.workspace-grid > * {
+.workspace-grid > *,
+.signals-grid > * {
   align-self: start;
 }
 
@@ -1395,6 +1401,13 @@ select {
   margin-top: 14px;
 }
 
+.opportunity-stack > [data-mobile-limit] {
+  display: grid;
+  gap: 14px;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
 .opportunity-stack__head {
   display: flex;
   justify-content: space-between;
@@ -1771,11 +1784,6 @@ select {
   display: none !important;
 }
 
-.opportunity-stack > [data-mobile-limit] {
-  display: grid;
-  gap: 16px;
-}
-
 .sidebar__nav a {
   scroll-margin-top: 24px;
 }
@@ -1786,9 +1794,10 @@ select {
   }
 
   .workspace-grid {
-    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.82fr);
+    grid-template-columns: 1fr;
   }
 
+  .signals-grid,
   .listing-board {
     grid-template-columns: 1fr;
   }
@@ -1849,6 +1858,7 @@ select {
 
   .analytics-grid,
   .lower-grid,
+  .signals-grid,
   .workspace-grid,
   .workspace-body,
   .cue-grid {

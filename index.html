@@ -22,7 +22,7 @@
           <a href="#overview" class="is-active"><b>01</b><span>Overview</span></a>
           <a href="#analytics-grid"><b>02</b><span>Market</span></a>
           <a href="#workspace"><b>03</b><span>Workspace</span></a>
-          <a href="#signals-panel"><b>04</b><span>Signals</span></a>
+          <a href="#signals"><b>04</b><span>Signals</span></a>
         </nav>
 
         <div class="sidebar__foot">
@@ -477,7 +477,7 @@
               <button class="section-toggle" type="button" data-expand-target="heat-grid" data-expand-more="Ver mais bairros" data-expand-less="Ver menos bairros" hidden></button>
             </section>
 
-            <section class="panel" id="signals">
+            <section class="panel" id="recent-moves">
               <div class="panel__head">
                 <div>
                   <h2>Recent moves</h2>
@@ -1079,14 +1079,17 @@
                 </div>
               </div>
             </section>
+          </section>
 
-            <button class="mobile-section-toggle" type="button" data-section-target="signals-panel" data-section-open="Abrir insights e oportunidades" data-section-close="Fechar insights e oportunidades" hidden></button>
-            <aside class="panel panel--signals" id="signals-panel" data-mobile-section="true">
+          <button class="mobile-section-toggle" type="button" data-section-target="signals" data-section-open="Abrir insights e oportunidades" data-section-close="Fechar insights e oportunidades" hidden></button>
+          <section class="signals-grid" id="signals" data-mobile-section="true">
+            <section class="panel panel--signals">
               <div class="panel__head">
                 <div>
                   <h2>AI suggestion</h2>
                   <p>Leitura de contexto para te levar nos blocos certos do dashboard.</p>
                 </div>
+                <span>Contexto</span>
               </div>
               <div class="insight-stack" id="insight-stack" data-mobile-limit="2">
     <article class="insight-card" data-mobile-item="true">
@@ -1114,11 +1117,17 @@
     </article>
   </div>
               <button class="section-toggle" type="button" data-expand-target="insight-stack" data-expand-more="Ver mais insights" data-expand-less="Ver menos insights" hidden></button>
-              <div class="opportunity-stack">
-                <div class="opportunity-stack__head">
-                  <strong>Opportunity board</strong>
-                  <span>4 destaques</span>
+            </section>
+
+            <section class="panel panel--signals">
+              <div class="panel__head">
+                <div>
+                  <h2>Opportunity board</h2>
+                  <p>Selecao de oportunidades para aprofundar a leitura de preco, liquidez e timing.</p>
                 </div>
+                <span>4 destaques</span>
+              </div>
+              <div class="opportunity-stack">
                 <div id="opportunity-stack" data-mobile-limit="2">
                   
     <article class="opportunity-card" data-mode="aluguel" data-mobile-item="true" data-listing-id="2871502486" tabindex="0" role="button" aria-label="Ver historico de Lote/Terreno para alugar com 1382 m² em Boa Vista, Recife">
@@ -1196,7 +1205,7 @@
                 </div>
                 <button class="section-toggle" type="button" data-expand-target="opportunity-stack" data-expand-more="Ver mais oportunidades" data-expand-less="Ver menos oportunidades" hidden></button>
               </div>
-            </aside>
+            </section>
           </section>
         </section>
       </main>
