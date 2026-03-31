@@ -63,6 +63,15 @@
       .replace(/'/g, '&#39;');
   }
 
+  function wireCardImages() {
+    document.querySelectorAll('.listing-card__media-image, .hero-listing-card__media-image').forEach((image) => {
+      image.addEventListener('error', () => {
+        image.closest('.listing-card__media, .hero-listing-card__media')?.classList.remove('has-photo');
+        image.remove();
+      }, { once: true });
+    });
+  }
+
   function syncSearchInputs(source, target) {
     if (!source || !target || target.value === source.value) return;
     target.value = source.value;
@@ -763,6 +772,7 @@
 
   heroMapState = initializeHeroMap();
   mapState = initializeMap();
+  wireCardImages();
   syncMapFilterButtons();
   applyFilters();
   updateMobileSections();

@@ -34,6 +34,15 @@
     return `${new Intl.NumberFormat('pt-BR').format(total)} resultados`;
   }
 
+  function wireCardImages() {
+    document.querySelectorAll('.listing-card__media-image').forEach((image) => {
+      image.addEventListener('error', () => {
+        image.closest('.listing-card__media')?.classList.remove('has-photo');
+        image.remove();
+      }, { once: true });
+    });
+  }
+
   function buildDetailMarkup(detail) {
     const featureMarkup = (detail.features || [])
       .map((feature) => `<span>${escapeHtml(feature)}</span>`)
@@ -254,5 +263,6 @@
     }
   });
 
+  wireCardImages();
   applyFilters();
 })();
