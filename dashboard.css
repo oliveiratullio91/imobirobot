@@ -2268,6 +2268,27 @@ select {
   font-weight: 800;
 }
 
+.detail-panel__head a.detail-panel__action {
+  min-height: 44px;
+  padding: 0 18px;
+  border-color: transparent;
+  background: linear-gradient(135deg, #567f87, #335f66);
+  color: #ffffff;
+  box-shadow: 0 12px 22px rgba(51, 95, 102, 0.18);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.detail-panel__head a.detail-panel__action:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 16px 28px rgba(51, 95, 102, 0.24);
+}
+
+.detail-panel__head a.detail-panel__action:focus-visible {
+  outline: 3px solid rgba(86, 127, 135, 0.24);
+  outline-offset: 2px;
+}
+
 .detail-panel__stats {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }

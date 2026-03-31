@@ -511,7 +511,7 @@
         <section class="detail-panel">
           <div class="detail-panel__head">
             <strong>Resumo do imovel</strong>
-            <a href="${escapeHtml(detail.url || '#')}" target="_blank" rel="noreferrer">Abrir anuncio</a>
+            <a class="detail-panel__action" href="${escapeHtml(detail.url || '#')}" target="_blank" rel="noreferrer">Abrir anuncio</a>
           </div>
           <div class="detail-panel__stats">
             <article>
