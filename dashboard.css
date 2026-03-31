@@ -686,6 +686,42 @@ select {
   line-height: 1;
 }
 
+.growth-kpis {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.growth-kpi {
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(8, 48, 52, 0.04);
+}
+
+.growth-kpi span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.growth-kpi strong {
+  margin-top: 8px;
+  font-size: 24px;
+}
+
+.growth-kpi small {
+  display: block;
+  margin-top: 8px;
+  color: #46686b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .growth-columns {
   margin-top: 18px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -730,6 +766,82 @@ select {
   color: var(--muted);
   font-size: 11px;
   text-align: center;
+  font-weight: 800;
+}
+
+.growth-source-list {
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.growth-source-row {
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.growth-source-row__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.growth-source-row__head strong {
+  font-size: 18px;
+}
+
+.growth-source-row__head small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.growth-source-row__head span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(8, 48, 52, 0.06);
+  color: #31585c;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.growth-source-row__bar {
+  margin-top: 12px;
+  height: 14px;
+  display: flex;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(8, 48, 52, 0.08);
+}
+
+.growth-source-row__sale,
+.growth-source-row__rent {
+  display: block;
+  height: 100%;
+}
+
+.growth-source-row__sale {
+  background: linear-gradient(90deg, rgba(243, 158, 92, 0.9), var(--sale-strong));
+}
+
+.growth-source-row__rent {
+  background: linear-gradient(90deg, rgba(95, 128, 255, 0.9), var(--rent-strong));
+}
+
+.growth-source-row p {
+  margin: 10px 0 0;
+  color: #46686b;
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -1678,6 +1790,7 @@ select {
   .chart-stack,
   .heat-grid,
   .growth-columns,
+  .growth-kpis,
   .map-panel__body,
   .listing-board {
     grid-template-columns: 1fr;
