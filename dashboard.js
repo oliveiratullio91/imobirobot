@@ -7,10 +7,16 @@
   const boardSearch = document.getElementById('board-search');
   const sortSelect = document.getElementById('board-sort');
   const boardCount = document.getElementById('board-count');
+  const heroPriceFilter = document.getElementById('hero-price-filter');
+  const heroRoomsFilter = document.getElementById('hero-rooms-filter');
+  const heroAreaFilter = document.getElementById('hero-area-filter');
+  const heroNeighborhoodFilter = document.getElementById('hero-neighborhood-filter');
+  const heroApplyFilters = document.getElementById('hero-apply-filters');
+  const heroClearFilters = document.getElementById('hero-clear-filters');
   const expandButtons = Array.from(document.querySelectorAll('[data-expand-target]'));
   const mobileSectionButtons = Array.from(document.querySelectorAll('[data-section-target]'));
   const mapFilterButtons = Array.from(document.querySelectorAll('[data-map-filter]'));
-  const sidebarLinks = Array.from(document.querySelectorAll('.sidebar__nav a[href^="#"]'));
+  const sidebarLinks = Array.from(document.querySelectorAll('.site-nav a[href^="#"]'));
   const detailDataElement = document.getElementById('listing-details-data');
   const mapDataElement = document.getElementById('map-listings-data');
   const detailModal = document.getElementById('listing-detail-modal');
@@ -51,6 +57,17 @@
   function syncSearchInputs(source, target) {
     if (!source || !target || target.value === source.value) return;
     target.value = source.value;
+  }
+
+  function parseRangeValue(value) {
+    if (!value) return null;
+    const [rawMin, rawMax] = String(value).split(':');
+    const min = Number(rawMin || 0);
+    const max = rawMax === undefined || rawMax === '' ? Number.POSITIVE_INFINITY : Number(rawMax);
+    return {
+      min: Number.isFinite(min) ? min : 0,
+      max: Number.isFinite(max) ? max : Number.POSITIVE_INFINITY,
+    };
   }
 
   function setActiveSidebarLink(targetId) {
@@ -305,6 +322,10 @@
 
   function applyFilters() {
     const query = (boardSearch?.value || heroSearch?.value || '').trim().toLowerCase();
+    const selectedNeighborhood = (heroNeighborhoodFilter?.value || '').trim().toLowerCase();
+    const selectedRooms = Number(heroRoomsFilter?.value || 0);
+    const selectedPriceRange = parseRangeValue(heroPriceFilter?.value || '');
+    const selectedAreaRange = parseRangeValue(heroAreaFilter?.value || '');
     let visible = 0;
 
     chips.forEach((chip) => {
@@ -314,7 +335,13 @@
     rows.forEach((row) => {
       const modeMatch = activeFilter === 'all' || row.dataset.mode === activeFilter;
       const queryMatch = !query || (row.dataset.search || '').includes(query);
-      const shouldShow = modeMatch && queryMatch;
+      const neighborhoodMatch = !selectedNeighborhood || (row.dataset.neighborhood || '') === selectedNeighborhood;
+      const roomsMatch = !selectedRooms || Number(row.dataset.rooms || 0) >= selectedRooms;
+      const priceValue = Number(row.dataset.price || 0);
+      const areaValue = Number(row.dataset.area || 0);
+      const priceMatch = !selectedPriceRange || (priceValue >= selectedPriceRange.min && priceValue <= selectedPriceRange.max);
+      const areaMatch = !selectedAreaRange || (areaValue >= selectedAreaRange.min && areaValue <= selectedAreaRange.max);
+      const shouldShow = modeMatch && queryMatch && neighborhoodMatch && roomsMatch && priceMatch && areaMatch;
       row.setAttribute('data-hidden', shouldShow ? 'false' : 'true');
       if (shouldShow) visible += 1;
     });
@@ -463,6 +490,10 @@
   });
 
   sortSelect?.addEventListener('change', applyFilters);
+  heroPriceFilter?.addEventListener('change', applyFilters);
+  heroRoomsFilter?.addEventListener('change', applyFilters);
+  heroAreaFilter?.addEventListener('change', applyFilters);
+  heroNeighborhoodFilter?.addEventListener('change', applyFilters);
 
   expandButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -522,6 +553,22 @@
 
   detailCloseTriggers.forEach((trigger) => {
     trigger.addEventListener('click', closeDetail);
+  });
+
+  heroApplyFilters?.addEventListener('click', () => {
+    applyFilters();
+    document.getElementById('workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  heroClearFilters?.addEventListener('click', () => {
+    activeFilter = 'all';
+    if (heroSearch) heroSearch.value = '';
+    if (boardSearch) boardSearch.value = '';
+    if (heroPriceFilter) heroPriceFilter.value = '';
+    if (heroRoomsFilter) heroRoomsFilter.value = '';
+    if (heroAreaFilter) heroAreaFilter.value = '';
+    if (heroNeighborhoodFilter) heroNeighborhoodFilter.value = '';
+    applyFilters();
   });
 
   sidebarLinks.forEach((link) => {
