@@ -158,119 +158,89 @@
 
               <div class="chart-stack">
                 
-    <article class="trend-card trend-card--sale">
+    <article class="trend-compare">
       <div class="trend-card__header">
         <div>
-          <strong>Venda</strong>
-          <p>Entrada de novos anuncios de venda por dia.</p>
+          <strong>Venda x aluguel</strong>
+          <p>Captacao diaria comparada nos ultimos 7 dias, para ver ritmo e desequilibrio entre operacoes.</p>
         </div>
-        <span>2.137 captados</span>
+        <span>3.083 captados</span>
       </div>
-      <div class="line-chart">
+
+      <div class="trend-compare__legend">
+        <div class="trend-compare__legend-item trend-compare__legend-item--sale">
+          <b></b>
+          <span>Venda</span>
+        </div>
+        <div class="trend-compare__legend-item trend-compare__legend-item--rent">
+          <b></b>
+          <span>Aluguel</span>
+        </div>
+      </div>
+
+      <div class="trend-compare__chart">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,38.28 66.67,18.00 83.33,21.34 100.00,58.07 100,100 0,100" />
-          <polyline points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,38.28 66.67,18.00 83.33,21.34 100.00,58.07" />
+          <path class="line-chart__area line-chart__area--sale" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,38.28 66.67,18.00 83.33,21.34 100.00,58.07 100,100 0,100" />
+          <path class="line-chart__area line-chart__area--rent" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,72.30 66.67,69.20 83.33,60.55 100.00,80.95 100,100 0,100" />
+          <polyline class="line-chart__line line-chart__line--sale" points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,38.28 66.67,18.00 83.33,21.34 100.00,58.07" />
+          <polyline class="line-chart__line line-chart__line--rent" points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,72.30 66.67,69.20 83.33,60.55 100.00,80.95" />
         </svg>
-        <div class="line-chart__labels">
+
+        <div class="trend-compare__stats">
+          <article class="trend-mini trend-mini--sale">
+            <span>Venda</span>
+            <strong>2.137</strong>
+            <small>pico 663 em 28/03</small>
+          </article>
+          <article class="trend-mini trend-mini--rent">
+            <span>Aluguel</span>
+            <strong>946</strong>
+            <small>pico 319 em 29/03</small>
+          </article>
+        </div>
+
+        <div class="line-chart__labels line-chart__labels--compact">
           
                 <div class="">
-                  <strong>0</strong>
+                  <strong>0 / 0</strong>
                   <small>ter, 24</small>
                 </div>
               
                 <div class="">
-                  <strong>0</strong>
+                  <strong>0 / 0</strong>
                   <small>qua, 25</small>
                 </div>
               
                 <div class="">
-                  <strong>0</strong>
+                  <strong>0 / 0</strong>
                   <small>qui, 26</small>
                 </div>
               
                 <div class="">
-                  <strong>499</strong>
+                  <strong>499 / 224</strong>
                   <small>sex, 27</small>
                 </div>
               
                 <div class="is-peak">
-                  <strong>663</strong>
+                  <strong>663 / 249</strong>
                   <small>sáb, 28</small>
                 </div>
               
-                <div class="">
-                  <strong>636</strong>
+                <div class="is-peak">
+                  <strong>636 / 319</strong>
                   <small>dom, 29</small>
                 </div>
               
                 <div class="">
-                  <strong>339</strong>
+                  <strong>339 / 154</strong>
                   <small>seg, 30</small>
                 </div>
               
         </div>
       </div>
+
       <div class="trend-card__footer">
-        <span>Faixa maxima: 663</span>
-        <span>30/03</span>
-      </div>
-    </article>
-  
-                
-    <article class="trend-card trend-card--rent">
-      <div class="trend-card__header">
-        <div>
-          <strong>Aluguel</strong>
-          <p>Entrada de novos anuncios de aluguel por dia.</p>
-        </div>
-        <span>946 captados</span>
-      </div>
-      <div class="line-chart">
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,42.42 66.67,35.99 83.33,18.00 100.00,60.41 100,100 0,100" />
-          <polyline points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,42.42 66.67,35.99 83.33,18.00 100.00,60.41" />
-        </svg>
-        <div class="line-chart__labels">
-          
-                <div class="">
-                  <strong>0</strong>
-                  <small>ter, 24</small>
-                </div>
-              
-                <div class="">
-                  <strong>0</strong>
-                  <small>qua, 25</small>
-                </div>
-              
-                <div class="">
-                  <strong>0</strong>
-                  <small>qui, 26</small>
-                </div>
-              
-                <div class="">
-                  <strong>224</strong>
-                  <small>sex, 27</small>
-                </div>
-              
-                <div class="">
-                  <strong>249</strong>
-                  <small>sáb, 28</small>
-                </div>
-              
-                <div class="is-peak">
-                  <strong>319</strong>
-                  <small>dom, 29</small>
-                </div>
-              
-                <div class="">
-                  <strong>154</strong>
-                  <small>seg, 30</small>
-                </div>
-              
-        </div>
-      </div>
-      <div class="trend-card__footer">
-        <span>Faixa maxima: 319</span>
+        <span>Hoje: 339 venda • 154 aluguel</span>
         <span>30/03</span>
       </div>
     </article>
