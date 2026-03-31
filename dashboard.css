@@ -334,7 +334,9 @@ select {
 .listing-board,
 .insight-stack,
 .mix-stack,
-.growth-columns {
+.growth-columns,
+.cue-grid,
+.opportunity-stack {
   display: grid;
   gap: 16px;
 }
@@ -886,6 +888,45 @@ select {
   gap: 16px;
 }
 
+.cue-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cue-card,
+.opportunity-card {
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-md);
+}
+
+.cue-card {
+  padding: 16px;
+}
+
+.cue-card span,
+.opportunity-stack__head span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cue-card strong,
+.opportunity-stack__head strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.cue-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 .map-panel__head {
   display: flex;
   justify-content: space-between;
@@ -1002,6 +1043,79 @@ select {
   align-content: start;
 }
 
+.opportunity-stack {
+  margin-top: 18px;
+}
+
+.opportunity-stack__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.opportunity-card {
+  padding: 18px;
+}
+
+.opportunity-card__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.opportunity-card__top strong {
+  color: var(--good);
+  font-size: 14px;
+}
+
+.opportunity-card h3 {
+  margin: 12px 0 0;
+  font-size: 20px;
+  line-height: 1.24;
+}
+
+.opportunity-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.opportunity-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.opportunity-card__meta span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(8, 48, 52, 0.05);
+  color: #31585b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.opportunity-card a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin-top: 16px;
+  padding: 0 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--good), #277f55);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .mix-bar__head strong {
   display: block;
   font-size: 18px;
@@ -1039,7 +1153,8 @@ select {
   .analytics-grid,
   .lower-grid,
   .workspace-grid,
-  .workspace-body {
+  .workspace-body,
+  .cue-grid {
     grid-template-columns: 1fr;
   }
 }
