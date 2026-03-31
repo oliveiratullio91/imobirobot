@@ -616,34 +616,11 @@ select {
   opacity: 0.18;
 }
 
-.line-chart__area--sale {
-  fill: var(--sale);
-}
-
-.line-chart__area--rent {
-  fill: var(--rent);
-}
-
 .line-chart polyline {
   fill: none;
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-.line-chart__line {
-  fill: none;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.line-chart__line--sale {
-  stroke: var(--sale-strong);
-}
-
-.line-chart__line--rent {
-  stroke: var(--rent-strong);
 }
 
 .trend-card--sale .line-chart__area {
@@ -703,103 +680,6 @@ select {
   font-weight: 800;
 }
 
-.trend-compare {
-  display: grid;
-  gap: 16px;
-}
-
-.trend-compare__legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.trend-compare__legend-item {
-  min-height: 34px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: rgba(8, 48, 52, 0.04);
-  color: #31585c;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.trend-compare__legend-item b {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  display: inline-block;
-}
-
-.trend-compare__legend-item--sale b {
-  background: var(--sale-strong);
-}
-
-.trend-compare__legend-item--rent b {
-  background: var(--rent-strong);
-}
-
-.trend-compare__chart {
-  display: grid;
-  gap: 14px;
-}
-
-.trend-compare__chart svg {
-  width: 100%;
-  height: 220px;
-  display: block;
-}
-
-.trend-compare__stats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.trend-mini {
-  padding: 14px;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  background: rgba(8, 48, 52, 0.04);
-}
-
-.trend-mini span {
-  display: block;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.trend-mini strong {
-  display: block;
-  margin-top: 8px;
-  font-size: 28px;
-}
-
-.trend-mini small {
-  display: block;
-  margin-top: 8px;
-  color: #46686b;
-  font-size: 12px;
-  line-height: 1.45;
-}
-
-.trend-mini--sale strong {
-  color: var(--sale-strong);
-}
-
-.trend-mini--rent strong {
-  color: var(--rent-strong);
-}
-
-.line-chart__labels--compact strong {
-  font-size: 12px;
-}
 
 .growth-card strong {
   display: block;
@@ -2237,10 +2117,6 @@ select {
   .metric-grid,
   .headline__stats,
   .topbar__actions {
-    grid-template-columns: 1fr;
-  }
-
-  .trend-compare__stats {
     grid-template-columns: 1fr;
   }
 
