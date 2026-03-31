@@ -1956,15 +1956,15 @@ select {
 .mode-pill,
 .source-pill,
 .listing-card__meta span {
-  min-height: 40px;
+  min-height: 34px;
   display: inline-flex;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 10px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.92);
   color: #31585b;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   cursor: pointer;
 }
@@ -2144,12 +2144,12 @@ select {
 .listing-card__panel {
   position: relative;
   z-index: 1;
-  width: min(84%, 720px);
+  width: min(74%, 600px);
   display: grid;
-  gap: 12px;
-  padding: 16px 18px;
-  margin-top: 104px;
-  border-radius: 24px;
+  gap: 10px;
+  padding: 13px 15px;
+  margin-top: 120px;
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.38);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 250, 243, 0.34));
   box-shadow: 0 18px 34px rgba(24, 30, 30, 0.16);
@@ -2165,8 +2165,8 @@ select {
 }
 
 .listing-card h3 {
-  margin: 10px 0 0;
-  font-size: 22px;
+  margin: 6px 0 0;
+  font-size: 18px;
   line-height: 1.2;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -2190,7 +2190,7 @@ select {
 
 .listing-card__price strong {
   display: block;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.1;
 }
 
@@ -2203,12 +2203,12 @@ select {
 }
 
 .listing-card__meta {
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 .listing-card__body {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .listing-card__link {
@@ -2219,7 +2219,7 @@ select {
 .opportunity-card__footer {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -3706,18 +3706,18 @@ select {
   }
 
   .listing-card__panel {
-    width: calc(100% - 8px);
-    gap: 10px;
-    margin-top: 72px;
-    padding: 12px;
-    border-radius: 20px;
+    width: calc(100% - 28px);
+    gap: 8px;
+    margin-top: 78px;
+    padding: 10px 11px;
+    border-radius: 18px;
   }
 
   .listing-card h3,
   .opportunity-card h3,
   .insight-card h3,
   .move-card h3 {
-    font-size: 17px;
+    font-size: 15px;
   }
 
   .listing-card__meta {
@@ -3725,8 +3725,9 @@ select {
   }
 
   .listing-card__meta span {
-    min-height: 30px;
-    font-size: 11px;
+    min-height: 26px;
+    padding: 0 7px;
+    font-size: 10px;
   }
 
   .map-panel__head {
@@ -3764,6 +3765,7 @@ select {
     grid-column: auto;
     justify-content: stretch;
     flex-direction: column;
+    gap: 6px;
   }
 
   .listing-card__link,
