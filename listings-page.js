@@ -47,6 +47,21 @@
     const featureMarkup = (detail.features || [])
       .map((feature) => `<span>${escapeHtml(feature)}</span>`)
       .join('');
+    const sourceVariantMarkup = (detail.sourceVariants || [])
+      .map((variant) => `
+        <article class="detail-source-card">
+          <div class="detail-source-card__body">
+            <div class="detail-source-card__head">
+              <strong>${escapeHtml(variant.sourceLabel || 'Origem')}</strong>
+              <span>${escapeHtml(variant.isActive ? 'Ativo' : 'Histórico')}</span>
+            </div>
+            <p>${escapeHtml(variant.currentPriceText || 'Preço indisponível')}</p>
+            <small>${escapeHtml(variant.lastSeenLabel || 'Sem registro')}</small>
+          </div>
+          <a class="detail-source-card__action" href="${escapeHtml(variant.url || '#')}" target="_blank" rel="noreferrer">Abrir</a>
+        </article>
+      `)
+      .join('');
 
     const reasonMarkup = (detail.radarReasons || [])
       .map((reason) => `<span>${escapeHtml(reason)}</span>`)
@@ -67,7 +82,7 @@
     return `
       <div class="detail-modal__hero detail-modal__hero--${escapeHtml(detail.mode || 'geral')}">
         <div class="detail-modal__eyebrow">
-          <span>${escapeHtml(detail.sourceLabel || 'Origem')}</span>
+          <span>${escapeHtml(detail.sourceSummaryLabel || detail.sourceLabel || 'Origem')}</span>
           <span>${escapeHtml(detail.modeLabel || 'Modo')}</span>
         </div>
         <h2 id="detail-title">${escapeHtml(detail.title || 'Imóvel')}</h2>
@@ -86,6 +101,11 @@
             <span>Maior preço</span>
             <strong>${escapeHtml(detail.highestPriceText || 'N/D')}</strong>
             <small>${escapeHtml(`economia contra pico ${detail.savingsVsPeakText || 'N/D'}`)}</small>
+          </article>
+          <article>
+            <span>Portais ativos</span>
+            <strong>${escapeHtml(detail.sourceSummaryLabel || '1 portal')}</strong>
+            <small>${escapeHtml(detail.sourceSummaryText || detail.sourceLabel || 'Origem principal')}</small>
           </article>
         </div>
       </div>
@@ -146,6 +166,23 @@
               <span>Precisao</span>
               <strong>${escapeHtml(detail.locationPrecision || 'aproximado')}</strong>
             </article>
+            <article>
+              <span>Melhor ao vivo</span>
+              <strong>${escapeHtml(detail.bestLiveVariantPriceText || 'N/D')}</strong>
+            </article>
+            <article>
+              <span>Portal mais barato</span>
+              <strong>${escapeHtml(detail.bestLiveVariantSourceLabel || 'Sem origem')}</strong>
+            </article>
+          </div>
+          <div class="detail-panel__sources">
+            <div class="detail-panel__subhead">
+              <strong>Fontes monitoradas</strong>
+              <span>${escapeHtml(detail.sourceSummaryLabel || '1 portal')}</span>
+            </div>
+            <div class="detail-panel__source-list">
+              ${sourceVariantMarkup || '<p class="detail-empty">Ainda não há outras fontes relacionadas para este imóvel.</p>'}
+            </div>
           </div>
           <div class="detail-panel__meta">${featureMarkup}</div>
           <div class="detail-panel__text">
@@ -158,7 +195,7 @@
 
         <section class="detail-panel">
           <div class="detail-panel__head">
-            <strong>Histórico de preço</strong>
+            <strong>Histórico consolidado</strong>
             <span>${escapeHtml(`${detail.timeline?.length || 0} eventos visiveis`)}</span>
           </div>
           <div class="detail-timeline">
