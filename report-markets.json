@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-04-01T22:59:21.471Z",
+  "defaultMarketKey": "recife",
+  "markets": [
+    {
+      "key": "recife",
+      "label": "Recife",
+      "dashboardHref": "./index.html",
+      "listingsHref": "./imoveis.html",
+      "sourceSummary": "Zap + OLX + Chaves na Mão + Apto + Viva Real + QuintoAndar",
+      "totalActive": 257,
+      "newListings24h": 928,
+      "totalUpdates24h": 2388,
+      "avgPriceAll": 475246.63,
+      "priceRangeLabel": "R$ 450,00 até R$ 8.000.000,00",
+      "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
+      "generatedAt": "2026-04-01T22:59:10.599Z"
+    },
+    {
+      "key": "olinda",
+      "label": "Olinda",
+      "dashboardHref": "./index-olinda.html",
+      "listingsHref": "./imoveis-olinda.html",
+      "sourceSummary": "OLX + Zap + Chaves na Mão + Viva Real",
+      "totalActive": 259,
+      "newListings24h": 280,
+      "totalUpdates24h": 404,
+      "avgPriceAll": 400091.7,
+      "priceRangeLabel": "R$ 400,00 até R$ 14.000.000,00",
+      "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
+      "generatedAt": "2026-04-01T22:59:15.489Z"
+    },
+    {
+      "key": "jaboatao-dos-guararapes",
+      "label": "Jaboatão dos Guararapes",
+      "dashboardHref": "./index-jaboatao-dos-guararapes.html",
+      "listingsHref": "./imoveis-jaboatao-dos-guararapes.html",
+      "sourceSummary": "Fonte local",
+      "totalActive": 0,
+      "newListings24h": 0,
+      "totalUpdates24h": 0,
+      "avgPriceAll": 0,
+      "priceRangeLabel": "Faixa em atualização",
+      "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
+      "generatedAt": "2026-04-01T22:59:17.482Z"
+    },
+    {
+      "key": "paulista",
+      "label": "Paulista",
+      "dashboardHref": "./index-paulista.html",
+      "listingsHref": "./imoveis-paulista.html",
+      "sourceSummary": "Fonte local",
+      "totalActive": 0,
+      "newListings24h": 0,
+      "totalUpdates24h": 0,
+      "avgPriceAll": 0,
+      "priceRangeLabel": "Faixa em atualização",
+      "summaryText": "Relatório operacional de Paulista com radar, mapa e base comercial.",
+      "generatedAt": "2026-04-01T22:59:19.476Z"
+    },
+    {
+      "key": "camaragibe",
+      "label": "Camaragibe",
+      "dashboardHref": "./index-camaragibe.html",
+      "listingsHref": "./imoveis-camaragibe.html",
+      "sourceSummary": "Fonte local",
+      "totalActive": 0,
+      "newListings24h": 0,
+      "totalUpdates24h": 0,
+      "avgPriceAll": 0,
+      "priceRangeLabel": "Faixa em atualização",
+      "summaryText": "Relatório operacional de Camaragibe com radar, mapa e base comercial.",
+      "generatedAt": "2026-04-01T22:59:21.469Z"
+    }
+  ]
+}

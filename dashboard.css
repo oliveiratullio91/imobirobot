@@ -3864,6 +3864,103 @@ select {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.market-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.market-hub-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 242, 236, 0.92));
+  box-shadow: var(--shadow-md);
+}
+
+.market-hub-card__head {
+  display: grid;
+  gap: 6px;
+}
+
+.market-hub-card__head h2 {
+  margin: 0;
+  font: 700 clamp(26px, 3vw, 34px)/1 'Fraunces', serif;
+}
+
+.market-hub-card__head span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.market-hub-card__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+  padding: 14px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(51, 95, 102, 0.08);
+}
+
+.market-hub-card__stats strong {
+  color: #274a4f;
+  font-size: 20px;
+  line-height: 1.08;
+}
+
+.market-hub-card__stats span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.market-hub-card__copy {
+  margin: 0;
+  color: #46636b;
+  line-height: 1.65;
+}
+
+.market-hub-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.market-hub-card__actions a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.market-hub-card__actions a:first-child {
+  background: linear-gradient(135deg, #567f87, #335f66);
+  color: #ffffff;
+  box-shadow: 0 14px 24px rgba(51, 95, 102, 0.18);
+}
+
+.market-hub-card__actions a:last-child {
+  border: 1px solid rgba(51, 95, 102, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  color: #3f5a62;
+}
+
+.market-hub-card__actions a:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+}
+
 @media (max-width: 1380px) {
   .market-showcase,
   .metric-grid,
