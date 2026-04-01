@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>ImobiRadar | Plataforma de captacao imobiliaria em Recife</title>
+    <meta name="description" content="Plataforma para captar imóveis, monitorar histórico de preço e priorizar oportunidades de venda e aluguel em Recife.">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="./dashboard.css?v=01-04-2026-19-23">
+  </head>
+  <body>
+    <div class="app-shell app-shell--single">
+      <main class="main main--single">
+        <section class="surface">
+          <header class="market-header" id="overview">
+            <div class="market-header__brand">
+              <div class="market-header__brand-mark">IR</div>
+              <div>
+                <strong>ImobiRadar</strong>
+                <span>Captação, histórico e oportunidades em Recife</span>
+              </div>
+            </div>
+
+            <nav class="site-nav" id="site-nav" aria-label="Navegacao principal">
+              <div class="site-nav__markets" aria-label="Mercados monitorados">
+                
+                  <a href="./index.html" class="site-nav__market-link">
+                    Recife
+                  </a>
+                
+                  <a href="./index-olinda.html" class="site-nav__market-link">
+                    Olinda
+                  </a>
+                
+                  <a href="./index-jaboatao-dos-guararapes.html" class="site-nav__market-link">
+                    Jaboatão dos Guararapes
+                  </a>
+                
+                  <a href="./index-paulista.html" class="site-nav__market-link">
+                    Paulista
+                  </a>
+                
+                  <a href="./index-camaragibe.html" class="site-nav__market-link is-active-market">
+                    Camaragibe
+                  </a>
+                
+              </div>
+              <div class="site-nav__meta">
+                <span>Janela monitorada</span>
+                <strong>25/03 - 31/03</strong>
+              </div>
+              <a href="#overview" class="is-active">Visao geral</a>
+              <a href="#analytics-grid">Mercado</a>
+              <a href="#workspace">Painel</a>
+              <a href="#signals">Sinais</a>
+              <a href="./imoveis-camaragibe.html">Todos os imóveis</a>
+            </nav>
+
+            <div class="market-header__search">
+              <input id="hero-search" type="search" placeholder="Busque por bairro, rua, origem ou faixa de preço">
+            </div>
+
+            <div class="market-header__actions">
+              <button class="market-header__menu-toggle" id="header-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">Menu</button>
+            </div>
+          </header>
+
+          <section class="market-showcase">
+            <div class="market-stage">
+              <div class="market-stage__head">
+                <div class="market-stage__copy">
+                  <p class="eyebrow">Radar de captacao imobiliaria</p>
+                  <h1>Capte oportunidades em Recife antes que o mercado ajuste o preço.</h1>
+                  <p>Monitore venda e aluguel em Fonte local, acompanhe histórico de preço e priorize os melhores contatos com um radar único para corretores, captadores e operações imobiliárias.</p>
+                  <div class="market-stage__actions">
+                    <a class="market-stage__action market-stage__action--primary" href="#signals">Abrir radar de oportunidades</a>
+                    <a class="market-stage__action market-stage__action--ghost" href="#workspace">Ver base monitorada</a>
+                  </div>
+                  <div class="market-stage__proof">
+                    <article>
+                      <strong>0</strong>
+                      <span>novos anúncios nas últimas 24h</span>
+                    </article>
+                    <article>
+                      <strong>0</strong>
+                      <span>imóveis monitorados agora</span>
+                    </article>
+                    <article>
+                      <strong>0</strong>
+                      <span>movimentos de preço captados</span>
+                    </article>
+                  </div>
+                  <div class="market-stage__tags">
+                    <span>Fonte local ao vivo</span>
+                    <span>Monitoramento ativo em Recife</span>
+                    <span>score e histórico de preço ativos</span>
+                    <span>Faixa em atualização</span>
+                  </div>
+                </div>
+                <div class="market-stage__summary">
+                  <article class="market-stage__summary-card">
+                    <span>Base monitorada</span>
+                    <strong>0</strong>
+                    <small>0 novas entradas prontas para triagem nas ultimas 24h</small>
+                  </article>
+                  <article class="market-stage__summary-card">
+                    <span>Ticket rastreado</span>
+                    <strong>R$ 0</strong>
+                    <small>Base consolidada viva com histórico de preço</small>
+                  </article>
+                  <article class="market-stage__summary-card">
+                    <span>Sinais de preço</span>
+                    <strong>0</strong>
+                    <small>Alteracoes detectadas para abrir contato no momento certo</small>
+                  </article>
+                </div>
+              </div>
+
+              <div class="market-stage__grid">
+                <div class="market-featured-grid">
+                  
+                </div>
+
+                <aside class="hero-map-preview">
+                  <div class="hero-map-preview__canvas">
+                    <div id="hero-listing-map" class="hero-listing-map" aria-label="Mapa principal com os destaques do radar"></div>
+                    <div class="hero-map-preview__scrim"></div>
+                  </div>
+                  <div class="hero-map-preview__caption">
+                    <span>Mapa ao vivo</span>
+                    <strong>0 pontos em destaque</strong>
+                    <p>Top imóveis com melhor leitura do radar para Recife agora.</p>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+
+          <section class="metric-grid">
+    <article class="metric-card metric-card--teal">
+      <div class="metric-card__top">
+        <span>Total de imóveis</span>
+        <em>0 novos</em>
+      </div>
+      <strong>0</strong>
+      <p>Inventario ativo consolidado pelo helper local e o workflow novo.</p>
+      <div class="metric-card__pulse">
+        <span style="height:42%"></span>
+        <span style="height:68%"></span>
+        <span style="height:34%"></span>
+        <span style="height:78%"></span>
+      </div>
+    </article>
+  
+    <article class="metric-card metric-card--rent">
+      <div class="metric-card__top">
+        <span>Total de aluguel</span>
+        <em>R$ 0</em>
+      </div>
+      <strong>0</strong>
+      <p>Aluguel ativo com filtro pronto no board operacional.</p>
+      <div class="metric-card__pulse">
+        <span style="height:32%"></span>
+        <span style="height:58%"></span>
+        <span style="height:48%"></span>
+        <span style="height:72%"></span>
+      </div>
+    </article>
+  
+    <article class="metric-card metric-card--sale">
+      <div class="metric-card__top">
+        <span>Total de venda</span>
+        <em>R$ 0</em>
+      </div>
+      <strong>0</strong>
+      <p>Venda ativa puxada por OLX e Zap na mesma rotina.</p>
+      <div class="metric-card__pulse">
+        <span style="height:46%"></span>
+        <span style="height:62%"></span>
+        <span style="height:54%"></span>
+        <span style="height:74%"></span>
+      </div>
+    </article>
+  
+    <article class="metric-card metric-card--good">
+      <div class="metric-card__top">
+        <span>Ticket medio</span>
+        <em>0 movimentos</em>
+      </div>
+      <strong>R$ 0</strong>
+      <p>Leitura rapida do ticket medio da base viva atual.</p>
+      <div class="metric-card__pulse">
+        <span style="height:38%"></span>
+        <span style="height:64%"></span>
+        <span style="height:40%"></span>
+        <span style="height:70%"></span>
+      </div>
+    </article>
+  </section>
+
+          <section class="action-banner">
+            <div class="action-banner__content">
+              <strong>0 novos anúncios, 0 quedas e 0 altas nas últimas 24 horas.</strong>
+              <p>Ultima sincronizacao util: 31/12/1969, 21:00. Fontes monitoradas: Fonte local.</p>
+            </div>
+            <a href="#workspace">Abrir base ativa</a>
+          </section>
+
+          <section class="journey-strip">
+            <article class="journey-card">
+              <span>Etapa 1</span>
+              <strong>Descubra onde vale captar agora</strong>
+              <p>0 oportunidades e 0 entradas novas ja priorizadas pelo radar.</p>
+              <a href="#signals">Ir para oportunidades</a>
+            </article>
+            <article class="journey-card">
+              <span>Etapa 2</span>
+              <strong>Valide preço, bairro e localização</strong>
+              <p>0 pontos no mapa e 0 movimentos de preço ajudam a decidir mais rápido.</p>
+              <a href="#workspace">Abrir mapa e painel</a>
+            </article>
+            <article class="journey-card">
+              <span>Etapa 3</span>
+              <strong>Abra o anúncio e avance para o contato</strong>
+              <p>Clique no imóvel, veja histórico, confirme o timing e siga para o anúncio original com contexto pronto para abordagem.</p>
+              <a href="#recent-moves">Ver sinais recentes</a>
+            </article>
+          </section>
+
+          <button class="mobile-section-toggle" type="button" data-section-target="analytics-grid" data-section-open="Abrir leitura de mercado" data-section-close="Fechar leitura de mercado" hidden></button>
+          <section class="analytics-grid" id="analytics-grid" data-mobile-section="true">
+            <section class="panel panel--wide">
+              <div class="panel__head">
+                <div>
+                  <h2>Estatisticas de venda</h2>
+                  <p>Captacao diaria de venda e aluguel nos ultimos 7 dias para leitura rapida de ritmo.</p>
+                </div>
+                <span>Ultimos 7 dias</span>
+              </div>
+
+              <div class="chart-stack">
+                
+    <article class="trend-card trend-card--sale">
+      <div class="trend-card__header">
+        <div>
+          <strong>Venda</strong>
+          <p>Entrada de novos anúncios de venda por dia.</p>
+        </div>
+        <span>0 captados</span>
+      </div>
+      <div class="line-chart">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,100.00 66.67,100.00 83.33,100.00 100.00,100.00 100,100 0,100" />
+          <polyline points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,100.00 66.67,100.00 83.33,100.00 100.00,100.00" />
+        </svg>
+        <div class="line-chart__labels">
+          
+                <div class="">
+                  <strong>0</strong>
+                  <small>qua, 25</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>qui, 26</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>sex, 27</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>sáb, 28</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>dom, 29</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>seg, 30</small>
+                </div>
+              
+                <div class="is-peak">
+                  <strong>0</strong>
+                  <small>ter, 31</small>
+                </div>
+              
+        </div>
+      </div>
+      <div class="trend-card__footer">
+        <span>Faixa maxima: 1</span>
+        <span>31/03</span>
+      </div>
+    </article>
+  
+                
+    <article class="trend-card trend-card--rent">
+      <div class="trend-card__header">
+        <div>
+          <strong>Aluguel</strong>
+          <p>Entrada de novos anúncios de aluguel por dia.</p>
+        </div>
+        <span>0 captados</span>
+      </div>
+      <div class="line-chart">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,100.00 66.67,100.00 83.33,100.00 100.00,100.00 100,100 0,100" />
+          <polyline points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,100.00 66.67,100.00 83.33,100.00 100.00,100.00" />
+        </svg>
+        <div class="line-chart__labels">
+          
+                <div class="">
+                  <strong>0</strong>
+                  <small>qua, 25</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>qui, 26</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>sex, 27</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>sáb, 28</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>dom, 29</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>seg, 30</small>
+                </div>
+              
+                <div class="is-peak">
+                  <strong>0</strong>
+                  <small>ter, 31</small>
+                </div>
+              
+        </div>
+      </div>
+      <div class="trend-card__footer">
+        <span>Faixa maxima: 1</span>
+        <span>31/03</span>
+      </div>
+    </article>
+  
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel__head">
+                <div>
+                  <h2>Panorama do mercado</h2>
+                  <p>Mix por fonte e operação usando o inventário ativo consolidado.</p>
+                </div>
+                <span>Tempo real</span>
+              </div>
+
+              <div class="growth-card">
+                <strong>R$ 0,00</strong>
+                <p>Preço médio ponderado da base ativa, com leitura por operação e por portal.</p>
+                <div class="growth-kpis">
+    <article class="growth-kpi growth-kpi--teal">
+      <span>Site lider</span>
+      <strong>Sem dado</strong>
+      <small>Aguardando base</small>
+    </article>
+  
+    <article class="growth-kpi growth-kpi--sale">
+      <span>Share venda</span>
+      <strong>0.0%</strong>
+      <small>0 ativos em venda</small>
+    </article>
+  
+    <article class="growth-kpi growth-kpi--rent">
+      <span>Share aluguel</span>
+      <strong>0.0%</strong>
+      <small>0 ativos em aluguel</small>
+    </article>
+  
+    <article class="growth-kpi growth-kpi--good">
+      <span>Ticket medio</span>
+      <strong>R$ 0</strong>
+      <small>Média ponderada da base viva atual</small>
+    </article>
+  </div>
+                <div class="growth-columns"></div>
+                <div class="growth-source-list"></div>
+              </div>
+            </section>
+          </section>
+
+          <button class="mobile-section-toggle" type="button" data-section-target="lower-grid" data-section-open="Abrir bairros e movimentos" data-section-close="Fechar bairros e movimentos" hidden></button>
+          <section class="lower-grid" id="lower-grid" data-mobile-section="true">
+            <section class="panel">
+              <div class="panel__head">
+                <div>
+                  <h2>Bairros em destaque</h2>
+                  <p>Os bairros mais ativos por modo, com ticket e fonte dominante.</p>
+                </div>
+                <span>Leitura ativa</span>
+              </div>
+              <div class="heat-grid" id="heat-grid" data-mobile-limit="4"></div>
+              <button class="section-toggle" type="button" data-expand-target="heat-grid" data-expand-more="Ver mais bairros" data-expand-less="Ver menos bairros" hidden></button>
+            </section>
+
+            <section class="panel" id="recent-moves">
+              <div class="panel__head">
+                <div>
+                  <h2>Movimentos recentes</h2>
+                  <p>Alterações de preço para identificar oportunidade ou pressão de reajuste.</p>
+                </div>
+                <span>0 eventos</span>
+              </div>
+              <div class="move-stack" id="move-stack" data-mobile-limit="3"></div>
+              <button class="section-toggle" type="button" data-expand-target="move-stack" data-expand-more="Ver mais movimentos" data-expand-less="Ver menos movimentos" hidden></button>
+            </section>
+          </section>
+
+          <section class="workspace-grid" id="workspace">
+            <section class="panel panel--workspace">
+              <div class="panel__head">
+                <div>
+                  <h2>Painel de imóveis</h2>
+                  <p>Busca operacional com filtros, ordenação e abertura direta dos anúncios mais recentes.</p>
+                </div>
+                <span id="board-count">0 resultados</span>
+              </div>
+
+              <div class="workspace-toolbar">
+                <div class="workspace-toolbar__filters">
+                  <button class="board-chip is-active" type="button" data-filter="all">Tudo</button>
+                  <button class="board-chip" type="button" data-filter="venda">Venda</button>
+                  <button class="board-chip" type="button" data-filter="aluguel">Aluguel</button>
+                </div>
+
+                <div class="workspace-toolbar__controls">
+                  <input id="board-search" type="search" class="board-search" placeholder="Buscar por título, bairro, origem ou preço">
+                  <select id="board-sort" class="board-sort">
+                    <option value="recent">Mais recentes</option>
+                    <option value="price-desc">Maior preço</option>
+                    <option value="price-asc">Menor preço</option>
+                    <option value="title">Título A-Z</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="workspace-body">
+                <button class="mobile-section-toggle" type="button" data-section-target="map-panel" data-section-open="Abrir mapa e mix" data-section-close="Fechar mapa e mix" hidden></button>
+                <aside class="map-panel" id="map-panel" data-mobile-section="true">
+                  <div class="map-panel__head">
+                    <div>
+                      <strong>Mapa do mercado no Recife</strong>
+                      <p>Mapa real com os destaques do radar. Quando o anúncio não expor coordenada, usamos localização aproximada por bairro.</p>
+                    </div>
+                    <span>0 destaques</span>
+                  </div>
+
+                  <div class="map-panel__filters">
+                    <button class="board-chip is-active" type="button" data-map-filter="all">Tudo</button>
+                    <button class="board-chip" type="button" data-map-filter="venda">Venda</button>
+                    <button class="board-chip" type="button" data-map-filter="aluguel">Aluguel</button>
+                    <button class="board-chip" type="button" data-map-filter="top-score">Maior pontuacao</button>
+                    <button class="board-chip" type="button" data-map-filter="best-discount">Maior desconto</button>
+                  </div>
+                  <div class="map-panel__focus" id="map-focus-chips"></div>
+
+                  <div class="map-panel__body">
+                    <div class="map-canvas map-canvas--live">
+                      <div id="listing-map" class="listing-map" aria-label="Mapa de oportunidades em Recife"></div>
+                    </div>
+
+                    <div class="map-panel__aside">
+                      <div class="map-summary-card" id="map-summary-card">
+                        <div class="map-summary-card__head">
+                          <strong>Recorte do mapa</strong>
+                          <span id="map-summary-count">0 imóveis</span>
+                        </div>
+                        <div class="map-summary-card__body">
+                          <p id="map-summary-title">Use os filtros do mapa para focar o recorte mais interessante.</p>
+                          <small id="map-summary-helper">Os cartões abaixo acompanham os imóveis visíveis no mapa.</small>
+                        </div>
+                      </div>
+                      <div class="map-shortlist" id="map-shortlist"></div>
+                      <div class="cue-grid">
+    <article class="cue-card">
+      <span>Share lider</span>
+      <strong>Sem lider</strong>
+      <p>A base ainda não mostrou um líder claro.</p>
+    </article>
+  
+    <article class="cue-card">
+      <span>Bairro quente</span>
+      <strong>Sem destaque</strong>
+      <p>Sem concentracao relevante por enquanto.</p>
+    </article>
+  
+    <article class="cue-card">
+      <span>Entrada baixa</span>
+      <strong>Sem dado</strong>
+      <p>Não apareceu aluguel com preço válido nesta amostra.</p>
+    </article>
+  
+    <article class="cue-card">
+      <span>Consolidacao</span>
+      <strong>0 suspeitos</strong>
+      <p>Leitura dos duplicados provaveis restantes na base ativa apos a consolidacao.</p>
+    </article>
+  </div>
+                      <div class="mix-stack"></div>
+                    </div>
+                  </div>
+                </aside>
+
+                <div class="workspace-board-shell">
+                  <div class="workspace-guide">
+                    <article>
+                      <strong>1. Filtre o mercado</strong>
+                      <p>Use busca, modo e ordenacao para reduzir a base ao recorte que faz sentido para a sua captacao.</p>
+                    </article>
+                    <article>
+                      <strong>2. Abra o histórico</strong>
+                      <p>Entre no card para ver timeline de preço, melhor valor já visto e sinais de republicação.</p>
+                    </article>
+                    <article>
+                      <strong>3. Avance para o anúncio</strong>
+                      <p>Quando o timing fizer sentido, use o link do anúncio original e siga para a abordagem comercial.</p>
+                    </article>
+                  </div>
+                  <div class="listing-board" id="listing-board" data-mobile-limit="4"></div>
+                  <div class="workspace-empty" id="workspace-empty" hidden>
+                    <strong>Nenhum imóvel encontrado nesse recorte.</strong>
+                    <p>Ajuste a busca, troque o modo ou volte para "Tudo" para abrir mais oportunidades.</p>
+                  </div>
+                  <a class="section-toggle section-toggle--board" href="./imoveis-camaragibe.html">Ver mais imóveis</a>
+                </div>
+              </div>
+            </section>
+          </section>
+
+          <button class="mobile-section-toggle" type="button" data-section-target="signals" data-section-open="Abrir insights e oportunidades" data-section-close="Fechar insights e oportunidades" hidden></button>
+          <section class="signals-grid" id="signals" data-mobile-section="true">
+            <section class="panel panel--signals">
+              <div class="panel__head">
+                <div>
+                  <h2>Sugestao da IA</h2>
+                  <p>Leitura de contexto para te levar nos blocos certos do dashboard.</p>
+                </div>
+                <span>Contexto</span>
+              </div>
+              <div class="insight-stack" id="insight-stack" data-mobile-limit="2">
+    <article class="insight-card" data-mobile-item="true">
+      <span>Bairro em foco</span>
+      <h3>Ainda sem bairro dominante</h3>
+      <p>Assim que o volume aumentar, este bloco destaca o bairro com maior concentração.</p>
+    </article>
+  
+    <article class="insight-card" data-mobile-item="true">
+      <span>Pressão de preço</span>
+      <h3>Sem queda forte agora</h3>
+      <p>Quando entrar uma queda mais relevante, este card mostra o atalho para revisão manual.</p>
+    </article>
+  
+    <article class="insight-card" data-mobile-item="true">
+      <span>Origem dominante</span>
+      <h3>Sem origem dominante</h3>
+      <p>A origem dominante aparece aqui assim que a base consolidada ganha mais volume.</p>
+    </article>
+  
+    <article class="insight-card" data-mobile-item="true">
+      <span>Movimento do dia</span>
+      <h3>0 quedas contra 0 altas</h3>
+      <p>O painel separa revisão de preço de leitura de inventário para você decidir mais rápido no board.</p>
+    </article>
+  </div>
+              <button class="section-toggle" type="button" data-expand-target="insight-stack" data-expand-more="Ver mais insights" data-expand-less="Ver menos insights" hidden></button>
+            </section>
+
+            <section class="panel panel--signals">
+              <div class="panel__head">
+                <div>
+                  <h2>Painel de oportunidades</h2>
+                  <p>Seleção de oportunidades para aprofundar a leitura de preço, liquidez e timing.</p>
+                </div>
+                <span>0 destaques</span>
+              </div>
+              <div class="opportunity-stack">
+                <div id="opportunity-stack" data-mobile-limit="2">
+                  
+                </div>
+                <button class="section-toggle" type="button" data-expand-target="opportunity-stack" data-expand-more="Ver mais oportunidades" data-expand-less="Ver menos oportunidades" hidden></button>
+              </div>
+            </section>
+          </section>
+
+          <section class="credibility-grid" id="credibility">
+            <section class="panel panel--credibility">
+              <div class="panel__head">
+                <div>
+                  <h2>Pronto para operar</h2>
+                  <p>Os sinais abaixo ajudam a apresentar o produto como uma operação viva, atualizada e confiável.</p>
+                </div>
+                <span>Confiança</span>
+              </div>
+              <div class="credibility-cards">
+    <article class="credibility-card">
+      <span>Atualização automática</span>
+      <strong>Ao vivo</strong>
+      <p>A stack local roda automaticamente e mantém o radar atualizado sem operação manual.</p>
+    </article>
+  
+    <article class="credibility-card">
+      <span>Localização validada</span>
+      <strong>0</strong>
+      <p>Imóveis com localização melhor que fallback, priorizando endereço e recorte de Recife.</p>
+    </article>
+  
+    <article class="credibility-card">
+      <span>Histórico de preço</span>
+      <strong>0</strong>
+      <p>Eventos de preço acumulados para leitura de timing, pico, melhor valor e revisão comercial.</p>
+    </article>
+  
+    <article class="credibility-card">
+      <span>Consolidacao ativa</span>
+      <strong>0 suspeitos</strong>
+      <p>Republicações e anúncios parecidos passam por consolidação para reduzir ruído comercial.</p>
+    </article>
+  </div>
+            </section>
+
+            <section class="panel panel--credibility">
+              <div class="panel__head">
+                <div>
+                  <h2>Para quem esse radar serve</h2>
+                  <p>Posicionamento claro para vender o produto sem parecer apenas um dashboard de apoio.</p>
+                </div>
+                <span>Uso comercial</span>
+              </div>
+              <div class="usecase-grid">
+    <article class="usecase-card">
+      <span>Captacao</span>
+      <strong>Para corretores e captadores que precisam achar oportunidade antes da concorrencia</strong>
+      <p>Use sinais de entrada, desconto e histórico para priorizar onde abordar primeiro.</p>
+    </article>
+  
+    <article class="usecase-card">
+      <span>Gestao</span>
+      <strong>Para operações que precisam validar preço e cobertura por bairro</strong>
+      <p>O mapa, o mix por fonte e a leitura de ticket ajudam a entender oferta e pressao de mercado.</p>
+    </article>
+  
+    <article class="usecase-card">
+      <span>Consultoria</span>
+      <strong>Para apresentações comerciais que precisam parecer produto e não planilha</strong>
+      <p>O painel vira argumento visual para mostrar inteligencia, monitoramento e contexto de decisao.</p>
+    </article>
+  </div>
+            </section>
+          </section>
+
+          <section class="closing-cta">
+            <div>
+              <span>ImobiRadar</span>
+              <strong>Uma plataforma para captar, validar preço e agir no timing certo.</strong>
+              <p>Base viva em Fonte local, histórico de preço, mapa validado e leitura de oportunidade pronta para time comercial.</p>
+            </div>
+            <div class="closing-cta__actions">
+              <a href="#overview">Ver demonstracao</a>
+              <a href="#signals">Abrir oportunidades agora</a>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+    <div class="mobile-quick-actions" aria-label="Atalhos rapidos">
+      <a href="#signals">Oportunidades</a>
+      <a href="#workspace">Painel</a>
+    </div>
+    <div class="detail-modal" id="listing-detail-modal" hidden>
+      <div class="detail-modal__backdrop" data-detail-close="true"></div>
+      <div class="detail-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+        <button class="detail-modal__close" type="button" data-detail-close="true" aria-label="Fechar detalhes">Fechar</button>
+        <div class="detail-modal__content" id="listing-detail-content"></div>
+      </div>
+    </div>
+    <script id="listing-details-data" type="application/json">{}</script>
+    <script id="hero-map-listings-data" type="application/json">[]</script>
+    <script id="map-listings-data" type="application/json">[]</script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="./dashboard.js?v=01-04-2026-19-23"></script>
+  </body>
+</html>

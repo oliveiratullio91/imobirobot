@@ -295,6 +295,27 @@ select {
   display: grid;
 }
 
+.site-nav__markets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 0 8px;
+}
+
+.site-nav__market-link {
+  min-height: 38px !important;
+  padding: 0 12px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+}
+
+.site-nav__market-link.is-active-market {
+  background: linear-gradient(135deg, #d48f49, #b86f27) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 12px 24px rgba(184, 111, 39, 0.18) !important;
+}
+
 .site-nav__meta {
   display: grid;
   gap: 4px;
@@ -3593,6 +3614,38 @@ select {
 .listings-page__header h1 {
   margin: 10px 0 0;
   font: 700 clamp(30px, 4vw, 48px)/1.02 'Fraunces', serif;
+}
+
+.listings-page__markets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.listings-page__market-link {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(51, 95, 102, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  color: #46636b;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 800;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.listings-page__market-link:hover,
+.listings-page__market-link.is-active-market {
+  background: linear-gradient(135deg, #567f87, #335f66);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(51, 95, 102, 0.16);
 }
 
 .listings-page__header p:last-child {

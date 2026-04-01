@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>ImobiRadar | Base monitorada de imóveis</title>
+    <meta name="description" content="Lista completa de imóveis monitorados pelo ImobiRadar, com filtros de preço e localização para venda e aluguel em Recife.">
+    <link rel="stylesheet" href="./dashboard.css?v=01-04-2026-19-23">
+  </head>
+  <body>
+    <div class="app-shell app-shell--single">
+      <main class="main main--single">
+        <section class="surface listings-page">
+          <header class="listings-page__header">
+            <div>
+              <a class="listings-page__back" href="./index-camaragibe.html">Voltar para página principal</a>
+              <div class="listings-page__markets" aria-label="Mercados monitorados">
+                
+                  <a href="./imoveis.html" class="listings-page__market-link">
+                    Recife
+                  </a>
+                
+                  <a href="./imoveis-olinda.html" class="listings-page__market-link">
+                    Olinda
+                  </a>
+                
+                  <a href="./imoveis-jaboatao-dos-guararapes.html" class="listings-page__market-link">
+                    Jaboatão dos Guararapes
+                  </a>
+                
+                  <a href="./imoveis-paulista.html" class="listings-page__market-link">
+                    Paulista
+                  </a>
+                
+                  <a href="./imoveis-camaragibe.html" class="listings-page__market-link is-active-market">
+                    Camaragibe
+                  </a>
+                
+              </div>
+              <p class="eyebrow">Base monitorada</p>
+              <h1>Venda e aluguel no mesmo painel, com filtro por preço e localização.</h1>
+              <p>Recorte completo da base ativa em Fonte local, pronto para triagem comercial e validacao de oportunidade.</p>
+            </div>
+            <div class="listings-page__summary">
+              <article>
+                <span>Ativos agora</span>
+                <strong>0</strong>
+              </article>
+              <article>
+                <span>Faixa monitorada</span>
+                <strong>Faixa em atualização</strong>
+              </article>
+            </div>
+          </header>
+
+          <section class="listings-page__controls">
+            <div class="listings-page__modes">
+              <button class="board-chip is-active" type="button" data-mode-filter="all">Tudo</button>
+              <button class="board-chip" type="button" data-mode-filter="venda">Venda</button>
+              <button class="board-chip" type="button" data-mode-filter="aluguel">Aluguel</button>
+            </div>
+            <div class="listings-page__filters">
+              <select id="listings-source-filter" class="board-search">
+                <option value="all">Todas as fontes</option>
+                <option value="olx">OLX</option>
+                <option value="zap">Zap</option>
+                <option value="chaves na mao">Chaves na Mao</option>
+                <option value="apto">Apto</option>
+                <option value="quintoandar">QuintoAndar</option>
+              </select>
+              <select id="listings-rooms-filter" class="board-search">
+                <option value="0">Qualquer quarto</option>
+                <option value="1">1+ quartos</option>
+                <option value="2">2+ quartos</option>
+                <option value="3">3+ quartos</option>
+                <option value="4">4+ quartos</option>
+              </select>
+              <input id="listings-location-filter" type="search" class="board-search" placeholder="Filtrar por bairro, rua ou localização">
+              <input id="listings-price-min" type="number" class="board-search" placeholder="Preço mínimo">
+              <input id="listings-price-max" type="number" class="board-search" placeholder="Preço máximo">
+            </div>
+            <div class="listings-page__meta">
+              <span id="listings-page-count">0 resultados</span>
+              <span id="listings-compare-count">0 selecionados para comparar</span>
+            </div>
+          </section>
+
+          <section class="listings-page__board listing-board" id="listings-page-board">
+            
+          </section>
+
+          <section class="listings-page__compare" id="listings-page-compare" hidden>
+            <div class="listings-page__compare-head">
+              <div>
+                <p class="eyebrow">Comparador</p>
+                <h2>Compare os imoveis selecionados lado a lado.</h2>
+              </div>
+              <button class="section-toggle" type="button" id="listings-compare-clear">Limpar comparacao</button>
+            </div>
+            <div class="listings-page__compare-grid" id="listings-page-compare-grid"></div>
+          </section>
+
+          <div class="workspace-empty" id="listings-page-empty" hidden>
+            <strong>Nenhum imóvel encontrado nesse recorte.</strong>
+            <p>Ajuste a localização, reveja a faixa de preço ou volte para "Tudo" para recuperar a listagem.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="detail-modal" id="listing-detail-modal" hidden>
+      <div class="detail-modal__backdrop" data-detail-close="true"></div>
+      <div class="detail-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+        <button class="detail-modal__close" type="button" data-detail-close="true" aria-label="Fechar detalhes">Fechar</button>
+        <div class="detail-modal__content" id="listing-detail-content"></div>
+      </div>
+    </div>
+    <script id="listing-details-data" type="application/json">{}</script>
+    <script src="./listings-page.js?v=01-04-2026-19-23"></script>
+  </body>
+</html>
