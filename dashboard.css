@@ -3129,6 +3129,121 @@ select {
   color: var(--ink);
 }
 
+.workflow-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.workflow-panel__toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.workflow-toggle,
+.workflow-save,
+.workflow-panel__field select,
+.workflow-panel__field textarea {
+  font: inherit;
+}
+
+.workflow-toggle,
+.workflow-save {
+  min-height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 55, 60, 0.12);
+  background: rgba(255, 255, 255, 0.86);
+  color: #23464b;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.workflow-toggle {
+  padding: 0 16px;
+}
+
+.workflow-toggle.is-active {
+  background: linear-gradient(135deg, #567f87, #335f66);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(51, 95, 102, 0.18);
+}
+
+.workflow-save {
+  padding: 0 18px;
+  border-color: transparent;
+  background: linear-gradient(135deg, #d6934c, #c67c34);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(198, 124, 52, 0.22);
+}
+
+.workflow-toggle:hover,
+.workflow-save:hover {
+  transform: translateY(-1px);
+}
+
+.workflow-toggle:disabled,
+.workflow-save:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
+
+.workflow-panel__field {
+  display: grid;
+  gap: 8px;
+}
+
+.workflow-panel__field span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workflow-panel__field select,
+.workflow-panel__field textarea {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid rgba(34, 55, 60, 0.1);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink);
+  padding: 12px 14px;
+}
+
+.workflow-panel__field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.workflow-panel__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.workflow-panel__footer span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.workflow-panel__message {
+  margin: 0;
+  color: #2b5458;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.workflow-panel__message.is-error {
+  color: #b55353;
+}
+
 .detail-timeline__item {
   display: flex;
   justify-content: space-between;
@@ -3225,6 +3340,24 @@ select {
   .signals-grid,
   .listing-board {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .workflow-panel__toggles,
+  .workflow-panel__footer {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .workflow-toggle,
+  .workflow-save {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .workflow-panel__field textarea {
+    min-height: 92px;
   }
 }
 

@@ -18,6 +18,16 @@
       return {};
     }
   })();
+  const WORKFLOW_API_BASE = 'http://127.0.0.1:3210';
+  const WORKFLOW_STATUS_LABELS = {
+    novo: 'Novo',
+    analisando: 'Analisando',
+    abordado: 'Abordado',
+    visitado: 'Visitado',
+    negociando: 'Negociando',
+    descartado: 'Descartado',
+  };
+  const workflowStateCache = {};
 
   let activeMode = 'all';
 
@@ -28,6 +38,10 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/"/g, '&quot;');
   }
 
   function formatResultCount(total) {
@@ -43,7 +57,105 @@
     });
   }
 
-  function buildDetailMarkup(detail) {
+  function renderWorkflowPanel(listingId, workflow, options = {}) {
+    const state = workflow || {
+      listingId,
+      isFavorite: false,
+      isShortlisted: false,
+      pipelineStatus: 'novo',
+      notes: '',
+      updatedAt: null,
+    };
+    const disabledAttr = options.disabled ? ' disabled' : '';
+    const messageMarkup = options.message
+      ? `<p class="workflow-panel__message${options.error ? ' is-error' : ''}">${escapeHtml(options.message)}</p>`
+      : '';
+
+    return `
+      <div class="workflow-panel__toggles">
+        <button class="workflow-toggle${state.isFavorite ? ' is-active' : ''}" type="button" data-workflow-toggle="favorite"${disabledAttr}>
+          ${state.isFavorite ? 'Favorito' : 'Favoritar'}
+        </button>
+        <button class="workflow-toggle${state.isShortlisted ? ' is-active' : ''}" type="button" data-workflow-toggle="shortlist"${disabledAttr}>
+          ${state.isShortlisted ? 'Shortlist ativa' : 'Adicionar a shortlist'}
+        </button>
+      </div>
+      <label class="workflow-panel__field">
+        <span>Status comercial</span>
+        <select data-workflow-field="pipelineStatus"${disabledAttr}>
+          ${Object.entries(WORKFLOW_STATUS_LABELS).map(([value, label]) => `
+            <option value="${escapeAttribute(value)}"${state.pipelineStatus === value ? ' selected' : ''}>${escapeHtml(label)}</option>
+          `).join('')}
+        </select>
+      </label>
+      <label class="workflow-panel__field">
+        <span>Observações</span>
+        <textarea rows="4" maxlength="4000" placeholder="Ex.: ligar amanhã, condomínio interessante, preço fora da curva." data-workflow-field="notes"${disabledAttr}>${escapeHtml(state.notes || '')}</textarea>
+      </label>
+      <div class="workflow-panel__footer">
+        <span>${escapeHtml(state.updatedAt ? `Atualizado em ${new Date(state.updatedAt).toLocaleString('pt-BR')}` : 'Ainda sem atualização manual')}</span>
+        <button class="workflow-save" type="button" data-workflow-save="${escapeAttribute(listingId)}"${disabledAttr}>Salvar</button>
+      </div>
+      ${messageMarkup}
+    `;
+  }
+
+  async function fetchWorkflowState(listingId) {
+    const response = await fetch(`${WORKFLOW_API_BASE}/listing-workflow-state?listingId=${encodeURIComponent(listingId)}`);
+    const payload = await response.json();
+    if (!response.ok || !payload?.workflow) {
+      throw new Error(payload?.error || 'Falha ao carregar workflow comercial.');
+    }
+    workflowStateCache[listingId] = payload.workflow;
+    return payload.workflow;
+  }
+
+  async function saveWorkflowState(listingId, payload) {
+    const response = await fetch(`${WORKFLOW_API_BASE}/listing-workflow-state`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        listingId,
+        ...payload,
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok || !result?.workflow) {
+      throw new Error(result?.error || 'Falha ao salvar workflow comercial.');
+    }
+    workflowStateCache[listingId] = result.workflow;
+    return result.workflow;
+  }
+
+  async function loadWorkflowPanel(listingId) {
+    const panel = detailContent?.querySelector(`[data-workflow-panel="${CSS.escape(listingId)}"]`);
+    if (!panel) return;
+
+    panel.innerHTML = renderWorkflowPanel(listingId, workflowStateCache[listingId], {
+      disabled: true,
+      message: 'Carregando preferências comerciais...',
+    });
+
+    try {
+      const workflow = await fetchWorkflowState(listingId);
+      const refreshedPanel = detailContent?.querySelector(`[data-workflow-panel="${CSS.escape(listingId)}"]`);
+      if (refreshedPanel) {
+        refreshedPanel.innerHTML = renderWorkflowPanel(listingId, workflow);
+      }
+    } catch (error) {
+      const refreshedPanel = detailContent?.querySelector(`[data-workflow-panel="${CSS.escape(listingId)}"]`);
+      if (refreshedPanel) {
+        refreshedPanel.innerHTML = renderWorkflowPanel(listingId, workflowStateCache[listingId], {
+          message: error.message || 'Nao foi possivel carregar o workflow comercial.',
+          error: true,
+        });
+      }
+    }
+  }
+
+  function buildDetailMarkup(detail, listingId) {
     const featureMarkup = (detail.features || [])
       .map((feature) => `<span>${escapeHtml(feature)}</span>`)
       .join('');
@@ -202,6 +314,18 @@
             ${timelineMarkup || '<p class="detail-empty">Ainda não há variações suficientes para montar a timeline.</p>'}
           </div>
         </section>
+        <section class="detail-panel">
+          <div class="detail-panel__head">
+            <strong>Fluxo comercial</strong>
+            <span>Operação local</span>
+          </div>
+          <div class="workflow-panel" data-workflow-panel="${escapeAttribute(listingId)}">
+            ${renderWorkflowPanel(listingId, workflowStateCache[listingId], {
+              disabled: true,
+              message: 'Carregando preferências comerciais...',
+            })}
+          </div>
+        </section>
       </div>
     `;
   }
@@ -210,9 +334,10 @@
     const detail = detailsByListingId[listingId];
     if (!detailModal || !detailContent || !detail) return;
 
-    detailContent.innerHTML = buildDetailMarkup(detail);
+    detailContent.innerHTML = buildDetailMarkup(detail, listingId);
     detailModal.hidden = false;
     document.body.classList.add('is-modal-open');
+    loadWorkflowPanel(listingId);
   }
 
   function closeDetail() {
@@ -292,6 +417,56 @@
 
   detailCloseTriggers.forEach((trigger) => {
     trigger.addEventListener('click', closeDetail);
+  });
+
+  detailContent?.addEventListener('click', async (event) => {
+    const panel = event.target.closest('[data-workflow-panel]');
+    if (!panel) return;
+
+    const listingId = panel.getAttribute('data-workflow-panel');
+    if (!listingId) return;
+
+    const toggle = event.target.closest('[data-workflow-toggle]');
+    if (toggle) {
+      const currentState = workflowStateCache[listingId] || await fetchWorkflowState(listingId);
+      if (toggle.dataset.workflowToggle === 'favorite') {
+        currentState.isFavorite = !currentState.isFavorite;
+      } else if (toggle.dataset.workflowToggle === 'shortlist') {
+        currentState.isShortlisted = !currentState.isShortlisted;
+      }
+      workflowStateCache[listingId] = currentState;
+      panel.innerHTML = renderWorkflowPanel(listingId, currentState);
+      return;
+    }
+
+    const saveButton = event.target.closest('[data-workflow-save]');
+    if (!saveButton) return;
+
+    const statusField = panel.querySelector('[data-workflow-field="pipelineStatus"]');
+    const notesField = panel.querySelector('[data-workflow-field="notes"]');
+    const currentState = workflowStateCache[listingId] || await fetchWorkflowState(listingId);
+
+    panel.innerHTML = renderWorkflowPanel(listingId, currentState, {
+      disabled: true,
+      message: 'Salvando atualizacao...',
+    });
+
+    try {
+      const savedState = await saveWorkflowState(listingId, {
+        isFavorite: currentState.isFavorite,
+        isShortlisted: currentState.isShortlisted,
+        pipelineStatus: statusField?.value || currentState.pipelineStatus,
+        notes: notesField?.value || '',
+      });
+      panel.innerHTML = renderWorkflowPanel(listingId, savedState, {
+        message: 'Workflow comercial salvo com sucesso.',
+      });
+    } catch (error) {
+      panel.innerHTML = renderWorkflowPanel(listingId, workflowStateCache[listingId], {
+        message: error.message || 'Nao foi possivel salvar o workflow comercial.',
+        error: true,
+      });
+    }
   });
 
   document.addEventListener('keydown', (event) => {
