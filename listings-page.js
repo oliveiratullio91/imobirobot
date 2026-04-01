@@ -59,7 +59,7 @@
             <strong>${escapeHtml(item.priceText || 'N/D')}</strong>
             <p>${escapeHtml(item.capturedAtLabel || 'Sem data')}</p>
           </div>
-          <span class="detail-timeline__delta is-${escapeHtml(item.direction || 'flat')}">${escapeHtml(item.changeText || 'Sem variacao')}</span>
+          <span class="detail-timeline__delta is-${escapeHtml(item.direction || 'flat')}">${escapeHtml(item.changeText || 'Sem variação')}</span>
         </article>
       `)
       .join('');
@@ -70,20 +70,20 @@
           <span>${escapeHtml(detail.sourceLabel || 'Origem')}</span>
           <span>${escapeHtml(detail.modeLabel || 'Modo')}</span>
         </div>
-        <h2 id="detail-title">${escapeHtml(detail.title || 'Imovel')}</h2>
-        <p>${escapeHtml(detail.neighborhood || detail.city || 'Local nao informado')}</p>
+        <h2 id="detail-title">${escapeHtml(detail.title || 'Imóvel')}</h2>
+        <p>${escapeHtml(detail.neighborhood || detail.city || 'Local não informado')}</p>
         <div class="detail-modal__hero-metrics">
           <article>
-            <span>Preco atual</span>
+            <span>Preço atual</span>
             <strong>${escapeHtml(detail.currentPriceText || 'N/D')}</strong>
           </article>
           <article>
-            <span>Melhor preco</span>
+            <span>Melhor preço</span>
             <strong>${escapeHtml(detail.bestPriceText || 'N/D')}</strong>
             <small>${escapeHtml(detail.bestPriceAtLabel || 'Sem data')}</small>
           </article>
           <article>
-            <span>Maior preco</span>
+            <span>Maior preço</span>
             <strong>${escapeHtml(detail.highestPriceText || 'N/D')}</strong>
             <small>${escapeHtml(`economia contra pico ${detail.savingsVsPeakText || 'N/D'}`)}</small>
           </article>
@@ -93,8 +93,8 @@
       <div class="detail-modal__grid">
         <section class="detail-panel">
           <div class="detail-panel__head">
-            <strong>Resumo do imovel</strong>
-            <a class="detail-panel__action" href="${escapeHtml(detail.url || '#')}" target="_blank" rel="noreferrer">Abrir anuncio</a>
+            <strong>Resumo do imóvel</strong>
+            <a class="detail-panel__action" href="${escapeHtml(detail.url || '#')}" target="_blank" rel="noreferrer">Abrir anúncio</a>
           </div>
           <div class="detail-panel__radar">
             <div class="detail-panel__radar-head">
@@ -107,11 +107,11 @@
                 <strong>${escapeHtml(detail.radarDiscountText || 'N/D')}</strong>
               </article>
               <article>
-                <span>Preco / m2</span>
+                <span>Preço / m2</span>
                 <strong>${escapeHtml(detail.radarPricePerM2Text || 'N/D')}</strong>
               </article>
               <article>
-                <span>Media local</span>
+                <span>Média local</span>
                 <strong>${escapeHtml(detail.radarBenchmarkText || 'N/D')}</strong>
               </article>
               <article>
@@ -123,7 +123,7 @@
           </div>
           <div class="detail-panel__stats">
             <article>
-              <span>Variacao vs melhor preco</span>
+              <span>Variação vs melhor preço</span>
               <strong>${escapeHtml(detail.currentVsBestText || 'N/D')}</strong>
             </article>
             <article>
@@ -135,8 +135,8 @@
               <strong>${escapeHtml(detail.trackedDaysLabel || 'N/D')}</strong>
             </article>
             <article>
-              <span>Ultima variacao</span>
-              <strong class="is-${escapeHtml(detail.latestChangeDirection || 'flat')}">${escapeHtml(detail.latestChangeText || 'Sem variacao')}</strong>
+              <span>Última variação</span>
+              <strong class="is-${escapeHtml(detail.latestChangeDirection || 'flat')}">${escapeHtml(detail.latestChangeText || 'Sem variação')}</strong>
             </article>
             <article>
               <span>Mapa</span>
@@ -149,20 +149,20 @@
           </div>
           <div class="detail-panel__meta">${featureMarkup}</div>
           <div class="detail-panel__text">
-            <p><strong>Endereco:</strong> ${escapeHtml(detail.address || 'Nao informado')}</p>
+            <p><strong>Endereço:</strong> ${escapeHtml(detail.address || 'Não informado')}</p>
             <p><strong>Primeira captura:</strong> ${escapeHtml(detail.firstSeenLabel || 'Sem registro')}</p>
             <p><strong>Ultima captura:</strong> ${escapeHtml(detail.lastSeenLabel || 'Sem registro')}</p>
-            ${detail.description ? `<p><strong>Descricao:</strong> ${escapeHtml(detail.description)}</p>` : ''}
+            ${detail.description ? `<p><strong>Descrição:</strong> ${escapeHtml(detail.description)}</p>` : ''}
           </div>
         </section>
 
         <section class="detail-panel">
           <div class="detail-panel__head">
-            <strong>Historico de preco</strong>
+            <strong>Histórico de preço</strong>
             <span>${escapeHtml(`${detail.timeline?.length || 0} eventos visiveis`)}</span>
           </div>
           <div class="detail-timeline">
-            ${timelineMarkup || '<p class="detail-empty">Ainda nao ha variacoes suficientes para montar a timeline.</p>'}
+            ${timelineMarkup || '<p class="detail-empty">Ainda não há variações suficientes para montar a timeline.</p>'}
           </div>
         </section>
       </div>
