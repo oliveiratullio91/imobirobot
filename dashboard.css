@@ -2320,6 +2320,100 @@ select {
   align-content: start;
 }
 
+.map-summary-card,
+.map-shortlist {
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-md);
+}
+
+.map-summary-card {
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.map-summary-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.map-summary-card__head strong {
+  font-size: 18px;
+}
+
+.map-summary-card__head span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(86, 127, 135, 0.1);
+  color: #31585d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.map-summary-card__body p,
+.map-summary-card__body small {
+  margin: 0;
+  display: block;
+}
+
+.map-summary-card__body p {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.map-summary-card__body small {
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.map-shortlist {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.map-shortlist__item {
+  width: 100%;
+  display: grid;
+  gap: 6px;
+  text-align: left;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(34, 55, 60, 0.08);
+  background: rgba(247, 250, 250, 0.92);
+  cursor: pointer;
+}
+
+.map-shortlist__item span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.map-shortlist__item strong {
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.map-shortlist__item small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .cue-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
@@ -2395,6 +2489,48 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+}
+
+.map-panel__focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.map-focus-chip {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 55, 60, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  color: #2f565b;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.map-focus-chip span {
+  min-width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(86, 127, 135, 0.12);
+  font-size: 11px;
+}
+
+.map-focus-chip.is-active {
+  background: linear-gradient(135deg, #567f87, #335f66);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.map-focus-chip.is-active span {
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .map-canvas {

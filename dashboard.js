@@ -12,6 +12,11 @@
   const expandButtons = Array.from(document.querySelectorAll('[data-expand-target]'));
   const mobileSectionButtons = Array.from(document.querySelectorAll('[data-section-target]'));
   const mapFilterButtons = Array.from(document.querySelectorAll('[data-map-filter]'));
+  const mapFocusContainer = document.getElementById('map-focus-chips');
+  const mapSummaryTitle = document.getElementById('map-summary-title');
+  const mapSummaryHelper = document.getElementById('map-summary-helper');
+  const mapSummaryCount = document.getElementById('map-summary-count');
+  const mapShortlist = document.getElementById('map-shortlist');
   const sidebarLinks = Array.from(document.querySelectorAll('.site-nav a[href^="#"]'));
   const siteNav = document.getElementById('site-nav');
   const headerElement = document.querySelector('.market-header');
@@ -58,6 +63,7 @@
 
   let activeFilter = 'all';
   let activeMapFilter = 'all';
+  let activeMapFocus = 'all';
   let mapState = null;
   let heroMapState = null;
   const compactViewport = window.matchMedia('(max-width: 760px)');
@@ -468,7 +474,15 @@
         .slice(0, 8);
     }
 
+    if (activeMapFocus !== 'all') {
+      visibleMarkers = visibleMarkers.filter(({ item }) => (
+        String(item.neighborhood || item.location || '').toLowerCase() === activeMapFocus
+      ));
+    }
+
     visibleMarkers.forEach(({ marker }) => marker.addTo(mapState.layerGroup));
+
+    updateMapOperationalPanel(visibleMarkers.map(({ item }) => item));
 
     if (!visibleMarkers.length) return;
 
@@ -477,6 +491,68 @@
       padding: [26, 26],
       maxZoom: 14,
     });
+  }
+
+  function buildMapFocusOptions() {
+    const grouped = new Map();
+    mapListings.forEach((item) => {
+      const key = String(item.neighborhood || item.location || '').trim();
+      if (!key) return;
+      grouped.set(key, (grouped.get(key) || 0) + 1);
+    });
+
+    return [...grouped.entries()]
+      .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0], 'pt-BR'))
+      .slice(0, 6);
+  }
+
+  function renderMapFocusButtons() {
+    if (!mapFocusContainer) return;
+
+    const options = buildMapFocusOptions();
+    mapFocusContainer.innerHTML = [
+      `<button class="map-focus-chip${activeMapFocus === 'all' ? ' is-active' : ''}" type="button" data-map-focus="all">Recife inteiro</button>`,
+      ...options.map(([label, total]) => (
+        `<button class="map-focus-chip${activeMapFocus === String(label).toLowerCase() ? ' is-active' : ''}" type="button" data-map-focus="${escapeAttribute(String(label).toLowerCase())}">${escapeHtml(label)} <span>${escapeHtml(String(total))}</span></button>`
+      )),
+    ].join('');
+  }
+
+  function updateMapOperationalPanel(items) {
+    if (mapSummaryCount) {
+      mapSummaryCount.textContent = `${new Intl.NumberFormat('pt-BR').format(items.length)} imóveis`;
+    }
+
+    if (mapSummaryTitle) {
+      if (!items.length) {
+        mapSummaryTitle.textContent = 'Nenhum imóvel visível neste recorte.';
+      } else if (activeMapFocus !== 'all') {
+        mapSummaryTitle.textContent = `Mapa focado em ${activeMapFocus}.`;
+      } else if (activeMapFilter === 'top-score') {
+        mapSummaryTitle.textContent = 'Recorte com os imóveis mais fortes do radar.';
+      } else if (activeMapFilter === 'best-discount') {
+        mapSummaryTitle.textContent = 'Recorte com os maiores descontos do radar.';
+      } else {
+        mapSummaryTitle.textContent = 'Imóveis visíveis no mapa operacional do radar.';
+      }
+    }
+
+    if (mapSummaryHelper) {
+      const topItem = items[0];
+      mapSummaryHelper.textContent = topItem
+        ? `${topItem.modeLabel || topItem.mode} • ${topItem.priceText || ''} • ${topItem.neighborhood || topItem.location || 'Recife'}`
+        : 'Ajuste filtros e foco por bairro para refinar a leitura.';
+    }
+
+    if (!mapShortlist) return;
+
+    mapShortlist.innerHTML = items.slice(0, 4).map((item) => `
+      <button class="map-shortlist__item" type="button" data-map-open="${escapeAttribute(item.listing_id)}">
+        <span>${escapeHtml(item.modeLabel || item.mode || 'Radar')}</span>
+        <strong>${escapeHtml(item.title || 'Imóvel')}</strong>
+        <small>${escapeHtml(`${item.priceText || 'Sem preço'} • ${item.neighborhood || item.location || 'Recife'}`)}</small>
+      </button>
+    `).join('');
   }
 
   function syncMapFilterButtons() {
@@ -839,6 +915,22 @@
     });
   });
 
+  mapFocusContainer?.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-map-focus]');
+    if (!button) return;
+    activeMapFocus = button.getAttribute('data-map-focus') || 'all';
+    renderMapFocusButtons();
+    refreshMap();
+  });
+
+  mapShortlist?.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-map-open]');
+    if (!button) return;
+    const listingId = button.getAttribute('data-map-open');
+    if (!listingId) return;
+    openDetail(listingId);
+  });
+
   detailTriggers.forEach((trigger) => {
     const listingId = trigger.dataset.listingId;
     if (!listingId) return;
@@ -985,6 +1077,7 @@
   heroMapState = initializeHeroMap();
   mapState = initializeMap();
   wireCardImages();
+  renderMapFocusButtons();
   syncMapFilterButtons();
   applyFilters();
   updateMobileSections();
