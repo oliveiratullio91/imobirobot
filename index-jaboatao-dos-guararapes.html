@@ -9,7 +9,7 @@
     <title>ImobiRadar | Plataforma de captacao imobiliaria em Jaboatão dos Guararapes</title>
     <meta name="description" content="Plataforma para captar imóveis, monitorar histórico de preço e priorizar oportunidades de venda e aluguel em Jaboatão dos Guararapes.">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-    <link rel="stylesheet" href="./dashboard.css?v=01-04-2026-20-29">
+    <link rel="stylesheet" href="./dashboard.css?v=01-04-2026-20-42">
   </head>
   <body>
     <div class="app-shell app-shell--single">
@@ -67,6 +67,29 @@
               <button class="market-header__menu-toggle" id="header-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">Menu</button>
             </div>
           </header>
+
+          <section class="market-operations-bar" aria-label="Status operacional do mercado">
+            <article class="market-operations-bar__card">
+              <span>Escopo</span>
+              <strong>Expansao monitorada</strong>
+              <small>Sweep horario + Telegram</small>
+            </article>
+            <article class="market-operations-bar__card">
+              <span>Rotina</span>
+              <strong>Sweep agendado</strong>
+              <small>31/12/1969, 21:00</small>
+            </article>
+            <article class="market-operations-bar__card">
+              <span>Alertas</span>
+              <strong>Aguardando disparo</strong>
+              <small>Base em atualizacao</small>
+            </article>
+            <article class="market-operations-bar__card">
+              <span>Canais</span>
+              <strong>Ativo</strong>
+              <small>sweep • telegram • site • supabase</small>
+            </article>
+          </section>
 
           <section class="market-showcase">
             <div class="market-stage">
@@ -704,6 +727,6 @@
     <script id="hero-map-listings-data" type="application/json">[]</script>
     <script id="map-listings-data" type="application/json">[]</script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="./dashboard.js?v=01-04-2026-20-29"></script>
+    <script src="./dashboard.js?v=01-04-2026-20-42"></script>
   </body>
 </html>

@@ -316,6 +316,49 @@ select {
   box-shadow: 0 12px 24px rgba(184, 111, 39, 0.18) !important;
 }
 
+.market-operations-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.market-operations-bar--compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.market-operations-bar__card {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(70, 99, 107, 0.12);
+  background: rgba(255, 252, 246, 0.74);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 14px 28px rgba(76, 95, 99, 0.08);
+}
+
+.market-operations-bar__card span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.market-operations-bar__card strong {
+  color: #284147;
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+.market-operations-bar__card small {
+  color: #597179;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .site-nav__meta {
   display: grid;
   gap: 4px;
@@ -3925,6 +3968,50 @@ select {
   line-height: 1.65;
 }
 
+.market-hub-card__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.market-status-pill {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(86, 127, 135, 0.12);
+  color: #355d65;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.market-hub-card__ops {
+  display: grid;
+  gap: 10px;
+}
+
+.market-hub-card__ops article {
+  display: grid;
+  gap: 3px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(51, 95, 102, 0.08);
+}
+
+.market-hub-card__ops strong {
+  color: #274a4f;
+  font-size: 14px;
+}
+
+.market-hub-card__ops span {
+  color: #5d757c;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .market-hub-card__actions {
   display: flex;
   flex-wrap: wrap;
@@ -3973,6 +4060,7 @@ select {
   .analytics-grid,
   .lower-grid,
   .signals-grid,
+  .market-operations-bar,
   .workspace-grid,
   .workspace-body,
   .cue-grid,
@@ -4068,6 +4156,20 @@ select {
 }
 
 @media (max-width: 760px) {
+  .market-operations-bar,
+  .market-operations-bar--compact {
+    grid-template-columns: 1fr;
+  }
+
+  .market-operations-bar__card {
+    padding: 13px 14px;
+    border-radius: 18px;
+  }
+
+  .market-hub-card__ops article {
+    padding: 11px 12px;
+  }
+
   .listings-page__compare-head,
   .listings-page__meta {
     display: grid;
