@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-01T23:44:25.870Z",
+  "generatedAt": "2026-04-01T23:50:37.832Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -14,7 +14,7 @@
       "avgPriceAll": 548574.15,
       "priceRangeLabel": "R$ 450,00 até R$ 8.000.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-01T23:44:16.638Z",
+      "generatedAt": "2026-04-01T23:50:27.092Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -36,7 +36,33 @@
         "runtimeCoverageLabel": "313 ativos no relatorio",
         "sweepStatusLabel": "Sweep desativado",
         "alertStatusLabel": "Alertas desligados",
-        "reportStatusLabel": "Relatorio ativo"
+        "reportStatusLabel": "Relatorio ativo",
+        "healthLevel": "healthy",
+        "healthLabel": "Saudavel",
+        "healthSummary": "Operação saudável e coerente com a configuração do mercado.",
+        "healthIssueCount": 0
+      },
+      "health": {
+        "marketKey": "recife",
+        "marketLabel": "Recife",
+        "level": "healthy",
+        "healthScore": 100,
+        "issues": [],
+        "issueCount": 0,
+        "summary": "Operação saudável e coerente com a configuração do mercado.",
+        "expectedSources": [
+          "olx",
+          "zap",
+          "chaves",
+          "apto",
+          "quintoandar",
+          "vivareal"
+        ],
+        "observedSources": [],
+        "lastRunAt": null,
+        "summaryPath": null,
+        "outOfMarketSampleCount": 0,
+        "sampleRowsChecked": 0
       }
     },
     {
@@ -51,7 +77,7 @@
       "avgPriceAll": 411566.74,
       "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-01T23:44:20.215Z",
+      "generatedAt": "2026-04-01T23:50:32.274Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -121,7 +147,44 @@
         "runtimeCoverageLabel": "50 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
         "alertStatusLabel": "Sem disparo recente",
-        "reportStatusLabel": "Relatorio ativo"
+        "reportStatusLabel": "Relatorio ativo",
+        "healthLevel": "critical",
+        "healthLabel": "Critico",
+        "healthSummary": "Foram encontrados 20 itens de amostra fora do recorte esperado de Olinda.",
+        "healthIssueCount": 1
+      },
+      "health": {
+        "marketKey": "olinda",
+        "marketLabel": "Olinda",
+        "level": "critical",
+        "healthScore": 38,
+        "issues": [
+          {
+            "severity": "critical",
+            "code": "market_drift",
+            "message": "Foram encontrados 20 itens de amostra fora do recorte esperado de Olinda."
+          }
+        ],
+        "issueCount": 1,
+        "summary": "Foram encontrados 20 itens de amostra fora do recorte esperado de Olinda.",
+        "expectedSources": [
+          "olx",
+          "zap",
+          "chaves",
+          "quintoandar",
+          "vivareal"
+        ],
+        "observedSources": [
+          "olx",
+          "zap",
+          "chaves",
+          "quintoandar",
+          "vivareal"
+        ],
+        "lastRunAt": "2026-04-01T23:42:39.235Z",
+        "summaryPath": "C:\\Users\\Tullio\\Documents\\PROJETOS\\projeto n8n\\olx-monitor\\data\\latest-summary-olinda-olx-zap-chaves-quintoandar-vivareal.json",
+        "outOfMarketSampleCount": 20,
+        "sampleRowsChecked": 24
       }
     },
     {
@@ -136,7 +199,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-01T23:44:22.102Z",
+      "generatedAt": "2026-04-01T23:50:34.127Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -159,7 +222,38 @@
         "runtimeCoverageLabel": "Base em atualizacao",
         "sweepStatusLabel": "Sweep agendado",
         "alertStatusLabel": "Aguardando disparo",
-        "reportStatusLabel": "Relatorio ativo"
+        "reportStatusLabel": "Relatorio ativo",
+        "healthLevel": "warning",
+        "healthLabel": "Atencao",
+        "healthSummary": "Ainda nao existe execucao registrada para este mercado.",
+        "healthIssueCount": 1
+      },
+      "health": {
+        "marketKey": "jaboatao-dos-guararapes",
+        "marketLabel": "Jaboatao dos Guararapes",
+        "level": "warning",
+        "healthScore": 72,
+        "issues": [
+          {
+            "severity": "warning",
+            "code": "missing_run",
+            "message": "Ainda nao existe execucao registrada para este mercado."
+          }
+        ],
+        "issueCount": 1,
+        "summary": "Ainda nao existe execucao registrada para este mercado.",
+        "expectedSources": [
+          "olx",
+          "zap",
+          "chaves",
+          "quintoandar",
+          "vivareal"
+        ],
+        "observedSources": [],
+        "lastRunAt": null,
+        "summaryPath": null,
+        "outOfMarketSampleCount": 0,
+        "sampleRowsChecked": 0
       }
     },
     {
@@ -174,7 +268,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Paulista com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-01T23:44:23.985Z",
+      "generatedAt": "2026-04-01T23:50:35.976Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -197,7 +291,38 @@
         "runtimeCoverageLabel": "Base em atualizacao",
         "sweepStatusLabel": "Sweep agendado",
         "alertStatusLabel": "Aguardando disparo",
-        "reportStatusLabel": "Relatorio ativo"
+        "reportStatusLabel": "Relatorio ativo",
+        "healthLevel": "warning",
+        "healthLabel": "Atencao",
+        "healthSummary": "Ainda nao existe execucao registrada para este mercado.",
+        "healthIssueCount": 1
+      },
+      "health": {
+        "marketKey": "paulista",
+        "marketLabel": "Paulista",
+        "level": "warning",
+        "healthScore": 72,
+        "issues": [
+          {
+            "severity": "warning",
+            "code": "missing_run",
+            "message": "Ainda nao existe execucao registrada para este mercado."
+          }
+        ],
+        "issueCount": 1,
+        "summary": "Ainda nao existe execucao registrada para este mercado.",
+        "expectedSources": [
+          "olx",
+          "zap",
+          "chaves",
+          "quintoandar",
+          "vivareal"
+        ],
+        "observedSources": [],
+        "lastRunAt": null,
+        "summaryPath": null,
+        "outOfMarketSampleCount": 0,
+        "sampleRowsChecked": 0
       }
     },
     {
@@ -212,7 +337,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Camaragibe com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-01T23:44:25.868Z",
+      "generatedAt": "2026-04-01T23:50:37.831Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
@@ -235,7 +360,38 @@
         "runtimeCoverageLabel": "Base em atualizacao",
         "sweepStatusLabel": "Sweep agendado",
         "alertStatusLabel": "Aguardando disparo",
-        "reportStatusLabel": "Relatorio ativo"
+        "reportStatusLabel": "Relatorio ativo",
+        "healthLevel": "warning",
+        "healthLabel": "Atencao",
+        "healthSummary": "Ainda nao existe execucao registrada para este mercado.",
+        "healthIssueCount": 1
+      },
+      "health": {
+        "marketKey": "camaragibe",
+        "marketLabel": "Camaragibe",
+        "level": "warning",
+        "healthScore": 72,
+        "issues": [
+          {
+            "severity": "warning",
+            "code": "missing_run",
+            "message": "Ainda nao existe execucao registrada para este mercado."
+          }
+        ],
+        "issueCount": 1,
+        "summary": "Ainda nao existe execucao registrada para este mercado.",
+        "expectedSources": [
+          "olx",
+          "zap",
+          "chaves",
+          "quintoandar",
+          "vivareal"
+        ],
+        "observedSources": [],
+        "lastRunAt": null,
+        "summaryPath": null,
+        "outOfMarketSampleCount": 0,
+        "sampleRowsChecked": 0
       }
     }
   ]
