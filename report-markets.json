@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-01T23:23:35.814Z",
+  "generatedAt": "2026-04-01T23:28:46.607Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -14,7 +14,7 @@
       "avgPriceAll": 548574.15,
       "priceRangeLabel": "R$ 450,00 até R$ 8.000.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-01T23:23:24.988Z"
+      "generatedAt": "2026-04-01T23:28:30.357Z"
     },
     {
       "key": "olinda",
@@ -24,11 +24,11 @@
       "sourceSummary": "OLX + Zap + Chaves na Mão + Viva Real",
       "totalActive": 246,
       "newListings24h": 339,
-      "totalUpdates24h": 671,
-      "avgPriceAll": 412721.43,
+      "totalUpdates24h": 679,
+      "avgPriceAll": 423827.44,
       "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-01T23:23:30.297Z"
+      "generatedAt": "2026-04-01T23:28:34.094Z"
     },
     {
       "key": "jaboatao-dos-guararapes",
@@ -42,7 +42,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-01T23:23:32.132Z"
+      "generatedAt": "2026-04-01T23:28:35.932Z"
     },
     {
       "key": "paulista",
@@ -56,7 +56,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Paulista com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-01T23:23:33.977Z"
+      "generatedAt": "2026-04-01T23:28:44.776Z"
     },
     {
       "key": "camaragibe",
@@ -70,7 +70,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Camaragibe com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-01T23:23:35.812Z"
+      "generatedAt": "2026-04-01T23:28:46.606Z"
     }
   ]
 }
