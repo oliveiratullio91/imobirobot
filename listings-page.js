@@ -2,8 +2,14 @@
   const modeButtons = Array.from(document.querySelectorAll('[data-mode-filter]'));
   const rows = Array.from(document.querySelectorAll('.listing-card'));
   const locationInput = document.getElementById('listings-location-filter');
+  const sourceFilter = document.getElementById('listings-source-filter');
+  const roomsFilter = document.getElementById('listings-rooms-filter');
   const priceMinInput = document.getElementById('listings-price-min');
   const priceMaxInput = document.getElementById('listings-price-max');
+  const compareCountElement = document.getElementById('listings-compare-count');
+  const compareSection = document.getElementById('listings-page-compare');
+  const compareGrid = document.getElementById('listings-page-compare-grid');
+  const compareClearButton = document.getElementById('listings-compare-clear');
   const countElement = document.getElementById('listings-page-count');
   const emptyState = document.getElementById('listings-page-empty');
   const detailDataElement = document.getElementById('listing-details-data');
@@ -30,6 +36,7 @@
   const workflowStateCache = {};
 
   let activeMode = 'all';
+  const selectedCompareIds = new Set();
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -44,8 +51,26 @@
     return escapeHtml(value).replace(/"/g, '&quot;');
   }
 
+  function normalizeFilterValue(value) {
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
   function formatResultCount(total) {
     return `${new Intl.NumberFormat('pt-BR').format(total)} resultados`;
+  }
+
+  function formatCurrency(value) {
+    if (value === null || value === undefined || Number.isNaN(Number(value))) return 'Sem preco';
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(Number(value));
   }
 
   function wireCardImages() {
@@ -153,6 +178,75 @@
         });
       }
     }
+  }
+
+  function renderCompareCard(detail) {
+    if (!detail) return '';
+
+    const metrics = [
+      detail.currentPriceText || 'Sem preco',
+      detail.radarPricePerM2Text || 'm2 indisponivel',
+      detail.radarDiscountText || 'Sem desconto',
+      detail.bestLiveVariantPriceText || 'Melhor ao vivo indisponivel',
+    ];
+
+    const features = [
+      detail.areaText || 'Area nao informada',
+      detail.rooms ? `${detail.rooms} quartos` : 'Quartos n/d',
+      detail.bathrooms ? `${detail.bathrooms} banheiros` : 'Banheiros n/d',
+      detail.parkingSpaces ? `${detail.parkingSpaces} vagas` : 'Vagas n/d',
+    ];
+
+    return `
+      <article class="compare-card">
+        <div class="compare-card__head">
+          <div>
+            <span>${escapeHtml(detail.modeLabel || 'Modo')}</span>
+            <h3>${escapeHtml(detail.title || 'Imovel')}</h3>
+            <p>${escapeHtml(detail.neighborhood || detail.city || 'Local nao informado')}</p>
+          </div>
+          <button class="compare-card__remove" type="button" data-compare-remove="${escapeAttribute(detail.listingId)}">Remover</button>
+        </div>
+        <div class="compare-card__metrics">
+          ${metrics.map((metric) => `<strong>${escapeHtml(metric)}</strong>`).join('')}
+        </div>
+        <div class="compare-card__features">
+          ${features.map((feature) => `<span>${escapeHtml(feature)}</span>`).join('')}
+        </div>
+        <div class="compare-card__summary">
+          <p><strong>Portais:</strong> ${escapeHtml(detail.sourceSummaryLabel || detail.sourceLabel || 'Origem')}</p>
+          <p><strong>Radar:</strong> ${escapeHtml(detail.radarConfidence || 'Inicial')}</p>
+          <p><strong>Endereco:</strong> ${escapeHtml(detail.address || 'Nao informado')}</p>
+        </div>
+      </article>
+    `;
+  }
+
+  function updateCompareButtons() {
+    document.querySelectorAll('[data-compare-listing]').forEach((button) => {
+      const listingId = button.getAttribute('data-compare-listing');
+      const isSelected = selectedCompareIds.has(listingId);
+      button.classList.toggle('is-active', isSelected);
+      button.textContent = isSelected ? 'Selecionado' : 'Comparar';
+      button.disabled = !isSelected && selectedCompareIds.size >= 3;
+    });
+  }
+
+  function updateCompareSection() {
+    const details = Array.from(selectedCompareIds)
+      .map((listingId) => detailsByListingId[listingId])
+      .filter(Boolean);
+
+    if (compareCountElement) {
+      compareCountElement.textContent = `${selectedCompareIds.size} selecionados para comparar`;
+    }
+
+    updateCompareButtons();
+
+    if (!compareSection || !compareGrid) return;
+
+    compareSection.hidden = details.length < 2;
+    compareGrid.innerHTML = details.map(renderCompareCard).join('');
   }
 
   function buildDetailMarkup(detail, listingId) {
@@ -349,6 +443,8 @@
 
   function applyFilters() {
     const locationQuery = String(locationInput?.value || '').trim().toLowerCase();
+    const sourceQuery = normalizeFilterValue(sourceFilter?.value || 'all');
+    const minRooms = Number(roomsFilter?.value || 0);
     const minPrice = Number(priceMinInput?.value || 0);
     const maxPrice = Number(priceMaxInput?.value || 0);
     let visible = 0;
@@ -360,10 +456,16 @@
     rows.forEach((row) => {
       const modeMatch = activeMode === 'all' || row.dataset.mode === activeMode;
       const locationMatch = !locationQuery || String(row.dataset.search || '').includes(locationQuery);
+      const sourceLabel = normalizeFilterValue(row.querySelector('.source-pill')?.textContent || '');
+      const sourceMatch = sourceQuery === 'all'
+        || sourceLabel === sourceQuery
+        || (sourceQuery === 'chaves na mao' && sourceLabel.includes('chaves'));
+      const rooms = Number(row.dataset.rooms || 0);
+      const roomsMatch = !minRooms || rooms >= minRooms;
       const price = Number(row.dataset.price || 0);
       const minMatch = !minPrice || price >= minPrice;
       const maxMatch = !maxPrice || price <= maxPrice;
-      const shouldShow = modeMatch && locationMatch && minMatch && maxMatch;
+      const shouldShow = modeMatch && locationMatch && sourceMatch && roomsMatch && minMatch && maxMatch;
       row.setAttribute('data-hidden', shouldShow ? 'false' : 'true');
       if (shouldShow) visible += 1;
     });
@@ -385,6 +487,8 @@
   });
 
   locationInput?.addEventListener('input', applyFilters);
+  sourceFilter?.addEventListener('change', applyFilters);
+  roomsFilter?.addEventListener('change', applyFilters);
   priceMinInput?.addEventListener('input', applyFilters);
   priceMaxInput?.addEventListener('input', applyFilters);
 
@@ -417,6 +521,37 @@
 
   detailCloseTriggers.forEach((trigger) => {
     trigger.addEventListener('click', closeDetail);
+  });
+
+  document.querySelectorAll('[data-compare-listing]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const listingId = button.getAttribute('data-compare-listing');
+      if (!listingId) return;
+
+      if (selectedCompareIds.has(listingId)) {
+        selectedCompareIds.delete(listingId);
+      } else if (selectedCompareIds.size < 3) {
+        selectedCompareIds.add(listingId);
+      }
+
+      updateCompareSection();
+    });
+  });
+
+  compareClearButton?.addEventListener('click', () => {
+    selectedCompareIds.clear();
+    updateCompareSection();
+  });
+
+  compareGrid?.addEventListener('click', (event) => {
+    const removeButton = event.target.closest('[data-compare-remove]');
+    if (!removeButton) return;
+    const listingId = removeButton.getAttribute('data-compare-remove');
+    if (!listingId) return;
+    selectedCompareIds.delete(listingId);
+    updateCompareSection();
   });
 
   detailContent?.addEventListener('click', async (event) => {
@@ -477,4 +612,5 @@
 
   wireCardImages();
   applyFilters();
+  updateCompareSection();
 })();
