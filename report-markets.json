@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T17:47:37.806Z",
+  "generatedAt": "2026-04-02T17:51:24.773Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -14,7 +14,7 @@
       "avgPriceAll": 493798.01,
       "priceRangeLabel": "R$ 500,00 até R$ 7.999.990,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-02T17:47:24.800Z",
+      "generatedAt": "2026-04-02T17:51:12.075Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -106,7 +106,7 @@
       "avgPriceAll": 409922.86,
       "priceRangeLabel": "R$ 600,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-02T17:47:28.980Z",
+      "generatedAt": "2026-04-02T17:51:15.912Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -128,17 +128,17 @@
           "ok": true,
           "marketKey": "olinda",
           "marketLabel": "Olinda",
-          "updatedAt": "2026-04-02T17:13:06.655Z",
-          "startedAt": "2026-04-02T17:09:16.428Z",
-          "finishedAt": "2026-04-02T17:13:06.655Z",
-          "durationMs": 230228,
+          "updatedAt": "2026-04-02T17:47:41.647Z",
+          "startedAt": "2026-04-02T17:43:54.043Z",
+          "finishedAt": "2026-04-02T17:47:41.647Z",
+          "durationMs": 227604,
           "totals": {
-            "totalListings": 163,
-            "venda": 87,
-            "aluguel": 76
+            "totalListings": 162,
+            "venda": 84,
+            "aluguel": 78
           },
           "changeCounts": {
-            "newCount": 0,
+            "newCount": 1,
             "priceUpdateCount": 0,
             "priceDropCount": 0
           },
@@ -150,11 +150,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-02T17:09:17.730Z",
+          "scrapedAt": "2026-04-02T17:43:55.075Z",
           "telegram": {
             "marketKey": "olinda",
             "ok": true,
-            "skipped": true
+            "telegramMessageId": 248
           },
           "operation": {
             "marketKey": "olinda",
@@ -176,10 +176,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "02/04/2026, 14:13",
-        "runtimeCoverageLabel": "163 ativos na ultima varredura",
+        "lastRunLabel": "02/04/2026, 14:47",
+        "runtimeCoverageLabel": "162 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Sem disparo recente",
+        "alertStatusLabel": "Digest #248",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
@@ -247,7 +247,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-02T17:47:30.953Z",
+      "generatedAt": "2026-04-02T17:51:17.870Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -388,7 +388,7 @@
       "avgPriceAll": 259790.68,
       "priceRangeLabel": "R$ 600,00 até R$ 7.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-02T17:47:34.557Z",
+      "generatedAt": "2026-04-02T17:51:21.385Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -529,7 +529,7 @@
       "avgPriceAll": 736154.14,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-02T17:47:37.801Z",
+      "generatedAt": "2026-04-02T17:51:24.769Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
