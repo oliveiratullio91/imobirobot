@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T04:18:06.330Z",
+  "generatedAt": "2026-04-02T04:18:37.044Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -14,7 +14,7 @@
       "avgPriceAll": 527871.94,
       "priceRangeLabel": "R$ 450,00 até R$ 7.500.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-02T04:17:56.567Z",
+      "generatedAt": "2026-04-02T04:18:27.056Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -77,7 +77,7 @@
       "avgPriceAll": 354289.41,
       "priceRangeLabel": "R$ 550,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-02T04:17:59.423Z",
+      "generatedAt": "2026-04-02T04:18:30.075Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -197,7 +197,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-02T04:18:01.167Z",
+      "generatedAt": "2026-04-02T04:18:31.822Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -317,7 +317,7 @@
       "avgPriceAll": 218738.73,
       "priceRangeLabel": "R$ 700,00 até R$ 7.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-02T04:18:03.845Z",
+      "generatedAt": "2026-04-02T04:18:34.516Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -437,7 +437,7 @@
       "avgPriceAll": 548518.09,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-02T04:18:06.329Z",
+      "generatedAt": "2026-04-02T04:18:37.043Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
@@ -459,19 +459,19 @@
           "ok": true,
           "marketKey": "camaragibe",
           "marketLabel": "Camaragibe",
-          "updatedAt": "2026-04-02T03:46:15.500Z",
-          "startedAt": "2026-04-02T03:41:00.843Z",
-          "finishedAt": "2026-04-02T03:46:15.500Z",
-          "durationMs": 314657,
+          "updatedAt": "2026-04-02T04:18:10.005Z",
+          "startedAt": "2026-04-02T04:14:32.556Z",
+          "finishedAt": "2026-04-02T04:18:10.005Z",
+          "durationMs": 217450,
           "totals": {
-            "totalListings": 130,
+            "totalListings": 133,
             "venda": 73,
-            "aluguel": 57
+            "aluguel": 60
           },
           "changeCounts": {
-            "newCount": 8,
-            "priceUpdateCount": 7,
-            "priceDropCount": 4
+            "newCount": 4,
+            "priceUpdateCount": 1,
+            "priceDropCount": 0
           },
           "source": "all",
           "sources": [
@@ -481,11 +481,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-02T03:41:01.767Z",
+          "scrapedAt": "2026-04-02T04:14:33.495Z",
           "telegram": {
             "marketKey": "camaragibe",
             "ok": true,
-            "telegramMessageId": 178
+            "telegramMessageId": 182
           },
           "operation": {
             "marketKey": "camaragibe",
@@ -507,10 +507,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "02/04/2026, 00:46",
-        "runtimeCoverageLabel": "130 ativos na ultima varredura",
+        "lastRunLabel": "02/04/2026, 01:18",
+        "runtimeCoverageLabel": "133 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #178",
+        "alertStatusLabel": "Digest #182",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "warning",
         "healthLabel": "Atencao",
