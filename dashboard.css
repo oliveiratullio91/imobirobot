@@ -2709,6 +2709,12 @@ select {
   color: #24656c;
 }
 
+.source-pill--soft {
+  background: rgba(255, 248, 240, 0.9);
+  border-color: rgba(212, 143, 73, 0.16);
+  color: #8f5b2b;
+}
+
 .board-chip.is-active {
   background: var(--teal);
   border-color: var(--teal);
@@ -2800,6 +2806,18 @@ select {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(251, 247, 242, 0.96));
 }
 
+.listing-card::after,
+.opportunity-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 130px;
+  background:
+    radial-gradient(circle at top left, rgba(212, 143, 73, 0.14), transparent 42%),
+    radial-gradient(circle at top right, rgba(51, 95, 102, 0.12), transparent 34%);
+  pointer-events: none;
+}
+
 .listing-card:hover {
   transform: translateY(-1px);
   box-shadow: 0 22px 40px rgba(5, 28, 30, 0.12);
@@ -2884,15 +2902,15 @@ select {
 .listing-card__panel {
   position: relative;
   z-index: 1;
-  width: min(74%, 600px);
+  width: min(72%, 580px);
   display: grid;
-  gap: 10px;
-  padding: 13px 15px;
+  gap: 12px;
+  padding: 15px 16px;
   margin-top: 120px;
-  border-radius: 20px;
+  border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.38);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 250, 243, 0.34));
-  box-shadow: 0 18px 34px rgba(24, 30, 30, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(255, 250, 243, 0.42));
+  box-shadow: 0 22px 36px rgba(24, 30, 30, 0.16);
   backdrop-filter: blur(20px) saturate(135%);
   -webkit-backdrop-filter: blur(20px) saturate(135%);
 }
@@ -2930,8 +2948,9 @@ select {
 
 .listing-card__price strong {
   display: block;
-  font-size: 20px;
+  font-size: 21px;
   line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 .listing-card__price span {
@@ -2944,6 +2963,12 @@ select {
 
 .listing-card__meta {
   margin-top: 8px;
+}
+
+.listing-card__meta span {
+  background: rgba(255, 255, 255, 0.76);
+  border-color: rgba(32, 55, 59, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
 }
 
 .listing-card__body {
@@ -2961,6 +2986,11 @@ select {
   justify-content: flex-end;
   gap: 8px;
   align-items: center;
+}
+
+.listing-card__footer {
+  padding-top: 2px;
+  border-top: 1px solid rgba(32, 55, 59, 0.08);
 }
 
 .listing-card__footer {
@@ -3062,18 +3092,39 @@ select {
   padding: 12px;
   display: grid;
   gap: 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(246, 242, 236, 0.94));
 }
 
 .map-shortlist__item {
+  position: relative;
   width: 100%;
   display: grid;
-  gap: 6px;
+  gap: 7px;
   text-align: left;
-  padding: 12px;
-  border-radius: 16px;
+  padding: 14px 14px 14px 16px;
+  border-radius: 18px;
   border: 1px solid rgba(34, 55, 60, 0.08);
-  background: rgba(247, 250, 250, 0.92);
+  background: rgba(255, 255, 255, 0.9);
   cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.map-shortlist__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #567f87, #335f66);
+}
+
+.map-shortlist__item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(34, 55, 60, 0.1);
+  border-color: rgba(34, 55, 60, 0.12);
 }
 
 .map-shortlist__item span {
@@ -3085,8 +3136,9 @@ select {
 }
 
 .map-shortlist__item strong {
-  font-size: 15px;
-  line-height: 1.3;
+  font-size: 16px;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
 }
 
 .map-shortlist__item small {
@@ -3395,6 +3447,10 @@ select {
 
 .opportunity-card {
   padding: 16px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 245, 239, 0.94));
 }
 
 .opportunity-card__signal {
@@ -3451,21 +3507,41 @@ select {
   align-items: center;
 }
 
-.opportunity-card__top strong {
+.opportunity-card__top-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.opportunity-card__discount {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(47, 159, 105, 0.12);
   color: var(--good);
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .opportunity-card h3 {
   margin: 12px 0 0;
   font-size: 20px;
   line-height: 1.24;
+  letter-spacing: -0.03em;
 }
 
-.opportunity-card p {
+.opportunity-card p,
+.opportunity-card__place {
   margin: 8px 0 0;
   color: var(--muted);
   line-height: 1.55;
+}
+
+.opportunity-card__place {
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .opportunity-card__meta {
@@ -3504,6 +3580,17 @@ select {
 .opportunity-card__footer {
   margin-top: 16px;
   justify-content: space-between;
+  padding-top: 2px;
+  border-top: 1px solid rgba(32, 55, 59, 0.08);
+}
+
+.opportunity-card__link {
+  min-width: 128px;
+}
+
+.opportunity-card__reasons span {
+  background: rgba(255, 255, 255, 0.84);
+  border-color: rgba(32, 55, 59, 0.08);
 }
 
 .detail-modal {
