@@ -9,7 +9,7 @@
     <title>ImobiRadar | Dashboard imobiliario em Recife</title>
     <meta name="description" content="Dashboard do ImobiRadar com resumo operacional, oportunidades, radar ao vivo e analises em Recife.">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-    <link rel="stylesheet" href="./dashboard.css?v=02-04-2026-17-15">
+    <link rel="stylesheet" href="./dashboard.css?v=02-04-2026-17-46">
   </head>
   <body>
     <div class="app-shell app-shell--single">
@@ -76,13 +76,13 @@
         <span class="market-header__status">Base ativa</span>
         <button class="market-header__notify" type="button" aria-label="Alertas ativos">
           Alertas
-          <small>255</small>
+          <small>254</small>
         </button>
         <div class="market-header__profile">
           <div class="market-header__avatar">RE</div>
           <div class="market-header__profile-copy">
             <strong>Recife</strong>
-            <span>Saudavel ? operacao ativa</span>
+            <span>Saudavel | operacao ativa</span>
           </div>
         </div>
         <button class="market-header__menu-toggle" id="header-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">Menu</button>
@@ -90,7 +90,7 @@
     </header>
   
           
-    <section class="page-hero page-hero--dashboard">
+    <section class="page-hero page-hero--dashboard page-hero--with-visual">
       <div class="page-hero__copy">
         <p class="eyebrow">Dashboard operacional</p>
         <h1>Encontre oportunidades em Recife antes de todo mundo.</h1>
@@ -100,12 +100,85 @@
           <a class="market-stage__action market-stage__action--ghost" href="./radar.html">Abrir radar ao vivo</a>
         </div>
       </div>
+      <div class="page-hero__visual-wrap"><div class="page-hero__visual">
+      <div class="page-hero__visual-head">
+        <span class="page-hero__visual-chip">Base monitorada</span>
+        <strong>Recife, PE</strong>
+      </div>
+
+      <div class="page-hero__visual-map">
+        <div class="page-hero__visual-orbit page-hero__visual-orbit--one"></div>
+        <div class="page-hero__visual-orbit page-hero__visual-orbit--two"></div>
+        <div class="page-hero__visual-grid"></div>
+        
+      <div class="page-hero__marker page-hero__marker--venda" style="left:18.00%; top:22.00%;">
+        <span>R$ 27 mil</span>
+      </div>
+    
+      <div class="page-hero__marker page-hero__marker--aluguel" style="left:74.00%; top:20.00%;">
+        <span>R$ 14 mil</span>
+      </div>
+    
+      <div class="page-hero__marker page-hero__marker--aluguel" style="left:66.00%; top:38.00%;">
+        <span>R$ 2 mil</span>
+      </div>
+    
+      <div class="page-hero__marker page-hero__marker--aluguel" style="left:30.00%; top:48.00%;">
+        <span>R$ 2,7 mil</span>
+      </div>
+    
+      <div class="page-hero__marker page-hero__marker--venda" style="left:76.00%; top:62.00%;">
+        <span>R$ 680 mil</span>
+      </div>
+    
+      <div class="page-hero__marker page-hero__marker--venda" style="left:24.00%; top:72.00%;">
+        <span>R$ 1,3 mi</span>
+      </div>
+    
+      <div class="page-hero__marker page-hero__marker--venda" style="left:58.00%; top:78.00%;">
+        <span>R$ 790 mil</span>
+      </div>
+    
+      <div class="page-hero__marker page-hero__marker--venda" style="left:44.00%; top:28.00%;">
+        <span>R$ 2 mi</span>
+      </div>
+    
+        <div class="page-hero__visual-center">
+          <small>Radar ao vivo</small>
+          <strong>Recife</strong>
+          <span>8 pontos em destaque</span>
+        </div>
+      </div>
+
+      <div class="page-hero__visual-footer">
+        <article>
+          <span>Venda</span>
+          <strong>176</strong>
+        </article>
+        <article>
+          <span>Aluguel</span>
+          <strong>140</strong>
+        </article>
+        <article>
+          <span>Atualizacao</span>
+          <strong>24h ativa</strong>
+        </article>
+      </div>
+
+      
+        <div class="page-hero__visual-feature">
+          <span>OLX</span>
+          <strong>Repasse apartamento NOVO pronto para morar!!</strong>
+          <small>Boa Viagem</small>
+        </div>
+      
+    </div></div>
       <div class="page-hero__stats">
         
           <article class="page-hero__stat">
             <span>Imoveis hoje</span>
             <strong>316</strong>
-            <small>255 novos nas ultimas 24h</small>
+            <small>254 novos nas ultimas 24h</small>
           </article>
         
           <article class="page-hero__stat">
@@ -116,7 +189,7 @@
         
           <article class="page-hero__stat">
             <span>Sinais de preco</span>
-            <strong>1.515</strong>
+            <strong>1.440</strong>
             <small>92.8% no melhor score atual</small>
           </article>
         
@@ -149,7 +222,7 @@
     <article class="metric-card metric-card--teal">
       <div class="metric-card__top">
         <span>Total de imóveis</span>
-        <em>255 novos</em>
+        <em>254 novos</em>
       </div>
       <strong>316</strong>
       <p>Inventario ativo consolidado pelo helper local e o workflow novo.</p>
@@ -194,7 +267,7 @@
     <article class="metric-card metric-card--good">
       <div class="metric-card__top">
         <span>Ticket medio</span>
-        <em>1.515 movimentos</em>
+        <em>1.440 movimentos</em>
       </div>
       <strong>R$ 493,8 mil</strong>
       <p>Leitura rapida do ticket medio da base viva atual.</p>
@@ -715,6 +788,6 @@
     <script id="hero-map-listings-data" type="application/json">[{"listing_id":"1485051140","title":"Repasse apartamento NOVO pronto para morar!!","neighborhood":"Boa Viagem","location":"Recife, Boa Viagem","source":"olx","sourceLabel":"OLX","mode":"venda","modeLabel":"Venda","url":"https://pe.olx.com.br/grande-recife/imoveis/repasse-apartamento-novo-pronto-para-morar-1485051140","price":27000,"priceText":"R$ 27.000","discountPct":92.80651319447074,"marketSampleSize":53,"radarScore":94,"radarConfidence":"Media","radarReasons":["92.8% abaixo da média local","R$ 729,73/m2 contra média de R$ 10.144,31/m2","amostra de 53 anúncios em Boa Viagem","bom contexto para captar proprietários e validar preço"],"lat":-8.123232,"lng":-34.902948,"coordPrecision":"neighborhood","coordProvider":"recife-neighborhoods","coordLabel":"Boa Viagem","sourceCount":1,"sourceLabels":["OLX"],"sourceSummaryText":"OLX","multiSourceLabel":"","bestLivePrice":27000,"highestLivePrice":27000},{"listing_id":"zap:recife:2866867354","title":"Imóvel comercial para alugar com 1200 m², 1 quarto, 1 banheiro em Boa Viagem, Recife","neighborhood":"Boa Viagem","location":"Recife, Boa Viagem","source":"zap","sourceLabel":"Zap","mode":"aluguel","modeLabel":"Aluguel","url":"https://www.zapimoveis.com.br/imovel/aluguel-casa-1-quarto-boa-viagem-recife-1200m2-id-2866867354/","price":14000,"priceText":"R$ 14.000","discountPct":83.76119751197105,"marketSampleSize":53,"radarScore":94,"radarConfidence":"Media","radarReasons":["83.8% abaixo da média local","R$ 11,67/m2 contra média de R$ 71,84/m2","amostra de 53 anúncios em Boa Viagem","bom contexto para captar locacao com leitura de ticket"],"lat":-8.125536,"lng":-34.894524,"coordPrecision":"neighborhood","coordProvider":"recife-neighborhoods","coordLabel":"Boa Viagem","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":14000,"highestLivePrice":14000},{"listing_id":"olx:recife:1490801377","title":"Apartamento com 3 dormitórios, 135 m² - venda por R$ 1.500.000 ou aluguel por R$ 1.950/mês","neighborhood":"Parnamirim","location":"Recife, Parnamirim","source":"olx","sourceLabel":"OLX","mode":"aluguel","modeLabel":"Aluguel","url":"https://pe.olx.com.br/grande-recife/imoveis/apartamento-com-3-dormitorios-135-m-venda-por-r-1-500-000-ou-aluguel-por-r-1-950-mes-1490801377","price":1950,"priceText":"R$ 1.950","discountPct":80.40264866567796,"marketSampleSize":7,"radarScore":94,"radarConfidence":"Media","radarReasons":["80.4% abaixo da média local","R$ 14,44/m2 contra média de R$ 73,71/m2","amostra de 7 anúncios em Parnamirim","bom contexto para captar locacao com leitura de ticket"],"lat":-8.036076,"lng":-34.918036,"coordPrecision":"neighborhood","coordProvider":"recife-neighborhoods","coordLabel":"Parnamirim","sourceCount":1,"sourceLabels":["OLX"],"sourceSummaryText":"OLX","multiSourceLabel":"","bestLivePrice":1950,"highestLivePrice":1950},{"listing_id":"chaves:40838477","title":"Encruzilhada | Apartamento no Edifício Andre Gide | Recife 55 m² | 2 Quartos | 2 Banheiros | 1 Vaga","neighborhood":"Encruzilhada","location":"Recife, Encruzilhada","source":"chaves","sourceLabel":"Chaves na Mão","mode":"aluguel","modeLabel":"Aluguel","url":"https://www.chavesnamao.com.br/imovel/apartamento-para-alugar-2-quartos-com-garagem-pe-recife-encruzilhada-RS2700/id-40838477/","price":2700,"priceText":"R$ 2.700","discountPct":73.42910468864883,"marketSampleSize":3,"radarScore":94,"radarConfidence":"Media","radarReasons":["73.4% abaixo da média local","R$ 49,09/m2 contra média de R$ 184,75/m2","amostra de 3 anúncios em Encruzilhada","bom contexto para captar locacao com leitura de ticket"],"lat":-8.03147,"lng":-34.89016,"coordPrecision":"exact","coordProvider":"chaves-raw","coordLabel":"Rua André Gide, 76","sourceCount":1,"sourceLabels":["Chaves na Mão"],"sourceSummaryText":"Chaves na Mão","multiSourceLabel":"","bestLivePrice":2700,"highestLivePrice":2700},{"listing_id":"1152791474","title":"Apartamento para venda possui 246 metros quadrados com 4 quartos em Boa Viagem - Recife -","neighborhood":"Boa Viagem","location":"Recife, Boa Viagem","source":"olx","sourceLabel":"OLX","mode":"venda","modeLabel":"Venda","url":"https://pe.olx.com.br/grande-recife/imoveis/apartamento-para-venda-possui-246-metros-quadrados-com-4-quartos-em-boa-viagem-recife-1152791474","price":680000,"priceText":"R$ 680.000","discountPct":72.75095934551096,"marketSampleSize":53,"radarScore":94,"radarConfidence":"Media","radarReasons":["72.8% abaixo da média local","R$ 2.764,23/m2 contra média de R$ 10.144,31/m2","amostra de 53 anúncios em Boa Viagem","bom contexto para captar proprietários e validar preço"],"lat":-8.11488,"lng":-34.892016,"coordPrecision":"neighborhood","coordProvider":"recife-neighborhoods","coordLabel":"Boa Viagem","sourceCount":1,"sourceLabels":["OLX"],"sourceSummaryText":"OLX","multiSourceLabel":"","bestLivePrice":680000,"highestLivePrice":680000},{"listing_id":"zap:recife:76310797","title":"Prédio/Edifício inteiro para comprar com 500 m² em Santo Amaro, Recife","neighborhood":"Santo Amaro","location":"Recife, Santo Amaro","source":"zap","sourceLabel":"Zap","mode":"venda","modeLabel":"Venda","url":"https://www.zapimoveis.com.br/imovel/venda-predio-santo-amaro-recife-500m2-id-76310797/","price":1300000,"priceText":"R$ 1.300.000","discountPct":70.25757209976045,"marketSampleSize":4,"radarScore":94,"radarConfidence":"Inicial","radarReasons":["70.3% abaixo da média local","R$ 2.600,00/m2 contra média de R$ 8.741,72/m2","amostra de 4 anúncios em Santo Amaro","bom contexto para captar proprietários e validar preço"],"lat":-8.057912,"lng":-34.88864,"coordPrecision":"neighborhood","coordProvider":"recife-neighborhoods","coordLabel":"Santo Amaro","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":1300000,"highestLivePrice":1300000},{"listing_id":"chaves:29689831","title":"Casa Comercial para Venda em Recife, Santo Amaro, 5 dormitórios, 1 suíte, 3 banheiros","neighborhood":"Santo Amaro","location":"Recife, Santo Amaro","source":"chaves","sourceLabel":"Chaves na Mão","mode":"venda","modeLabel":"Venda","url":"https://www.chavesnamao.com.br/imovel/casa-comercial-a-venda-pe-recife-santo-amaro-280m2-RS790000/id-29689831/","price":790000,"priceText":"R$ 790.000","discountPct":67.72456313023454,"marketSampleSize":4,"radarScore":93,"radarConfidence":"Media","radarReasons":["67.7% abaixo da média local","R$ 2.821,43/m2 contra média de R$ 8.741,72/m2","amostra de 4 anúncios em Santo Amaro","bom contexto para captar proprietários e validar preço"],"lat":-8.04861,"lng":-34.88909,"coordPrecision":"exact","coordProvider":"chaves-raw","coordLabel":"Rua Major Codeceira, 78","sourceCount":1,"sourceLabels":["Chaves na Mão"],"sourceSummaryText":"Chaves na Mão","multiSourceLabel":"","bestLivePrice":790000,"highestLivePrice":790000},{"listing_id":"2861560579","title":"Ponto comercial/Loja/Box para comprar com 706 m², 4 banheiros em Boa Vista, Recife","neighborhood":"Boa Vista","location":"Recife, Boa Vista","source":"zap","sourceLabel":"Zap","mode":"venda","modeLabel":"Venda","url":"https://www.zapimoveis.com.br/imovel/venda-loja-salao-com-piso-elevado-boa-vista-recife-pe-706m2-id-2861560579/","price":2000000,"priceText":"R$ 2.000.000","discountPct":66.89925373933238,"marketSampleSize":4,"radarScore":92,"radarConfidence":"Media","radarReasons":["66.9% abaixo da média local","R$ 2.832,86/m2 contra média de R$ 8.558,30/m2","amostra de 4 anúncios em Boa Vista","bom contexto para captar proprietários e validar preço"],"lat":-8.063276,"lng":-34.883058,"coordPrecision":"geocoded_address","coordProvider":"nominatim","coordLabel":"Rua Imperatriz Tereza Cristina (SECR), Rua Imperatriz Teresa Cristina, Boa Vista, Recife, Região Geográfica Imediata do Recife, Região Metropolitana do Recife, Região Geográfica Intermediária do Recife, Pernambuco, 50060-110, Brasil","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":2000000,"highestLivePrice":2000000}]</script>
     <script id="map-listings-data" type="application/json">[]</script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="./dashboard.js?v=02-04-2026-17-15"></script>
+    <script src="./dashboard.js?v=02-04-2026-17-46"></script>
   </body>
 </html>
