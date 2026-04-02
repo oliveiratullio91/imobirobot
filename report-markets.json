@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T03:08:30.275Z",
+  "generatedAt": "2026-04-02T03:20:31.548Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -14,7 +14,7 @@
       "avgPriceAll": 533832.69,
       "priceRangeLabel": "R$ 450,00 até R$ 7.500.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-02T03:08:20.577Z",
+      "generatedAt": "2026-04-02T03:20:22.121Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -77,7 +77,7 @@
       "avgPriceAll": 331544.17,
       "priceRangeLabel": "R$ 550,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-02T03:08:23.342Z",
+      "generatedAt": "2026-04-02T03:20:24.839Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -99,19 +99,19 @@
           "ok": true,
           "marketKey": "olinda",
           "marketLabel": "Olinda",
-          "updatedAt": "2026-04-02T02:08:35.266Z",
-          "startedAt": "2026-04-02T02:05:00.837Z",
-          "finishedAt": "2026-04-02T02:08:35.266Z",
-          "durationMs": 214430,
+          "updatedAt": "2026-04-02T03:08:33.580Z",
+          "startedAt": "2026-04-02T03:05:00.832Z",
+          "finishedAt": "2026-04-02T03:08:33.580Z",
+          "durationMs": 212748,
           "totals": {
-            "totalListings": 162,
-            "venda": 84,
-            "aluguel": 78
+            "totalListings": 157,
+            "venda": 80,
+            "aluguel": 77
           },
           "changeCounts": {
-            "newCount": 13,
+            "newCount": 5,
             "priceUpdateCount": 3,
-            "priceDropCount": 2
+            "priceDropCount": 1
           },
           "source": "all",
           "sources": [
@@ -121,11 +121,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-02T02:05:01.736Z",
+          "scrapedAt": "2026-04-02T03:05:01.733Z",
           "telegram": {
             "marketKey": "olinda",
             "ok": true,
-            "telegramMessageId": 171
+            "telegramMessageId": 175
           },
           "operation": {
             "marketKey": "olinda",
@@ -147,10 +147,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "01/04/2026, 23:08",
-        "runtimeCoverageLabel": "162 ativos na ultima varredura",
+        "lastRunLabel": "02/04/2026, 00:08",
+        "runtimeCoverageLabel": "157 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #171",
+        "alertStatusLabel": "Digest #175",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
@@ -197,7 +197,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-02T03:08:25.155Z",
+      "generatedAt": "2026-04-02T03:20:26.583Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -317,7 +317,7 @@
       "avgPriceAll": 223196.81,
       "priceRangeLabel": "R$ 700,00 até R$ 7.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-02T03:08:27.761Z",
+      "generatedAt": "2026-04-02T03:20:29.106Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -437,7 +437,7 @@
       "avgPriceAll": 546997.83,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-02T03:08:30.273Z",
+      "generatedAt": "2026-04-02T03:20:31.546Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
