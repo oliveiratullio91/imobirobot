@@ -268,6 +268,23 @@
         </article>
       `)
       .join('');
+    const relatedMarkup = (detail.relatedListings || [])
+      .map((item) => `
+        <article class="detail-related-card">
+          <div class="detail-related-card__thumb"${item.imageUrl ? ` style="background-image:url('${escapeAttribute(item.imageUrl)}')"` : ''}></div>
+          <div class="detail-related-card__body">
+            <div class="detail-source-card__head">
+              <strong>${escapeHtml(item.title || 'Imóvel relacionado')}</strong>
+              <span>${escapeHtml(item.confidenceLabel || 'Correlação automática')}</span>
+            </div>
+            <p>${escapeHtml(item.currentPriceText || 'Preço indisponível')}</p>
+            <small>${escapeHtml(`${item.locationLabel || 'Local não informado'} • ${item.sourceSummaryLabel || 'Origem'}`)}</small>
+            ${item.reasonSummary ? `<small>${escapeHtml(item.reasonSummary)}</small>` : ''}
+          </div>
+          <a class="detail-source-card__action" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noreferrer">Abrir</a>
+        </article>
+      `)
+      .join('');
 
     const reasonMarkup = (detail.radarReasons || [])
       .map((reason) => `<span>${escapeHtml(reason)}</span>`)
@@ -388,6 +405,33 @@
             </div>
             <div class="detail-panel__source-list">
               ${sourceVariantMarkup || '<p class="detail-empty">Ainda não há outras fontes relacionadas para este imóvel.</p>'}
+            </div>
+          </div>
+          <div class="detail-panel__related">
+            <div class="detail-panel__subhead">
+              <strong>Correlatos automáticos</strong>
+              <span>${escapeHtml(detail.relatedSummaryLabel || 'Sem correlatos')}</span>
+            </div>
+            <div class="detail-panel__stats detail-panel__stats--related">
+              <article>
+                <span>Melhor preço consolidado</span>
+                <strong>${escapeHtml(detail.consolidatedBestPriceText || detail.bestPriceText || 'N/D')}</strong>
+              </article>
+              <article>
+                <span>Portais correlacionados</span>
+                <strong>${escapeHtml(detail.consolidatedPortalSummaryLabel || detail.sourceSummaryLabel || '1 portal')}</strong>
+              </article>
+              <article>
+                <span>Relacionados automáticos</span>
+                <strong>${escapeHtml(detail.relatedCountLabel || '0')}</strong>
+              </article>
+              <article>
+                <span>Sinais de reaparição</span>
+                <strong>${escapeHtml(detail.reappearanceLabel || '0')}</strong>
+              </article>
+            </div>
+            <div class="detail-panel__source-list detail-panel__source-list--related">
+              ${relatedMarkup || '<p class="detail-empty">Ainda não há correlações automáticas fortes para este imóvel.</p>'}
             </div>
           </div>
           <div class="detail-panel__meta">${featureMarkup}</div>
