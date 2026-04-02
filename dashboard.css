@@ -291,6 +291,86 @@ select {
   letter-spacing: -0.04em;
 }
 
+.dashboard-control-bar {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.7fr) minmax(280px, 1.5fr) repeat(3, minmax(150px, 0.7fr)) auto;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 28px;
+  border: 1px solid rgba(34, 55, 60, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-soft);
+}
+
+.dashboard-control-bar__base,
+.dashboard-control-bar__select,
+.dashboard-control-bar__action,
+.dashboard-control-bar__search {
+  min-height: 78px;
+  border-radius: 22px;
+}
+
+.dashboard-control-bar__base,
+.dashboard-control-bar__select {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  padding: 14px 18px;
+  border: 1px solid rgba(34, 55, 60, 0.08);
+  background: rgba(248, 245, 239, 0.96);
+}
+
+.dashboard-control-bar__base span,
+.dashboard-control-bar__select {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dashboard-control-bar__base strong,
+.dashboard-control-bar__select strong {
+  color: var(--ink);
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.dashboard-control-bar__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 16px 0 18px;
+  border: 1px solid rgba(34, 55, 60, 0.08);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.dashboard-control-bar__search::before {
+  content: "⌕";
+  color: var(--muted);
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.dashboard-control-bar__search input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  outline: none;
+}
+
+.dashboard-control-bar__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22px;
+  text-decoration: none;
+  color: #fffdf8;
+  font-weight: 800;
+  background: linear-gradient(135deg, #174d4f, #0f373a);
+  box-shadow: 0 16px 28px rgba(15, 55, 58, 0.16);
+}
+
 .dashboard-preview-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5211,7 +5291,8 @@ select {
 
 @media (max-width: 1080px) {
   .page-hero,
-  .dashboard-preview-grid {
+  .dashboard-preview-grid,
+  .dashboard-control-bar {
     grid-template-columns: 1fr;
   }
 }
@@ -5236,5 +5317,13 @@ select {
 
   .page-section-link {
     width: 100%;
+  }
+
+  .dashboard-control-bar {
+    padding: 12px;
+  }
+
+  .dashboard-control-bar__action {
+    min-height: 62px;
   }
 }
