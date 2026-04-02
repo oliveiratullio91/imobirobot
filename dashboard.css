@@ -290,6 +290,27 @@ select {
   gap: 12px;
 }
 
+.page-hero__highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.page-hero__highlights span {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(32, 55, 59, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  color: #31585b;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
+}
+
 .page-hero__visual-wrap {
   min-width: 0;
 }
@@ -508,6 +529,78 @@ select {
 .page-hero__stat strong {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   letter-spacing: -0.04em;
+}
+
+.page-hero--opportunities {
+  background:
+    radial-gradient(circle at top left, rgba(212, 143, 73, 0.16), transparent 30%),
+    radial-gradient(circle at right center, rgba(72, 130, 103, 0.1), transparent 28%),
+    linear-gradient(180deg, rgba(255, 249, 243, 0.92), rgba(252, 247, 240, 0.86));
+}
+
+.page-hero--opportunities .page-hero__copy h1,
+.page-hero--analytics .page-hero__copy h1,
+.page-hero--radar .page-hero__copy h1 {
+  max-width: 12ch;
+}
+
+.page-hero--opportunities .page-hero__highlights span {
+  background: rgba(255, 248, 239, 0.92);
+  border-color: rgba(212, 143, 73, 0.18);
+  color: #8b5728;
+}
+
+.page-hero--opportunities .page-hero__stat {
+  background: linear-gradient(180deg, rgba(255, 250, 246, 0.9), rgba(255, 244, 232, 0.82));
+  border-color: rgba(212, 143, 73, 0.16);
+}
+
+.page-hero--opportunities .page-hero__stat strong {
+  color: #8a4f23;
+}
+
+.page-hero--radar {
+  background:
+    radial-gradient(circle at top left, rgba(40, 106, 122, 0.16), transparent 32%),
+    radial-gradient(circle at right center, rgba(96, 127, 255, 0.12), transparent 26%),
+    linear-gradient(180deg, rgba(246, 252, 252, 0.92), rgba(239, 248, 249, 0.86));
+}
+
+.page-hero--radar .page-hero__highlights span {
+  background: rgba(244, 251, 252, 0.92);
+  border-color: rgba(51, 95, 102, 0.16);
+  color: #245961;
+}
+
+.page-hero--radar .page-hero__stat {
+  background: linear-gradient(180deg, rgba(248, 253, 253, 0.9), rgba(236, 247, 248, 0.82));
+  border-color: rgba(51, 95, 102, 0.16);
+}
+
+.page-hero--radar .page-hero__stat strong {
+  color: #184851;
+}
+
+.page-hero--analytics {
+  background:
+    radial-gradient(circle at top left, rgba(86, 127, 135, 0.14), transparent 28%),
+    radial-gradient(circle at right center, rgba(212, 143, 73, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(250, 249, 245, 0.92), rgba(246, 242, 235, 0.88));
+}
+
+.page-hero--analytics .page-hero__highlights span {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(86, 127, 135, 0.16);
+  color: #355d65;
+}
+
+.page-hero--analytics .page-hero__stat {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(246, 241, 233, 0.84));
+  border-color: rgba(86, 127, 135, 0.14);
+}
+
+.page-hero--analytics .page-hero__stat strong {
+  color: #23474d;
 }
 
 .dashboard-control-bar {
@@ -5759,6 +5852,15 @@ select {
 
   .page-hero__stats {
     grid-template-columns: 1fr;
+  }
+
+  .page-hero__highlights {
+    gap: 8px;
+  }
+
+  .page-hero__highlights span {
+    min-height: 34px;
+    font-size: 11px;
   }
 
   .page-hero__visual {
