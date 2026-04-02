@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>ImobiRadar | Analises em Jaboatão dos Guararapes</title>
+    <meta name="description" content="P?gina de analises do ImobiRadar com estatisticas, panorama e movimentos recentes em Jaboatão dos Guararapes.">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="./dashboard.css?v=02-04-2026-15-51">
+  </head>
+  <body>
+    <div class="app-shell app-shell--single">
+      <main class="main main--single">
+        <section class="surface surface--stacked">
+          
+    <header class="market-header market-header--product">
+      <div class="market-header__brand">
+        <div class="market-header__brand-mark">IR</div>
+        <div>
+          <strong>ImobiRadar</strong>
+          <span>Radar de oportunidades imobiliárias em Jaboatão dos Guararapes</span>
+        </div>
+      </div>
+
+      <nav class="site-nav site-nav--product" id="site-nav" aria-label="Navegação principal">
+        <div class="site-nav__markets" aria-label="Mercados monitorados">
+          
+            <a href="./index.html" class="site-nav__market-link">
+              Recife
+            </a>
+          
+            <a href="./index-olinda.html" class="site-nav__market-link">
+              Olinda
+            </a>
+          
+            <a href="./index-jaboatao-dos-guararapes.html" class="site-nav__market-link is-active-market">
+              Jaboatão dos Guararapes
+            </a>
+          
+            <a href="./index-paulista.html" class="site-nav__market-link">
+              Paulista
+            </a>
+          
+            <a href="./index-camaragibe.html" class="site-nav__market-link">
+              Camaragibe
+            </a>
+          
+        </div>
+        <div class="site-nav__links">
+          
+            <a href="./index-jaboatao-dos-guararapes.html" class="">Dashboard</a>
+          
+            <a href="./oportunidades-jaboatao-dos-guararapes.html" class="">Oportunidades</a>
+          
+            <a href="./radar-jaboatao-dos-guararapes.html" class="">Radar ao vivo</a>
+          
+            <a href="./analises-jaboatao-dos-guararapes.html" class="is-active">Análises</a>
+          
+            <a href="./imoveis-jaboatao-dos-guararapes.html" class="">Todos os imóveis</a>
+          
+            <a href="./mercados.html" class="">Mercados</a>
+          
+        </div>
+      </nav>
+
+      
+        <div class="market-header__search">
+          <input id="hero-search" type="search" placeholder="Busque por bairro, rua, origem ou faixa de preço">
+        </div>
+      
+
+      <div class="market-header__actions">
+        <button class="market-header__menu-toggle" id="header-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">Menu</button>
+      </div>
+    </header>
+  
+          
+    <section class="page-hero page-hero--analytics">
+      <div class="page-hero__copy">
+        <p class="eyebrow">Analises</p>
+        <h1>Leitura de mercado e movimentos em Jaboatão dos Guararapes.</h1>
+        <p>Tudo que ? grafico, panorama, bairro e movimento recente sai da home e fica concentrado aqui.</p>
+        <div class="page-hero__actions">
+          <a class="market-stage__action market-stage__action--primary" href="./radar-jaboatao-dos-guararapes.html">Cruzar com o mapa</a>
+          <a class="market-stage__action market-stage__action--ghost" href="./oportunidades-jaboatao-dos-guararapes.html">Abrir oportunidades</a>
+        </div>
+      </div>
+      <div class="page-hero__stats">
+        
+          <article class="page-hero__stat">
+            <span>Venda ativa</span>
+            <strong>0</strong>
+            <small>Inventario em venda</small>
+          </article>
+        
+          <article class="page-hero__stat">
+            <span>Aluguel ativo</span>
+            <strong>0</strong>
+            <small>Inventario em aluguel</small>
+          </article>
+        
+          <article class="page-hero__stat">
+            <span>Movimentos</span>
+            <strong>0</strong>
+            <small>Eventos recentes de preco</small>
+          </article>
+        
+      </div>
+    </section>
+  
+          
+    <div class="market-health-note market-health-note--healthy">
+      <span class="market-health-note__badge">Saudavel</span>
+      <strong>Operação saudável e coerente com a configuração do mercado.</strong>
+      <small>Esta area concentra numeros, graficos e leitura do mercado.</small>
+    </div>
+  
+          
+    <section class="analytics-grid analytics-grid--page" id="analytics-grid">
+      <section class="panel panel--wide">
+        <div class="panel__head">
+          <div>
+            <h2>Estatisticas de venda</h2>
+            <p>Captacao di?ria de venda e aluguel nos ultimos 7 dias.</p>
+          </div>
+          <span>ultimos 7 dias</span>
+        </div>
+        <div class="chart-stack">
+          
+    <article class="trend-card trend-card--sale">
+      <div class="trend-card__header">
+        <div>
+          <strong>Venda</strong>
+          <p>Entrada de novos anuncios de venda por dia.</p>
+        </div>
+        <span>0 captados</span>
+      </div>
+      <div class="line-chart">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,100.00 66.67,100.00 83.33,100.00 100.00,100.00 100,100 0,100" />
+          <polyline points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,100.00 66.67,100.00 83.33,100.00 100.00,100.00" />
+        </svg>
+        <div class="line-chart__labels">
+          
+                <div class="">
+                  <strong>0</strong>
+                  <small>qui, 26</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>sex, 27</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>sáb, 28</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>dom, 29</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>seg, 30</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>ter, 31</small>
+                </div>
+              
+                <div class="is-peak">
+                  <strong>0</strong>
+                  <small>qua, 01</small>
+                </div>
+              
+        </div>
+      </div>
+      <div class="trend-card__footer">
+        <span>Faixa maxima: 1</span>
+        <span>01/04</span>
+      </div>
+    </article>
+  
+          
+    <article class="trend-card trend-card--rent">
+      <div class="trend-card__header">
+        <div>
+          <strong>Aluguel</strong>
+          <p>Entrada de novos anuncios de aluguel por dia.</p>
+        </div>
+        <span>0 captados</span>
+      </div>
+      <div class="line-chart">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,100.00 66.67,100.00 83.33,100.00 100.00,100.00 100,100 0,100" />
+          <polyline points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,100.00 66.67,100.00 83.33,100.00 100.00,100.00" />
+        </svg>
+        <div class="line-chart__labels">
+          
+                <div class="">
+                  <strong>0</strong>
+                  <small>qui, 26</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>sex, 27</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>sáb, 28</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>dom, 29</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>seg, 30</small>
+                </div>
+              
+                <div class="">
+                  <strong>0</strong>
+                  <small>ter, 31</small>
+                </div>
+              
+                <div class="is-peak">
+                  <strong>0</strong>
+                  <small>qua, 01</small>
+                </div>
+              
+        </div>
+      </div>
+      <div class="trend-card__footer">
+        <span>Faixa maxima: 1</span>
+        <span>01/04</span>
+      </div>
+    </article>
+  
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <div>
+            <h2>Panorama do mercado</h2>
+            <p>Mix por fonte e operacao usando o invent?rio ativo consolidado.</p>
+          </div>
+          <span>Tempo real</span>
+        </div>
+        <div class="growth-card">
+          <strong>R$ 0,00</strong>
+          <p>Preco medio ponderado da base ativa, com leitura por operacao e por portal.</p>
+          <div class="growth-kpis">
+    <article class="growth-kpi growth-kpi--teal">
+      <span>Site lider</span>
+      <strong>Sem dado</strong>
+      <small>Aguardando base</small>
+    </article>
+  
+    <article class="growth-kpi growth-kpi--sale">
+      <span>Share venda</span>
+      <strong>0.0%</strong>
+      <small>0 ativos em venda</small>
+    </article>
+  
+    <article class="growth-kpi growth-kpi--rent">
+      <span>Share aluguel</span>
+      <strong>0.0%</strong>
+      <small>0 ativos em aluguel</small>
+    </article>
+  
+    <article class="growth-kpi growth-kpi--good">
+      <span>Ticket medio</span>
+      <strong>R$ 0</strong>
+      <small>Média ponderada da base viva atual</small>
+    </article>
+  </div>
+          <div class="growth-columns"></div>
+          <div class="growth-source-list"></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="lower-grid lower-grid--page" id="lower-grid">
+      <section class="panel">
+        <div class="panel__head">
+          <div>
+            <h2>Bairros em destaque</h2>
+            <p>Os bairros mais ativos por modo, com ticket e fonte dominante.</p>
+          </div>
+          <span>Leitura ativa</span>
+        </div>
+        <div class="heat-grid" id="heat-grid" data-mobile-limit="4"></div>
+        <button class="section-toggle" type="button" data-expand-target="heat-grid" data-expand-more="Ver mais bairros" data-expand-less="Ver menos bairros" hidden></button>
+      </section>
+
+      <section class="panel" id="recent-moves">
+        <div class="panel__head">
+          <div>
+            <h2>Movimentos recentes</h2>
+            <p>Alteracoes de preco para identificar oportunidade ou press?o de reajuste.</p>
+          </div>
+          <span>0 eventos</span>
+        </div>
+        <div class="move-stack" id="move-stack" data-mobile-limit="3"></div>
+        <button class="section-toggle" type="button" data-expand-target="move-stack" data-expand-more="Ver mais movimentos" data-expand-less="Ver menos movimentos" hidden></button>
+      </section>
+    </section>
+  
+        </section>
+      </main>
+    </div>
+    
+    <div class="detail-modal" id="listing-detail-modal" hidden>
+      <div class="detail-modal__backdrop" data-detail-close="true"></div>
+      <div class="detail-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+        <button class="detail-modal__close" type="button" data-detail-close="true" aria-label="Fechar detalhes">Fechar</button>
+        <div class="detail-modal__content" id="listing-detail-content"></div>
+      </div>
+    </div>
+    <script id="listing-details-data" type="application/json">{}</script>
+    <script id="hero-map-listings-data" type="application/json">[]</script>
+    <script id="map-listings-data" type="application/json">[]</script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="./dashboard.js?v=02-04-2026-15-51"></script>
+  </body>
+</html>
