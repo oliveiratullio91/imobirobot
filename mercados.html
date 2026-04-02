@@ -7,8 +7,8 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>ImobiRadar | Mercados monitorados</title>
-    <meta name="description" content="Hub de relatórios por cidade do ImobiRadar, com acesso ao dashboard e à base monitorada de cada mercado.">
-    <link rel="stylesheet" href="./dashboard.css?v=2026-04-02T08-20-38-382Z">
+    <meta name="description" content="Hub de relatorios por cidade do ImobiRadar, com acesso ao dashboard e a base monitorada de cada mercado.">
+    <link rel="stylesheet" href="./dashboard.css?v=2026-04-02T08-32-37-759Z">
   </head>
   <body>
     <div class="app-shell app-shell--single">
@@ -17,9 +17,9 @@
           <header class="listings-page__header">
             <div>
               <a class="listings-page__back" href="./index.html">Voltar para Recife</a>
-              <p class="eyebrow">Relatórios por cidade</p>
-              <h1>Escolha o mercado que você quer abrir no ImobiRadar.</h1>
-              <p>Este hub centraliza os mercados já habilitados na operação, com acesso direto ao dashboard e à base monitorada de cada cidade.</p>
+              <p class="eyebrow">Relatorios por cidade</p>
+              <h1>Escolha o mercado que voce quer abrir no ImobiRadar.</h1>
+              <p>Este hub centraliza os mercados ja habilitados na operacao, com acesso direto ao dashboard e a base monitorada de cada cidade.</p>
             </div>
             <div class="listings-page__summary">
               <article>
@@ -27,15 +27,51 @@
                 <strong>5</strong>
               </article>
               <article>
-                <span>Última geração</span>
-                <strong>02/04/2026, 05:20</strong>
+                <span>Ultima geracao</span>
+                <strong>02/04/2026, 05:32</strong>
               </article>
             </div>
           </header>
 
+          <section class="market-hub-tools">
+            <div class="market-hub-tools__summary">
+              <article>
+                <span>Imoveis ativos</span>
+                <strong>693</strong>
+              </article>
+              <article>
+                <span>Mercados saudaveis</span>
+                <strong>5/5</strong>
+              </article>
+              <article>
+                <span>Sweeps ativos</span>
+                <strong>4</strong>
+              </article>
+              <article>
+                <span>Alertas ativos</span>
+                <strong>4</strong>
+              </article>
+            </div>
+            <div class="market-hub-filters">
+              <label class="market-hub-search">
+                <span>Buscar cidade</span>
+                <input type="search" placeholder="Ex.: Olinda, Paulista..." data-market-search>
+              </label>
+              <div class="market-hub-filter-chips" aria-label="Filtros rapidos">
+                <button type="button" class="market-hub-filter-chip is-active" data-market-filter="all">Todos</button>
+                <button type="button" class="market-hub-filter-chip" data-market-filter="healthy">Saudaveis</button>
+                <button type="button" class="market-hub-filter-chip" data-market-filter="warning">Em atencao</button>
+                <button type="button" class="market-hub-filter-chip" data-market-filter="critical">Criticos</button>
+                <button type="button" class="market-hub-filter-chip" data-market-filter="sweep-ativo">Sweep ativo</button>
+                <button type="button" class="market-hub-filter-chip" data-market-filter="alertas-ativos">Alertas ativos</button>
+              </div>
+            </div>
+            <p class="market-hub-tools__result" data-market-results>5 mercados visiveis</p>
+          </section>
+
           <section class="market-hub-grid">
             
-              <article class="market-hub-card">
+              <article class="market-hub-card" data-market-card data-market-name="recife" data-market-health="healthy" data-market-sweep="sweep-desativado" data-market-alerts="alertas-desligados">
                 <div class="market-hub-card__head">
                   <p class="eyebrow">Mercado</p>
                   <h2>Recife</h2>
@@ -50,7 +86,7 @@
                   <strong>274</strong>
                   <span>ativos agora</span>
                   <strong>575</strong>
-                  <span>novos anúncios em 24h</span>
+                  <span>novos anuncios em 24h</span>
                   <strong>R$ 450,00 até R$ 11.900.000,00</strong>
                   <span>faixa monitorada</span>
                 </div>
@@ -71,11 +107,11 @@
                 </div>
                 <div class="market-hub-card__actions">
                   <a href="./index.html">Abrir dashboard</a>
-                  <a href="./imoveis.html">Ver imóveis</a>
+                  <a href="./imoveis.html">Ver imoveis</a>
                 </div>
               </article>
             
-              <article class="market-hub-card">
+              <article class="market-hub-card" data-market-card data-market-name="olinda" data-market-health="healthy" data-market-sweep="sweep-ativo" data-market-alerts="alertas-ativos">
                 <div class="market-hub-card__head">
                   <p class="eyebrow">Mercado</p>
                   <h2>Olinda</h2>
@@ -90,7 +126,7 @@
                   <strong>157</strong>
                   <span>ativos agora</span>
                   <strong>453</strong>
-                  <span>novos anúncios em 24h</span>
+                  <span>novos anuncios em 24h</span>
                   <strong>R$ 600,00 até R$ 14.000.000,00</strong>
                   <span>faixa monitorada</span>
                 </div>
@@ -111,11 +147,11 @@
                 </div>
                 <div class="market-hub-card__actions">
                   <a href="./index-olinda.html">Abrir dashboard</a>
-                  <a href="./imoveis-olinda.html">Ver imóveis</a>
+                  <a href="./imoveis-olinda.html">Ver imoveis</a>
                 </div>
               </article>
             
-              <article class="market-hub-card">
+              <article class="market-hub-card" data-market-card data-market-name="jaboatão dos guararapes" data-market-health="healthy" data-market-sweep="sweep-ativo" data-market-alerts="alertas-ativos">
                 <div class="market-hub-card__head">
                   <p class="eyebrow">Mercado</p>
                   <h2>Jaboatão dos Guararapes</h2>
@@ -124,13 +160,13 @@
                 <div class="market-hub-card__pills">
                   <span class="market-status-pill market-status-pill--healthy">Saudavel</span>
                   <span class="market-status-pill">Sweep ativo</span>
-                  <span class="market-status-pill">Digest #195</span>
+                  <span class="market-status-pill">Digest #199</span>
                 </div>
                 <div class="market-hub-card__stats">
                   <strong>0</strong>
                   <span>ativos agora</span>
                   <strong>0</strong>
-                  <span>novos anúncios em 24h</span>
+                  <span>novos anuncios em 24h</span>
                   <strong>Faixa em atualização</strong>
                   <span>faixa monitorada</span>
                 </div>
@@ -141,7 +177,7 @@
                     <span>Sweep horario + Telegram</span>
                   </article>
                   <article>
-                    <strong>02/04/2026, 04:20</strong>
+                    <strong>02/04/2026, 05:20</strong>
                     <span>162 ativos na ultima varredura</span>
                   </article>
                   <article>
@@ -151,11 +187,11 @@
                 </div>
                 <div class="market-hub-card__actions">
                   <a href="./index-jaboatao-dos-guararapes.html">Abrir dashboard</a>
-                  <a href="./imoveis-jaboatao-dos-guararapes.html">Ver imóveis</a>
+                  <a href="./imoveis-jaboatao-dos-guararapes.html">Ver imoveis</a>
                 </div>
               </article>
             
-              <article class="market-hub-card">
+              <article class="market-hub-card" data-market-card data-market-name="paulista" data-market-health="healthy" data-market-sweep="sweep-ativo" data-market-alerts="alertas-ativos">
                 <div class="market-hub-card__head">
                   <p class="eyebrow">Mercado</p>
                   <h2>Paulista</h2>
@@ -167,11 +203,11 @@
                   <span class="market-status-pill">Digest #196</span>
                 </div>
                 <div class="market-hub-card__stats">
-                  <strong>149</strong>
+                  <strong>143</strong>
                   <span>ativos agora</span>
-                  <strong>248</strong>
-                  <span>novos anúncios em 24h</span>
-                  <strong>R$ 700,00 até R$ 7.000.000,00</strong>
+                  <strong>258</strong>
+                  <span>novos anuncios em 24h</span>
+                  <strong>R$ 650,00 até R$ 7.000.000,00</strong>
                   <span>faixa monitorada</span>
                 </div>
                 <p class="market-hub-card__copy">Paulista concentra a leitura mais forte de Paulista agora.</p>
@@ -191,11 +227,11 @@
                 </div>
                 <div class="market-hub-card__actions">
                   <a href="./index-paulista.html">Abrir dashboard</a>
-                  <a href="./imoveis-paulista.html">Ver imóveis</a>
+                  <a href="./imoveis-paulista.html">Ver imoveis</a>
                 </div>
               </article>
             
-              <article class="market-hub-card">
+              <article class="market-hub-card" data-market-card data-market-name="camaragibe" data-market-health="healthy" data-market-sweep="sweep-ativo" data-market-alerts="alertas-ativos">
                 <div class="market-hub-card__head">
                   <p class="eyebrow">Mercado</p>
                   <h2>Camaragibe</h2>
@@ -210,7 +246,7 @@
                   <strong>119</strong>
                   <span>ativos agora</span>
                   <strong>265</strong>
-                  <span>novos anúncios em 24h</span>
+                  <span>novos anuncios em 24h</span>
                   <strong>R$ 630,00 até R$ 13.000.000,00</strong>
                   <span>faixa monitorada</span>
                 </div>
@@ -231,7 +267,7 @@
                 </div>
                 <div class="market-hub-card__actions">
                   <a href="./index-camaragibe.html">Abrir dashboard</a>
-                  <a href="./imoveis-camaragibe.html">Ver imóveis</a>
+                  <a href="./imoveis-camaragibe.html">Ver imoveis</a>
                 </div>
               </article>
             
@@ -239,5 +275,46 @@
         </section>
       </main>
     </div>
+    <script>
+      (() => {
+        const cards = Array.from(document.querySelectorAll('[data-market-card]'));
+        const searchInput = document.querySelector('[data-market-search]');
+        const chips = Array.from(document.querySelectorAll('[data-market-filter]'));
+        const resultLabel = document.querySelector('[data-market-results]');
+        let activeFilter = 'all';
+
+        const applyFilters = () => {
+          const query = String(searchInput?.value || '').trim().toLowerCase();
+          let visible = 0;
+          for (const card of cards) {
+            const name = String(card.dataset.marketName || '');
+            const health = String(card.dataset.marketHealth || '');
+            const sweep = String(card.dataset.marketSweep || '');
+            const alerts = String(card.dataset.marketAlerts || '');
+            const matchesQuery = !query || name.includes(query);
+            const matchesFilter = activeFilter === 'all'
+              || health === activeFilter
+              || sweep === activeFilter
+              || alerts === activeFilter;
+            const show = matchesQuery && matchesFilter;
+            card.hidden = !show;
+            if (show) visible += 1;
+          }
+          if (resultLabel) {
+            resultLabel.textContent = visible === 1 ? '1 mercado visivel' : visible + ' mercados visiveis';
+          }
+        };
+
+        searchInput?.addEventListener('input', applyFilters);
+        for (const chip of chips) {
+          chip.addEventListener('click', () => {
+            activeFilter = chip.dataset.marketFilter || 'all';
+            for (const item of chips) item.classList.toggle('is-active', item === chip);
+            applyFilters();
+          });
+        }
+        applyFilters();
+      })();
+    </script>
   </body>
 </html>
