@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T08:32:37.761Z",
+  "generatedAt": "2026-04-02T08:34:16.594Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -14,7 +14,7 @@
       "avgPriceAll": 673595.2,
       "priceRangeLabel": "R$ 450,00 até R$ 11.900.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-02T08:32:27.121Z",
+      "generatedAt": "2026-04-02T08:34:06.119Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -77,7 +77,7 @@
       "avgPriceAll": 418091.72,
       "priceRangeLabel": "R$ 600,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-02T08:32:30.284Z",
+      "generatedAt": "2026-04-02T08:34:09.245Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -197,7 +197,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-02T08:32:32.183Z",
+      "generatedAt": "2026-04-02T08:34:11.094Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -317,7 +317,7 @@
       "avgPriceAll": 237846.42,
       "priceRangeLabel": "R$ 650,00 até R$ 7.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-02T08:32:35.136Z",
+      "generatedAt": "2026-04-02T08:34:14.013Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -339,19 +339,19 @@
           "ok": true,
           "marketKey": "paulista",
           "marketLabel": "Paulista",
-          "updatedAt": "2026-04-02T07:32:37.736Z",
-          "startedAt": "2026-04-02T07:29:00.837Z",
-          "finishedAt": "2026-04-02T07:32:37.736Z",
-          "durationMs": 216899,
+          "updatedAt": "2026-04-02T08:32:41.619Z",
+          "startedAt": "2026-04-02T08:29:00.923Z",
+          "finishedAt": "2026-04-02T08:32:41.619Z",
+          "durationMs": 220697,
           "totals": {
-            "totalListings": 149,
-            "venda": 76,
-            "aluguel": 73
+            "totalListings": 143,
+            "venda": 73,
+            "aluguel": 70
           },
           "changeCounts": {
-            "newCount": 17,
-            "priceUpdateCount": 4,
-            "priceDropCount": 1
+            "newCount": 12,
+            "priceUpdateCount": 8,
+            "priceDropCount": 5
           },
           "source": "all",
           "sources": [
@@ -361,11 +361,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-02T07:29:01.819Z",
+          "scrapedAt": "2026-04-02T08:29:02.028Z",
           "telegram": {
             "marketKey": "paulista",
             "ok": true,
-            "telegramMessageId": 196
+            "telegramMessageId": 200
           },
           "operation": {
             "marketKey": "paulista",
@@ -387,10 +387,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "02/04/2026, 04:32",
-        "runtimeCoverageLabel": "149 ativos na ultima varredura",
+        "lastRunLabel": "02/04/2026, 05:32",
+        "runtimeCoverageLabel": "143 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #196",
+        "alertStatusLabel": "Digest #200",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
@@ -437,7 +437,7 @@
       "avgPriceAll": 648868.28,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-02T08:32:37.759Z",
+      "generatedAt": "2026-04-02T08:34:16.591Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
