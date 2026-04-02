@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T02:44:31.405Z",
+  "generatedAt": "2026-04-02T03:02:14.726Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -7,14 +7,14 @@
       "label": "Recife",
       "dashboardHref": "./index.html",
       "listingsHref": "./imoveis.html",
-      "sourceSummary": "OLX + Zap + Chaves na Mão + Apto + Viva Real + QuintoAndar",
-      "totalActive": 278,
-      "newListings24h": 821,
-      "totalUpdates24h": 2385,
-      "avgPriceAll": 497819.2,
+      "sourceSummary": "Zap + OLX + Chaves na Mão + Apto + Viva Real + QuintoAndar",
+      "totalActive": 277,
+      "newListings24h": 732,
+      "totalUpdates24h": 2339,
+      "avgPriceAll": 533832.69,
       "priceRangeLabel": "R$ 450,00 até R$ 7.500.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-02T02:44:20.730Z",
+      "generatedAt": "2026-04-02T03:02:04.908Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -32,8 +32,8 @@
         ],
         "notes": "Mercado principal da stack, com relatorio e painel sempre ligados.",
         "channelsLabel": "n8n • site • supabase",
-        "lastRunLabel": "01/04/2026, 23:00",
-        "runtimeCoverageLabel": "278 ativos no relatorio",
+        "lastRunLabel": "02/04/2026, 00:00",
+        "runtimeCoverageLabel": "277 ativos no relatorio",
         "sweepStatusLabel": "Sweep desativado",
         "alertStatusLabel": "Alertas desligados",
         "reportStatusLabel": "Relatorio ativo",
@@ -77,7 +77,7 @@
       "avgPriceAll": 349191.65,
       "priceRangeLabel": "R$ 550,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-02T02:44:23.676Z",
+      "generatedAt": "2026-04-02T03:02:07.719Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -197,7 +197,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-02T02:44:25.666Z",
+      "generatedAt": "2026-04-02T03:02:09.519Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -317,7 +317,7 @@
       "avgPriceAll": 223196.81,
       "priceRangeLabel": "R$ 700,00 até R$ 7.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-02T02:44:28.696Z",
+      "generatedAt": "2026-04-02T03:02:12.211Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -437,7 +437,7 @@
       "avgPriceAll": 546997.83,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-02T02:44:31.403Z",
+      "generatedAt": "2026-04-02T03:02:14.724Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
@@ -459,19 +459,19 @@
           "ok": true,
           "marketKey": "camaragibe",
           "marketLabel": "Camaragibe",
-          "updatedAt": "2026-04-02T01:44:38.935Z",
-          "startedAt": "2026-04-02T01:41:00.857Z",
-          "finishedAt": "2026-04-02T01:44:38.935Z",
-          "durationMs": 218078,
+          "updatedAt": "2026-04-02T02:44:34.799Z",
+          "startedAt": "2026-04-02T02:41:00.830Z",
+          "finishedAt": "2026-04-02T02:44:34.799Z",
+          "durationMs": 213969,
           "totals": {
-            "totalListings": 131,
+            "totalListings": 129,
             "venda": 72,
-            "aluguel": 59
+            "aluguel": 57
           },
           "changeCounts": {
-            "newCount": 20,
-            "priceUpdateCount": 9,
-            "priceDropCount": 4
+            "newCount": 13,
+            "priceUpdateCount": 7,
+            "priceDropCount": 6
           },
           "source": "all",
           "sources": [
@@ -481,11 +481,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-02T01:41:01.789Z",
+          "scrapedAt": "2026-04-02T02:41:01.775Z",
           "telegram": {
             "marketKey": "camaragibe",
             "ok": true,
-            "telegramMessageId": 170
+            "telegramMessageId": 174
           },
           "operation": {
             "marketKey": "camaragibe",
@@ -507,10 +507,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "01/04/2026, 22:44",
-        "runtimeCoverageLabel": "131 ativos na ultima varredura",
+        "lastRunLabel": "01/04/2026, 23:44",
+        "runtimeCoverageLabel": "129 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #170",
+        "alertStatusLabel": "Digest #174",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "warning",
         "healthLabel": "Atencao",
