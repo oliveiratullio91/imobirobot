@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T16:20:59.422Z",
+  "generatedAt": "2026-04-02T16:44:58.057Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -14,7 +14,7 @@
       "avgPriceAll": 493798.01,
       "priceRangeLabel": "R$ 500,00 até R$ 7.999.990,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-02T16:20:46.940Z",
+      "generatedAt": "2026-04-02T16:44:45.362Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -106,7 +106,7 @@
       "avgPriceAll": 422954.49,
       "priceRangeLabel": "R$ 600,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-02T16:20:50.812Z",
+      "generatedAt": "2026-04-02T16:44:49.272Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -247,7 +247,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-02T16:20:52.782Z",
+      "generatedAt": "2026-04-02T16:44:51.249Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -269,19 +269,19 @@
           "ok": true,
           "marketKey": "jaboatao-dos-guararapes",
           "marketLabel": "Jaboatao dos Guararapes",
-          "updatedAt": "2026-04-02T15:20:49.243Z",
-          "startedAt": "2026-04-02T15:17:00.901Z",
-          "finishedAt": "2026-04-02T15:20:49.243Z",
-          "durationMs": 228342,
+          "updatedAt": "2026-04-02T16:21:03.169Z",
+          "startedAt": "2026-04-02T16:17:00.929Z",
+          "finishedAt": "2026-04-02T16:21:03.169Z",
+          "durationMs": 242241,
           "totals": {
-            "totalListings": 168,
-            "venda": 88,
-            "aluguel": 80
+            "totalListings": 158,
+            "venda": 80,
+            "aluguel": 78
           },
           "changeCounts": {
-            "newCount": 17,
-            "priceUpdateCount": 0,
-            "priceDropCount": 0
+            "newCount": 8,
+            "priceUpdateCount": 3,
+            "priceDropCount": 2
           },
           "source": "all",
           "sources": [
@@ -291,11 +291,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-02T15:17:02.029Z",
+          "scrapedAt": "2026-04-02T16:17:01.979Z",
           "telegram": {
             "marketKey": "jaboatao-dos-guararapes",
             "ok": true,
-            "telegramMessageId": 227
+            "telegramMessageId": 235
           },
           "operation": {
             "marketKey": "jaboatao-dos-guararapes",
@@ -317,10 +317,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "02/04/2026, 12:20",
-        "runtimeCoverageLabel": "168 ativos na ultima varredura",
+        "lastRunLabel": "02/04/2026, 13:21",
+        "runtimeCoverageLabel": "158 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #227",
+        "alertStatusLabel": "Digest #235",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
@@ -388,7 +388,7 @@
       "avgPriceAll": 305174.71,
       "priceRangeLabel": "R$ 650,00 até R$ 10.294.576,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-02T16:20:56.315Z",
+      "generatedAt": "2026-04-02T16:44:54.830Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -523,13 +523,13 @@
       "dashboardHref": "./index-camaragibe.html",
       "listingsHref": "./imoveis-camaragibe.html",
       "sourceSummary": "Zap + Chaves na Mão + OLX + Viva Real",
-      "totalActive": 121,
-      "newListings24h": 287,
-      "totalUpdates24h": 657,
-      "avgPriceAll": 615406.51,
+      "totalActive": 120,
+      "newListings24h": 289,
+      "totalUpdates24h": 695,
+      "avgPriceAll": 722469.41,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-02T16:20:59.419Z",
+      "generatedAt": "2026-04-02T16:44:58.054Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
