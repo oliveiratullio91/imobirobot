@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T22:04:10.887Z",
+  "generatedAt": "2026-04-03T22:04:36.262Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -17,7 +17,7 @@
       "avgPriceAll": 569889.23,
       "priceRangeLabel": "R$ 500,00 até R$ 7.500.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-03T22:03:58.014Z",
+      "generatedAt": "2026-04-03T22:04:23.141Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -112,7 +112,7 @@
       "avgPriceAll": 357331.22,
       "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-03T22:04:02.081Z",
+      "generatedAt": "2026-04-03T22:04:27.452Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -262,7 +262,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-03T22:04:03.937Z",
+      "generatedAt": "2026-04-03T22:04:29.313Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -406,7 +406,7 @@
       "avgPriceAll": 1340937.68,
       "priceRangeLabel": "R$ 650,00 até R$ 160.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-03T22:04:07.491Z",
+      "generatedAt": "2026-04-03T22:04:32.895Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -428,19 +428,19 @@
           "ok": true,
           "marketKey": "paulista",
           "marketLabel": "Paulista",
-          "updatedAt": "2026-04-03T20:01:57.945Z",
-          "startedAt": "2026-04-03T19:58:01.198Z",
-          "finishedAt": "2026-04-03T20:01:57.945Z",
-          "durationMs": 236747,
+          "updatedAt": "2026-04-03T22:04:15.518Z",
+          "startedAt": "2026-04-03T22:00:01.939Z",
+          "finishedAt": "2026-04-03T22:04:15.518Z",
+          "durationMs": 253579,
           "totals": {
             "totalListings": 148,
-            "venda": 75,
-            "aluguel": 73
+            "venda": 76,
+            "aluguel": 72
           },
           "changeCounts": {
-            "newCount": 8,
-            "priceUpdateCount": 9,
-            "priceDropCount": 5
+            "newCount": 3,
+            "priceUpdateCount": 2,
+            "priceDropCount": 0
           },
           "source": "all",
           "sources": [
@@ -450,11 +450,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-03T19:58:02.426Z",
+          "scrapedAt": "2026-04-03T22:00:06.809Z",
           "telegram": {
             "marketKey": "paulista",
             "ok": true,
-            "telegramMessageId": 403
+            "telegramMessageId": 421
           },
           "operation": {
             "marketKey": "paulista",
@@ -476,10 +476,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "03/04/2026, 17:01",
+        "lastRunLabel": "03/04/2026, 19:04",
         "runtimeCoverageLabel": "148 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #403",
+        "alertStatusLabel": "Digest #421",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
@@ -550,7 +550,7 @@
       "avgPriceAll": 708552.72,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-03T22:04:10.884Z",
+      "generatedAt": "2026-04-03T22:04:36.259Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
