@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T11:05:15.767Z",
+  "generatedAt": "2026-04-03T12:04:55.001Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -12,12 +12,12 @@
       "analyticsHref": "./analises.html",
       "sourceSummary": "OLX + Zap + Chaves na Mão + Apto + Viva Real + QuintoAndar",
       "totalActive": 316,
-      "newListings24h": 168,
-      "totalUpdates24h": 526,
+      "newListings24h": 124,
+      "totalUpdates24h": 414,
       "avgPriceAll": 493798.01,
       "priceRangeLabel": "R$ 500,00 até R$ 7.999.990,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-03T11:05:02.866Z",
+      "generatedAt": "2026-04-03T12:04:42.726Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -106,13 +106,13 @@
       "radarHref": "./radar-olinda.html",
       "analyticsHref": "./analises-olinda.html",
       "sourceSummary": "Zap + Chaves na Mão + OLX + Viva Real",
-      "totalActive": 150,
-      "newListings24h": 113,
-      "totalUpdates24h": 890,
-      "avgPriceAll": 381103.09,
-      "priceRangeLabel": "R$ 600,00 até R$ 14.000.000,00",
+      "totalActive": 151,
+      "newListings24h": 119,
+      "totalUpdates24h": 925,
+      "avgPriceAll": 355295.65,
+      "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-03T11:05:07.296Z",
+      "generatedAt": "2026-04-03T12:04:46.395Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -134,19 +134,19 @@
           "ok": true,
           "marketKey": "olinda",
           "marketLabel": "Olinda",
-          "updatedAt": "2026-04-03T10:04:38.751Z",
-          "startedAt": "2026-04-03T10:00:01.189Z",
-          "finishedAt": "2026-04-03T10:04:38.751Z",
-          "durationMs": 277562,
+          "updatedAt": "2026-04-03T11:05:20.839Z",
+          "startedAt": "2026-04-03T11:00:01.183Z",
+          "finishedAt": "2026-04-03T11:05:20.839Z",
+          "durationMs": 319656,
           "totals": {
-            "totalListings": 149,
-            "venda": 79,
-            "aluguel": 70
+            "totalListings": 150,
+            "venda": 78,
+            "aluguel": 72
           },
           "changeCounts": {
-            "newCount": 1,
-            "priceUpdateCount": 1,
-            "priceDropCount": 0
+            "newCount": 6,
+            "priceUpdateCount": 7,
+            "priceDropCount": 3
           },
           "source": "all",
           "sources": [
@@ -156,11 +156,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-03T10:00:02.927Z",
+          "scrapedAt": "2026-04-03T11:00:05.360Z",
           "telegram": {
             "marketKey": "olinda",
             "ok": true,
-            "telegramMessageId": 339
+            "telegramMessageId": 347
           },
           "operation": {
             "marketKey": "olinda",
@@ -182,30 +182,24 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "03/04/2026, 07:04",
-        "runtimeCoverageLabel": "149 ativos na ultima varredura",
+        "lastRunLabel": "03/04/2026, 08:05",
+        "runtimeCoverageLabel": "150 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #339",
+        "alertStatusLabel": "Digest #347",
         "reportStatusLabel": "Relatorio ativo",
-        "healthLevel": "critical",
-        "healthLabel": "Critico",
-        "healthSummary": "Foram encontrados 1 itens de amostra fora do recorte esperado de Olinda.",
-        "healthIssueCount": 1
+        "healthLevel": "healthy",
+        "healthLabel": "Saudavel",
+        "healthSummary": "Operação saudável e coerente com a configuração do mercado.",
+        "healthIssueCount": 0
       },
       "health": {
         "marketKey": "olinda",
         "marketLabel": "Olinda",
-        "level": "critical",
-        "healthScore": 38,
-        "issues": [
-          {
-            "severity": "critical",
-            "code": "market_drift",
-            "message": "Foram encontrados 1 itens de amostra fora do recorte esperado de Olinda."
-          }
-        ],
-        "issueCount": 1,
-        "summary": "Foram encontrados 1 itens de amostra fora do recorte esperado de Olinda.",
+        "level": "healthy",
+        "healthScore": 100,
+        "issues": [],
+        "issueCount": 0,
+        "summary": "Operação saudável e coerente com a configuração do mercado.",
         "expectedSources": [
           "olx",
           "zap",
@@ -223,7 +217,7 @@
         "sourceBreakdown": [
           {
             "source": "zap",
-            "total": 114
+            "total": 110
           },
           {
             "source": "chaves",
@@ -231,20 +225,20 @@
           },
           {
             "source": "olx",
-            "total": 3
+            "total": 2
           },
           {
             "source": "vivareal",
             "total": 2
           }
         ],
-        "activeCanonical": 149,
+        "activeCanonical": 150,
         "multiPortalActive": 2,
         "multiPortalShare": 1.3,
-        "lastRunAt": "2026-04-03T10:04:38.751Z",
+        "lastRunAt": "2026-04-03T11:05:20.839Z",
         "summaryPath": "C:\\Users\\Tullio\\Documents\\PROJETOS\\projeto n8n\\olx-monitor\\data\\latest-summary-olinda-olx-zap-chaves-quintoandar-vivareal.json",
-        "outOfMarketSampleCount": 1,
-        "sampleRowsChecked": 149
+        "outOfMarketSampleCount": 0,
+        "sampleRowsChecked": 150
       }
     },
     {
@@ -262,7 +256,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-03T11:05:09.063Z",
+      "generatedAt": "2026-04-03T12:04:48.151Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -284,19 +278,19 @@
           "ok": true,
           "marketKey": "jaboatao-dos-guararapes",
           "marketLabel": "Jaboatao dos Guararapes",
-          "updatedAt": "2026-04-03T10:05:34.125Z",
-          "startedAt": "2026-04-03T10:00:01.213Z",
-          "finishedAt": "2026-04-03T10:05:34.125Z",
-          "durationMs": 332912,
+          "updatedAt": "2026-04-03T11:04:53.933Z",
+          "startedAt": "2026-04-03T11:00:01.236Z",
+          "finishedAt": "2026-04-03T11:04:53.933Z",
+          "durationMs": 292697,
           "totals": {
-            "totalListings": 150,
+            "totalListings": 151,
             "venda": 79,
-            "aluguel": 71
+            "aluguel": 72
           },
           "changeCounts": {
-            "newCount": 6,
-            "priceUpdateCount": 9,
-            "priceDropCount": 3
+            "newCount": 16,
+            "priceUpdateCount": 4,
+            "priceDropCount": 0
           },
           "source": "all",
           "sources": [
@@ -306,11 +300,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-03T10:00:05.002Z",
+          "scrapedAt": "2026-04-03T11:00:03.077Z",
           "telegram": {
             "marketKey": "jaboatao-dos-guararapes",
             "ok": true,
-            "telegramMessageId": 341
+            "telegramMessageId": 346
           },
           "operation": {
             "marketKey": "jaboatao-dos-guararapes",
@@ -332,10 +326,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "03/04/2026, 07:05",
-        "runtimeCoverageLabel": "150 ativos na ultima varredura",
+        "lastRunLabel": "03/04/2026, 08:04",
+        "runtimeCoverageLabel": "151 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #341",
+        "alertStatusLabel": "Digest #346",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
@@ -367,7 +361,7 @@
         "sourceBreakdown": [
           {
             "source": "zap",
-            "total": 112
+            "total": 110
           },
           {
             "source": "chaves",
@@ -375,20 +369,20 @@
           },
           {
             "source": "olx",
-            "total": 12
+            "total": 16
           },
           {
             "source": "vivareal",
             "total": 5
           }
         ],
-        "activeCanonical": 150,
-        "multiPortalActive": 3,
-        "multiPortalShare": 2,
-        "lastRunAt": "2026-04-03T10:05:34.125Z",
+        "activeCanonical": 151,
+        "multiPortalActive": 6,
+        "multiPortalShare": 4,
+        "lastRunAt": "2026-04-03T11:04:53.933Z",
         "summaryPath": "C:\\Users\\Tullio\\Documents\\PROJETOS\\projeto n8n\\olx-monitor\\data\\latest-summary-jaboatao-dos-guararapes-olx-zap-chaves-quintoandar-vivareal.json",
         "outOfMarketSampleCount": 0,
-        "sampleRowsChecked": 150
+        "sampleRowsChecked": 151
       }
     },
     {
@@ -406,7 +400,7 @@
       "avgPriceAll": 1340937.68,
       "priceRangeLabel": "R$ 650,00 até R$ 160.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-03T11:05:12.535Z",
+      "generatedAt": "2026-04-03T12:04:51.757Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -511,7 +505,7 @@
         "sourceBreakdown": [
           {
             "source": "zap",
-            "total": 113
+            "total": 114
           },
           {
             "source": "chaves",
@@ -544,13 +538,13 @@
       "radarHref": "./radar-camaragibe.html",
       "analyticsHref": "./analises-camaragibe.html",
       "sourceSummary": "Zap + Chaves na Mão + OLX",
-      "totalActive": 120,
-      "newListings24h": 74,
-      "totalUpdates24h": 874,
-      "avgPriceAll": 743522.76,
+      "totalActive": 115,
+      "newListings24h": 75,
+      "totalUpdates24h": 910,
+      "avgPriceAll": 596669.58,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-03T11:05:15.764Z",
+      "generatedAt": "2026-04-03T12:04:54.997Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
@@ -670,13 +664,13 @@
             "total": 3
           }
         ],
-        "activeCanonical": 115,
+        "activeCanonical": 120,
         "multiPortalActive": 3,
-        "multiPortalShare": 2.6,
-        "lastRunAt": "2026-04-03T10:05:02.149Z",
+        "multiPortalShare": 2.5,
+        "lastRunAt": "2026-04-03T11:04:28.286Z",
         "summaryPath": "C:\\Users\\Tullio\\Documents\\PROJETOS\\projeto n8n\\olx-monitor\\data\\latest-summary-camaragibe-olx-zap-chaves-quintoandar-vivareal.json",
         "outOfMarketSampleCount": 0,
-        "sampleRowsChecked": 115
+        "sampleRowsChecked": 120
       }
     }
   ]
