@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T06:04:15.778Z",
+  "generatedAt": "2026-04-03T06:04:47.464Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -17,7 +17,7 @@
       "avgPriceAll": 493798.01,
       "priceRangeLabel": "R$ 500,00 até R$ 7.999.990,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-03T06:04:01.072Z",
+      "generatedAt": "2026-04-03T06:04:30.092Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -112,7 +112,7 @@
       "avgPriceAll": 445686.36,
       "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-03T06:04:05.781Z",
+      "generatedAt": "2026-04-03T06:04:35.233Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -262,7 +262,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-03T06:04:07.609Z",
+      "generatedAt": "2026-04-03T06:04:37.084Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -406,7 +406,7 @@
       "avgPriceAll": 1390517.82,
       "priceRangeLabel": "R$ 650,00 até R$ 160.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-03T06:04:11.809Z",
+      "generatedAt": "2026-04-03T06:04:43.099Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -550,7 +550,7 @@
       "avgPriceAll": 715395.13,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-03T06:04:15.774Z",
+      "generatedAt": "2026-04-03T06:04:47.458Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
@@ -572,19 +572,19 @@
           "ok": true,
           "marketKey": "camaragibe",
           "marketLabel": "Camaragibe",
-          "updatedAt": "2026-04-03T05:05:04.239Z",
-          "startedAt": "2026-04-03T05:00:01.241Z",
-          "finishedAt": "2026-04-03T05:05:04.239Z",
-          "durationMs": 302998,
+          "updatedAt": "2026-04-03T06:04:21.602Z",
+          "startedAt": "2026-04-03T06:00:01.182Z",
+          "finishedAt": "2026-04-03T06:04:21.602Z",
+          "durationMs": 260421,
           "totals": {
-            "totalListings": 117,
-            "venda": 69,
-            "aluguel": 48
+            "totalListings": 114,
+            "venda": 67,
+            "aluguel": 47
           },
           "changeCounts": {
-            "newCount": 3,
-            "priceUpdateCount": 3,
-            "priceDropCount": 1
+            "newCount": 5,
+            "priceUpdateCount": 1,
+            "priceDropCount": 0
           },
           "source": "all",
           "sources": [
@@ -594,11 +594,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-03T05:00:12.836Z",
+          "scrapedAt": "2026-04-03T06:00:03.421Z",
           "telegram": {
             "marketKey": "camaragibe",
             "ok": true,
-            "telegramMessageId": 309
+            "telegramMessageId": 315
           },
           "operation": {
             "marketKey": "camaragibe",
@@ -620,10 +620,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "03/04/2026, 02:05",
-        "runtimeCoverageLabel": "117 ativos na ultima varredura",
+        "lastRunLabel": "03/04/2026, 03:04",
+        "runtimeCoverageLabel": "114 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #309",
+        "alertStatusLabel": "Digest #315",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
