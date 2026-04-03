@@ -9,7 +9,7 @@
     <title>ImobiRadar | Oportunidades em Paulista</title>
     <meta name="description" content="P?gina de oportunidades do ImobiRadar com score, desconto e contexto comercial em Paulista.">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-    <link rel="stylesheet" href="./dashboard.css?v=02-04-2026-21-04">
+    <link rel="stylesheet" href="./dashboard.css?v=02-04-2026-21-16">
   </head>
   <body>
     <div class="app-shell app-shell--single">
@@ -19,36 +19,13 @@
     <header class="market-header market-header--product">
       <div class="market-header__brand">
         <div class="market-header__brand-mark">IR</div>
-        <div>
+        <div class="market-header__brand-copy">
           <strong>ImobiRadar</strong>
-          <span>Radar de oportunidades imobiliarias em Paulista</span>
+          <span>Radar de oportunidades imobiliarias</span>
         </div>
       </div>
 
       <nav class="site-nav site-nav--product" id="site-nav" aria-label="Navegacao principal">
-        <div class="site-nav__markets" aria-label="Mercados monitorados">
-          
-            <a href="./index.html" class="site-nav__market-link">
-              Recife
-            </a>
-          
-            <a href="./index-olinda.html" class="site-nav__market-link">
-              Olinda
-            </a>
-          
-            <a href="./index-jaboatao-dos-guararapes.html" class="site-nav__market-link">
-              Jaboatão dos Guararapes
-            </a>
-          
-            <a href="./index-paulista.html" class="site-nav__market-link is-active-market">
-              Paulista
-            </a>
-          
-            <a href="./index-camaragibe.html" class="site-nav__market-link">
-              Camaragibe
-            </a>
-          
-        </div>
         <div class="site-nav__links">
           
             <a href="./index-paulista.html" class="">Dashboard</a>
@@ -66,24 +43,19 @@
         </div>
       </nav>
 
-      
-        <div class="market-header__search">
-          <input id="hero-search" type="search" placeholder="Busque por bairro, rua, origem ou faixa de preco">
-        </div>
-      
-
       <div class="market-header__actions">
-        <span class="market-header__status">Base ativa</span>
         <button class="market-header__notify" type="button" aria-label="Alertas ativos">
-          Alertas
+          <span class="market-header__notify-icon" aria-hidden="true"></span>
           <small>329</small>
         </button>
+        <div class="market-header__divider" aria-hidden="true"></div>
         <div class="market-header__profile">
           <div class="market-header__avatar">PA</div>
           <div class="market-header__profile-copy">
-            <strong>Paulista</strong>
-            <span>Saudavel | operacao ativa</span>
+            <strong>Ola, Tullio</strong>
+            <span>Paulista | conta Pro</span>
           </div>
+          <span class="market-header__profile-caret" aria-hidden="true"></span>
         </div>
         <button class="market-header__menu-toggle" id="header-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">Menu</button>
       </div>
@@ -130,9 +102,9 @@
     </section>
   
           
-    <div class="market-health-note market-health-note--healthy">
-      <span class="market-health-note__badge">Saudavel</span>
-      <strong>Operação saudável e coerente com a configuração do mercado.</strong>
+    <div class="market-health-note market-health-note--warning">
+      <span class="market-health-note__badge">Atencao</span>
+      <strong>A última execução está acima da janela esperada (3h).</strong>
       <small>Esta area concentra score, desconto potencial e contexto comercial.</small>
     </div>
   
@@ -338,6 +310,6 @@
     <script id="hero-map-listings-data" type="application/json">[]</script>
     <script id="map-listings-data" type="application/json">[]</script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="./dashboard.js?v=02-04-2026-21-04"></script>
+    <script src="./dashboard.js?v=02-04-2026-21-16"></script>
   </body>
 </html>
