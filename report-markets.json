@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T05:04:59.307Z",
+  "generatedAt": "2026-04-03T05:05:25.937Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -17,7 +17,7 @@
       "avgPriceAll": 493798.01,
       "priceRangeLabel": "R$ 500,00 até R$ 7.999.990,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-03T05:04:47.137Z",
+      "generatedAt": "2026-04-03T05:05:13.924Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -107,12 +107,12 @@
       "analyticsHref": "./analises-olinda.html",
       "sourceSummary": "Zap + Chaves na Mão + OLX + Viva Real",
       "totalActive": 154,
-      "newListings24h": 192,
-      "totalUpdates24h": 967,
+      "newListings24h": 186,
+      "totalUpdates24h": 932,
       "avgPriceAll": 443184.89,
       "priceRangeLabel": "R$ 600,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-03T05:04:50.995Z",
+      "generatedAt": "2026-04-03T05:05:17.520Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -256,7 +256,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-03T05:04:52.753Z",
+      "generatedAt": "2026-04-03T05:05:19.280Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -400,7 +400,7 @@
       "avgPriceAll": 1390517.82,
       "priceRangeLabel": "R$ 650,00 até R$ 160.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-03T05:04:56.088Z",
+      "generatedAt": "2026-04-03T05:05:22.729Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -544,7 +544,7 @@
       "avgPriceAll": 661349.22,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-03T05:04:59.303Z",
+      "generatedAt": "2026-04-03T05:05:25.933Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
@@ -566,19 +566,19 @@
           "ok": true,
           "marketKey": "camaragibe",
           "marketLabel": "Camaragibe",
-          "updatedAt": "2026-04-03T04:05:28.137Z",
-          "startedAt": "2026-04-03T04:00:01.266Z",
-          "finishedAt": "2026-04-03T04:05:28.137Z",
-          "durationMs": 326872,
+          "updatedAt": "2026-04-03T05:05:04.239Z",
+          "startedAt": "2026-04-03T05:00:01.241Z",
+          "finishedAt": "2026-04-03T05:05:04.239Z",
+          "durationMs": 302998,
           "totals": {
             "totalListings": 117,
-            "venda": 70,
-            "aluguel": 47
+            "venda": 69,
+            "aluguel": 48
           },
           "changeCounts": {
-            "newCount": 6,
+            "newCount": 3,
             "priceUpdateCount": 3,
-            "priceDropCount": 2
+            "priceDropCount": 1
           },
           "source": "all",
           "sources": [
@@ -588,11 +588,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-03T04:00:07.786Z",
+          "scrapedAt": "2026-04-03T05:00:12.836Z",
           "telegram": {
             "marketKey": "camaragibe",
             "ok": true,
-            "telegramMessageId": 306
+            "telegramMessageId": 309
           },
           "operation": {
             "marketKey": "camaragibe",
@@ -614,10 +614,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "03/04/2026, 01:05",
+        "lastRunLabel": "03/04/2026, 02:05",
         "runtimeCoverageLabel": "117 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #306",
+        "alertStatusLabel": "Digest #309",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
