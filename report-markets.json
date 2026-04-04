@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-04T00:05:58.950Z",
+  "generatedAt": "2026-04-04T00:06:32.225Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -17,7 +17,7 @@
       "avgPriceAll": 569889.23,
       "priceRangeLabel": "R$ 500,00 até R$ 7.500.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-04T00:05:44.529Z",
+      "generatedAt": "2026-04-04T00:06:16.554Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -112,7 +112,7 @@
       "avgPriceAll": 357331.22,
       "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-04T00:05:48.854Z",
+      "generatedAt": "2026-04-04T00:06:21.359Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -134,19 +134,19 @@
           "ok": true,
           "marketKey": "olinda",
           "marketLabel": "Olinda",
-          "updatedAt": "2026-04-03T23:04:42.092Z",
-          "startedAt": "2026-04-03T23:00:02.644Z",
-          "finishedAt": "2026-04-03T23:04:42.092Z",
-          "durationMs": 279448,
+          "updatedAt": "2026-04-04T00:05:33.100Z",
+          "startedAt": "2026-04-04T00:00:03.485Z",
+          "finishedAt": "2026-04-04T00:05:33.100Z",
+          "durationMs": 329615,
           "totals": {
-            "totalListings": 158,
-            "venda": 78,
-            "aluguel": 80
+            "totalListings": 164,
+            "venda": 81,
+            "aluguel": 83
           },
           "changeCounts": {
-            "newCount": 3,
-            "priceUpdateCount": 3,
-            "priceDropCount": 1
+            "newCount": 2,
+            "priceUpdateCount": 2,
+            "priceDropCount": 2
           },
           "source": "all",
           "sources": [
@@ -156,11 +156,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-03T23:00:07.250Z",
+          "scrapedAt": "2026-04-04T00:00:11.222Z",
           "telegram": {
             "marketKey": "olinda",
             "ok": true,
-            "telegramMessageId": 427
+            "telegramMessageId": 434
           },
           "operation": {
             "marketKey": "olinda",
@@ -182,10 +182,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "03/04/2026, 20:04",
-        "runtimeCoverageLabel": "158 ativos na ultima varredura",
+        "lastRunLabel": "03/04/2026, 21:05",
+        "runtimeCoverageLabel": "164 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #427",
+        "alertStatusLabel": "Digest #434",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "critical",
         "healthLabel": "Critico",
@@ -262,7 +262,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-04T00:05:50.872Z",
+      "generatedAt": "2026-04-04T00:06:23.227Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -406,7 +406,7 @@
       "avgPriceAll": 1340937.68,
       "priceRangeLabel": "R$ 650,00 até R$ 160.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-04T00:05:55.058Z",
+      "generatedAt": "2026-04-04T00:06:28.405Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -428,18 +428,18 @@
           "ok": true,
           "marketKey": "paulista",
           "marketLabel": "Paulista",
-          "updatedAt": "2026-04-03T23:05:12.164Z",
-          "startedAt": "2026-04-03T23:00:02.594Z",
-          "finishedAt": "2026-04-03T23:05:12.164Z",
-          "durationMs": 309570,
+          "updatedAt": "2026-04-04T00:06:05.937Z",
+          "startedAt": "2026-04-04T00:00:03.982Z",
+          "finishedAt": "2026-04-04T00:06:05.937Z",
+          "durationMs": 361956,
           "totals": {
-            "totalListings": 152,
-            "venda": 75,
-            "aluguel": 77
+            "totalListings": 147,
+            "venda": 69,
+            "aluguel": 78
           },
           "changeCounts": {
-            "newCount": 4,
-            "priceUpdateCount": 5,
+            "newCount": 2,
+            "priceUpdateCount": 3,
             "priceDropCount": 3
           },
           "source": "all",
@@ -450,11 +450,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-03T23:00:18.962Z",
+          "scrapedAt": "2026-04-04T00:00:32.744Z",
           "telegram": {
             "marketKey": "paulista",
             "ok": true,
-            "telegramMessageId": 428
+            "telegramMessageId": 435
           },
           "operation": {
             "marketKey": "paulista",
@@ -476,10 +476,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "03/04/2026, 20:05",
-        "runtimeCoverageLabel": "152 ativos na ultima varredura",
+        "lastRunLabel": "03/04/2026, 21:06",
+        "runtimeCoverageLabel": "147 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #428",
+        "alertStatusLabel": "Digest #435",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
@@ -550,7 +550,7 @@
       "avgPriceAll": 708552.72,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-04T00:05:58.945Z",
+      "generatedAt": "2026-04-04T00:06:32.220Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
