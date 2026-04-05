@@ -9,7 +9,7 @@
     <title>ImobiRadar | Dashboard imobiliario em Olinda</title>
     <meta name="description" content="Dashboard do ImobiRadar com resumo operacional, oportunidades, radar ao vivo e analises em Olinda.">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-    <link rel="stylesheet" href="./dashboard.css?v=04-04-2026-20-09">
+    <link rel="stylesheet" href="./dashboard.css?v=04-04-2026-21-09">
   </head>
   <body>
     <div class="app-shell app-shell--single">
@@ -46,7 +46,7 @@
       <div class="market-header__actions">
         <button class="market-header__notify" type="button" aria-label="Alertas ativos">
           <span class="market-header__notify-icon" aria-hidden="true"></span>
-          <small>22</small>
+          <small>20</small>
         </button>
         <div class="market-header__divider" aria-hidden="true"></div>
         <div class="market-header__profile">
@@ -151,7 +151,7 @@
           <article class="page-hero__stat">
             <span>Imoveis hoje</span>
             <strong>150</strong>
-            <small>22 novos nas ultimas 24h</small>
+            <small>20 novos nas ultimas 24h</small>
           </article>
         
           <article class="page-hero__stat">
@@ -162,7 +162,7 @@
         
           <article class="page-hero__stat">
             <span>Sinais de preco</span>
-            <strong>73</strong>
+            <strong>45</strong>
             <small>98.9% no melhor score atual</small>
           </article>
         
@@ -195,7 +195,7 @@
     <article class="metric-card metric-card--teal">
       <div class="metric-card__top">
         <span>Total de imóveis</span>
-        <em>22 novos</em>
+        <em>20 novos</em>
       </div>
       <strong>150</strong>
       <p>Inventario ativo consolidado pelo helper local e o workflow novo.</p>
@@ -240,7 +240,7 @@
     <article class="metric-card metric-card--good">
       <div class="metric-card__top">
         <span>Ticket medio</span>
-        <em>73 movimentos</em>
+        <em>45 movimentos</em>
       </div>
       <strong>R$ 358,5 mil</strong>
       <p>Leitura rapida do ticket medio da base viva atual.</p>
@@ -573,16 +573,11 @@
       </div>
       <div class="line-chart">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,18.00 66.67,34.32 83.33,71.97 100.00,93.31 100,100 0,100" />
-          <polyline points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,18.00 66.67,34.32 83.33,71.97 100.00,93.31" />
+          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,18.00 50.00,34.32 66.67,71.97 83.33,93.31 100.00,100.00 100,100 0,100" />
+          <polyline points="0.00,100.00 16.67,100.00 33.33,18.00 50.00,34.32 66.67,71.97 83.33,93.31 100.00,100.00" />
         </svg>
         <div class="line-chart__labels">
           
-                <div class="">
-                  <strong>0</strong>
-                  <small>sáb, 28</small>
-                </div>
-              
                 <div class="">
                   <strong>0</strong>
                   <small>dom, 29</small>
@@ -613,11 +608,16 @@
                   <small>sex, 03</small>
                 </div>
               
+                <div class="">
+                  <strong>0</strong>
+                  <small>sáb, 04</small>
+                </div>
+              
         </div>
       </div>
       <div class="trend-card__footer">
         <span>Faixa maxima: 196</span>
-        <span>03/04</span>
+        <span>04/04</span>
       </div>
     </article>
   
@@ -632,16 +632,11 @@
       </div>
       <div class="line-chart">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,100.00 50.00,18.00 66.67,65.88 83.33,83.84 100.00,96.41 100,100 0,100" />
-          <polyline points="0.00,100.00 16.67,100.00 33.33,100.00 50.00,18.00 66.67,65.88 83.33,83.84 100.00,96.41" />
+          <path class="line-chart__area" d="0.00,100.00 16.67,100.00 33.33,18.00 50.00,65.88 66.67,83.84 83.33,96.41 100.00,100.00 100,100 0,100" />
+          <polyline points="0.00,100.00 16.67,100.00 33.33,18.00 50.00,65.88 66.67,83.84 83.33,96.41 100.00,100.00" />
         </svg>
         <div class="line-chart__labels">
           
-                <div class="">
-                  <strong>0</strong>
-                  <small>sáb, 28</small>
-                </div>
-              
                 <div class="">
                   <strong>0</strong>
                   <small>dom, 29</small>
@@ -672,11 +667,16 @@
                   <small>sex, 03</small>
                 </div>
               
+                <div class="">
+                  <strong>0</strong>
+                  <small>sáb, 04</small>
+                </div>
+              
         </div>
       </div>
       <div class="trend-card__footer">
         <span>Faixa maxima: 137</span>
-        <span>03/04</span>
+        <span>04/04</span>
       </div>
     </article>
   
@@ -765,6 +765,6 @@
     <script id="hero-map-listings-data" type="application/json">[{"listing_id":"zap:olinda:2874707840","title":"Casa de condom�nio para comprar com 5300 m�, 2 quartos, 2 banheiros, 1 vaga em Jardim Atl�ntico, Olinda","neighborhood":"Olinda","location":"Olinda","source":"zap","sourceLabel":"Zap","mode":"venda","modeLabel":"Venda","url":"https://www.zapimoveis.com.br/imovel/venda-casa-de-condominio-2-quartos-jardim-atlantico-olinda-5300m2-id-2877553381/","price":240000,"priceText":"R$ 240.000","discountPct":98.92910950042021,"marketSampleSize":49,"radarScore":94,"radarConfidence":"Media","radarReasons":["98.9% abaixo da média local","R$ 45,28/m2 contra média de R$ 4.228,54/m2","amostra de 49 anúncios em Olinda","bom contexto para captar proprietários e validar preço"],"lat":-8.042344,"lng":-34.877996,"coordPrecision":"fallback","coordProvider":"recife-center","coordLabel":"Olinda","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":240000,"highestLivePrice":240000},{"listing_id":"zap:olinda:2876942381","title":"Casa para comprar com 1350 m², 2 quartos, 1 banheiro, 2 vagas em , Olinda","neighborhood":"Olinda","location":"Olinda","source":"zap","sourceLabel":"Zap","mode":"venda","modeLabel":"Venda","url":"https://www.zapimoveis.com.br/imovel/venda-casa-2-quartos-olinda-1350m2-id-2876942381/","price":130000,"priceText":"R$ 130.000","discountPct":97.72270507959729,"marketSampleSize":49,"radarScore":94,"radarConfidence":"Media","radarReasons":["97.7% abaixo da média local","R$ 96,30/m2 contra média de R$ 4.228,54/m2","amostra de 49 anúncios em Olinda","bom contexto para captar proprietários e validar preço"],"lat":-8.046292,"lng":-34.874204,"coordPrecision":"fallback","coordProvider":"recife-center","coordLabel":"Olinda","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":130000,"highestLivePrice":130000},{"listing_id":"zap:olinda:2730320213","title":"Casa para comprar com 360 m², 3 quartos, 3 banheiros, 3 vagas em Rio Doce, Olinda","neighborhood":"Olinda","location":"Olinda","source":"zap","sourceLabel":"Zap","mode":"venda","modeLabel":"Venda","url":"https://www.zapimoveis.com.br/imovel/venda-casa-3-quartos-rio-doce-olinda-360m2-id-2730320213/","price":290000,"priceText":"R$ 290.000","discountPct":80.94955210816973,"marketSampleSize":49,"radarScore":94,"radarConfidence":"Media","radarReasons":["80.9% abaixo da média local","R$ 805,56/m2 contra média de R$ 4.228,54/m2","amostra de 49 anúncios em Olinda","bom contexto para captar proprietários e validar preço"],"lat":-8.049856,"lng":-34.88222,"coordPrecision":"fallback","coordProvider":"recife-center","coordLabel":"Olinda","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":290000,"highestLivePrice":290000},{"listing_id":"zap:olinda:2871772081","title":"Casa para alugar com 180 m², 4 quartos, 1 banheiro, 1 vaga em Rio Doce, Olinda","neighborhood":"Olinda","location":"Olinda","source":"zap","sourceLabel":"Zap","mode":"aluguel","modeLabel":"Aluguel","url":"https://www.zapimoveis.com.br/imovel/aluguel-casa-4-quartos-com-cozinha-rio-doce-olinda-180m2-id-2871772081/","price":1500,"priceText":"R$ 1.500","discountPct":73.90021166917239,"marketSampleSize":40,"radarScore":94,"radarConfidence":"Media","radarReasons":["73.9% abaixo da média local","R$ 8,33/m2 contra média de R$ 31,93/m2","amostra de 40 anúncios em Olinda","bom contexto para captar locacao com leitura de ticket"],"lat":-8.04466,"lng":-34.882544,"coordPrecision":"fallback","coordProvider":"recife-center","coordLabel":"Olinda","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":1500,"highestLivePrice":1500},{"listing_id":"zap:olinda:2821362339","title":"Casa para comprar com 315 m², 3 quartos, 3 banheiros, 4 vagas em Aguazinha, Olinda","neighborhood":"Olinda","location":"Olinda","source":"zap","sourceLabel":"Zap","mode":"venda","modeLabel":"Venda","url":"https://www.zapimoveis.com.br/imovel/venda-casa-3-quartos-com-piscina-aguazinha-olinda-315m2-id-2821362339/","price":350000,"priceText":"R$ 350.000","discountPct":73.72352014919963,"marketSampleSize":49,"radarScore":94,"radarConfidence":"Media","radarReasons":["73.7% abaixo da média local","R$ 1.111,11/m2 contra média de R$ 4.228,54/m2","amostra de 49 anúncios em Olinda","bom contexto para captar proprietários e validar preço"],"lat":-8.045512,"lng":-34.881068,"coordPrecision":"fallback","coordProvider":"recife-center","coordLabel":"Olinda","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":350000,"highestLivePrice":350000},{"listing_id":"zap:olinda:2824023735","title":"Casa para comprar com 150 m², 2 quartos, 2 banheiros, 2 vagas em Fragoso, Olinda","neighborhood":"Olinda","location":"Olinda","source":"zap","sourceLabel":"Zap","mode":"venda","modeLabel":"Venda","url":"https://www.zapimoveis.com.br/imovel/venda-casa-2-quartos-fragoso-olinda-150m2-id-2824023735/","price":180000,"priceText":"R$ 180.000","discountPct":71.6214017611356,"marketSampleSize":49,"radarScore":94,"radarConfidence":"Media","radarReasons":["71.6% abaixo da média local","R$ 1.200,00/m2 contra média de R$ 4.228,54/m2","amostra de 49 anúncios em Olinda","bom contexto para captar proprietários e validar preço"],"lat":-8.05318,"lng":-34.880972,"coordPrecision":"fallback","coordProvider":"recife-center","coordLabel":"Olinda","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":180000,"highestLivePrice":180000},{"listing_id":"zap:2847040219","title":"Lote/Terreno para comprar com 220 m², 1 banheiro, 4 vagas em Salgadinho, Olinda","neighborhood":"Olinda","location":"Olinda","source":"zap","sourceLabel":"Zap","mode":"venda","modeLabel":"Venda","url":"https://www.zapimoveis.com.br/imovel/venda-terreno-lote-condominio-salgadinho-olinda-pe-220m2-id-2847040219/","price":280000,"priceText":"R$ 280.000","discountPct":69.90148671635595,"marketSampleSize":49,"radarScore":94,"radarConfidence":"Media","radarReasons":["69.9% abaixo da média local","R$ 1.272,73/m2 contra média de R$ 4.228,54/m2","amostra de 49 anúncios em Olinda","bom contexto para captar proprietários e validar preço"],"lat":-8.043004,"lng":-34.879268,"coordPrecision":"fallback","coordProvider":"recife-center","coordLabel":"Olinda","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":280000,"highestLivePrice":280000},{"listing_id":"zap:olinda:2877238212","title":"Galpão/Depósito/Armazém para alugar com 400 m², 1 quarto, 1 banheiro, 1 vaga em Sítio Novo, Olinda","neighborhood":"Olinda","location":"Olinda","source":"zap","sourceLabel":"Zap","mode":"aluguel","modeLabel":"Aluguel","url":"https://www.zapimoveis.com.br/imovel/aluguel-galpao-deposito-armazem-1-quarto-sitio-novo-olinda-400m2-id-2877238212/","price":3500,"priceText":"R$ 3.500","discountPct":72.595222252631,"marketSampleSize":40,"radarScore":93,"radarConfidence":"Media","radarReasons":["72.6% abaixo da média local","R$ 8,75/m2 contra média de R$ 31,93/m2","amostra de 40 anúncios em Olinda","bom contexto para captar locacao com leitura de ticket"],"lat":-8.048512,"lng":-34.871468,"coordPrecision":"fallback","coordProvider":"recife-center","coordLabel":"Olinda","sourceCount":1,"sourceLabels":["Zap"],"sourceSummaryText":"Zap","multiSourceLabel":"","bestLivePrice":3500,"highestLivePrice":3500}]</script>
     <script id="map-listings-data" type="application/json">[]</script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="./dashboard.js?v=04-04-2026-20-09"></script>
+    <script src="./dashboard.js?v=04-04-2026-21-09"></script>
   </body>
 </html>
