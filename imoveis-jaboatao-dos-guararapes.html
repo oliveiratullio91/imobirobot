@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>ImobiRadar | Base monitorada de imóveis</title>
     <meta name="description" content="Lista completa de imóveis monitorados pelo ImobiRadar, com filtros de preço e localização para venda e aluguel em Jaboatão dos Guararapes.">
-    <link rel="stylesheet" href="./dashboard.css?v=05-04-2026-02-09">
+    <link rel="stylesheet" href="./dashboard.css?v=05-04-2026-02-31">
   </head>
   <body>
     <div class="app-shell app-shell--single">
@@ -56,10 +56,10 @@
             </div>
           </header>
 
-          <div class="market-health-note market-health-note--healthy" aria-label="Saude operacional do mercado">
-            <span class="market-health-note__badge">Saudavel</span>
-            <strong>Operação saudável e coerente com a configuração do mercado.</strong>
-            <small>Sem pendencias operacionais relevantes neste mercado.</small>
+          <div class="market-health-note market-health-note--critical" aria-label="Saude operacional do mercado">
+            <span class="market-health-note__badge">Critico</span>
+            <strong>A réplica do Supabase não está saudável para este recorte.</strong>
+            <small>1 ponto(s) pedindo revisao</small>
           </div>
 
           <section class="listings-page__controls">
@@ -124,6 +124,6 @@
       </div>
     </div>
     <script id="listing-details-data" type="application/json">{}</script>
-    <script src="./listings-page.js?v=05-04-2026-02-09"></script>
+    <script src="./listings-page.js?v=05-04-2026-02-31"></script>
   </body>
 </html>
