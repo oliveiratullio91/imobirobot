@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-05T05:38:54.478Z",
+  "generatedAt": "2026-04-05T06:09:09.888Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -11,13 +11,13 @@
       "radarHref": "./radar.html",
       "analyticsHref": "./analises.html",
       "sourceSummary": "OLX + Zap + Apto + Chaves na Mão + Viva Real + QuintoAndar",
-      "totalActive": 328,
-      "newListings24h": 388,
-      "totalUpdates24h": 2902,
-      "avgPriceAll": 1011301.95,
+      "totalActive": 329,
+      "newListings24h": 373,
+      "totalUpdates24h": 2859,
+      "avgPriceAll": 1015819.95,
       "priceRangeLabel": "R$ 450,00 até R$ 160.000.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-05T05:38:42.696Z",
+      "generatedAt": "2026-04-05T06:08:58.107Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -127,7 +127,7 @@
           },
           {
             "source": "zap",
-            "total": 103
+            "total": 109
           },
           {
             "source": "chaves",
@@ -170,7 +170,7 @@
       "avgPriceAll": 386370.15,
       "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-05T05:38:46.374Z",
+      "generatedAt": "2026-04-05T06:09:01.740Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -314,7 +314,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-05T05:38:48.221Z",
+      "generatedAt": "2026-04-05T06:09:03.589Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -425,7 +425,7 @@
         "sourceBreakdown": [
           {
             "source": "zap",
-            "total": 107
+            "total": 109
           },
           {
             "source": "chaves",
@@ -433,7 +433,7 @@
           },
           {
             "source": "olx",
-            "total": 28
+            "total": 31
           },
           {
             "source": "vivareal",
@@ -464,7 +464,7 @@
       "avgPriceAll": 1328624.93,
       "priceRangeLabel": "R$ 700,00 até R$ 160.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-05T05:38:51.539Z",
+      "generatedAt": "2026-04-05T06:09:06.942Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -539,30 +539,19 @@
         "sweepStatusLabel": "Sweep ativo",
         "alertStatusLabel": "Digest #317",
         "reportStatusLabel": "Relatorio ativo",
-        "healthLevel": "critical",
-        "healthLabel": "Critico",
-        "healthSummary": "A última execução está acima da janela esperada (3h).",
-        "healthIssueCount": 2
+        "healthLevel": "healthy",
+        "healthLabel": "Saudavel",
+        "healthSummary": "Operação saudável e coerente com a configuração do mercado.",
+        "healthIssueCount": 0
       },
       "health": {
         "marketKey": "paulista",
         "marketLabel": "Paulista",
-        "level": "critical",
-        "healthScore": 38,
-        "issues": [
-          {
-            "severity": "warning",
-            "code": "stale_run",
-            "message": "A última execução está acima da janela esperada (3h)."
-          },
-          {
-            "severity": "critical",
-            "code": "replica_sync",
-            "message": "A réplica do Supabase não está saudável para este recorte."
-          }
-        ],
-        "issueCount": 2,
-        "summary": "A última execução está acima da janela esperada (3h).",
+        "level": "healthy",
+        "healthScore": 100,
+        "issues": [],
+        "issueCount": 0,
+        "summary": "Operação saudável e coerente com a configuração do mercado.",
         "expectedSources": [
           "olx",
           "zap",
@@ -580,7 +569,7 @@
         "sourceBreakdown": [
           {
             "source": "zap",
-            "total": 115
+            "total": 117
           },
           {
             "source": "chaves",
@@ -588,20 +577,20 @@
           },
           {
             "source": "olx",
-            "total": 7
+            "total": 13
           },
           {
             "source": "vivareal",
             "total": 5
           }
         ],
-        "activeCanonical": 148,
-        "multiPortalActive": 5,
-        "multiPortalShare": 3.4,
-        "lastRunAt": "2026-04-05T02:09:17.145Z",
+        "activeCanonical": 147,
+        "multiPortalActive": 4,
+        "multiPortalShare": 2.7,
+        "lastRunAt": "2026-04-05T05:32:01.619Z",
         "summaryPath": "C:\\Users\\Tullio\\Documents\\PROJETOS\\radarimobi\\n8n\\olx-monitor\\data\\latest-summary-paulista-olx-zap-chaves-quintoandar-vivareal.json",
         "outOfMarketSampleCount": 0,
-        "sampleRowsChecked": 148
+        "sampleRowsChecked": 147
       }
     },
     {
@@ -619,7 +608,7 @@
       "avgPriceAll": 756296.52,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-05T05:38:54.474Z",
+      "generatedAt": "2026-04-05T06:09:09.885Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
@@ -641,19 +630,19 @@
           "ok": true,
           "marketKey": "camaragibe",
           "marketLabel": "Camaragibe",
-          "updatedAt": "2026-04-05T02:31:52.567Z",
-          "startedAt": "2026-04-05T02:28:01.125Z",
-          "finishedAt": "2026-04-05T02:31:52.567Z",
-          "durationMs": 231442,
+          "updatedAt": "2026-04-05T05:38:57.799Z",
+          "startedAt": "2026-04-05T05:35:01.132Z",
+          "finishedAt": "2026-04-05T05:38:57.799Z",
+          "durationMs": 236668,
           "totals": {
-            "totalListings": 115,
-            "venda": 69,
-            "aluguel": 46
+            "totalListings": 105,
+            "venda": 63,
+            "aluguel": 42
           },
           "changeCounts": {
-            "newCount": 0,
+            "newCount": 2,
             "priceUpdateCount": 4,
-            "priceDropCount": 1
+            "priceDropCount": 2
           },
           "source": "all",
           "sources": [
@@ -663,11 +652,11 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-05T02:28:02.183Z",
+          "scrapedAt": "2026-04-05T05:35:02.205Z",
           "telegram": {
             "marketKey": "camaragibe",
             "ok": true,
-            "telegramMessageId": 278
+            "telegramMessageId": 319
           },
           "operation": {
             "marketKey": "camaragibe",
@@ -689,10 +678,10 @@
           }
         },
         "channelsLabel": "sweep • telegram • site • supabase",
-        "lastRunLabel": "04/04/2026, 23:31",
-        "runtimeCoverageLabel": "115 ativos na ultima varredura",
+        "lastRunLabel": "05/04/2026, 02:38",
+        "runtimeCoverageLabel": "105 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep ativo",
-        "alertStatusLabel": "Digest #278",
+        "alertStatusLabel": "Digest #319",
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "healthy",
         "healthLabel": "Saudavel",
@@ -724,7 +713,7 @@
         "sourceBreakdown": [
           {
             "source": "zap",
-            "total": 89
+            "total": 83
           },
           {
             "source": "chaves",
@@ -739,13 +728,13 @@
             "total": 3
           }
         ],
-        "activeCanonical": 115,
+        "activeCanonical": 105,
         "multiPortalActive": 4,
-        "multiPortalShare": 3.5,
-        "lastRunAt": "2026-04-05T02:31:52.567Z",
+        "multiPortalShare": 3.8,
+        "lastRunAt": "2026-04-05T05:38:57.799Z",
         "summaryPath": "C:\\Users\\Tullio\\Documents\\PROJETOS\\radarimobi\\n8n\\olx-monitor\\data\\latest-summary-camaragibe-olx-zap-chaves-quintoandar-vivareal.json",
         "outOfMarketSampleCount": 0,
-        "sampleRowsChecked": 115
+        "sampleRowsChecked": 105
       }
     }
   ]
