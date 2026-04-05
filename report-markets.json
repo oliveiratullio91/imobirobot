@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-05T11:09:21.633Z",
+  "generatedAt": "2026-04-05T11:31:55.781Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -17,7 +17,7 @@
       "avgPriceAll": 626194.24,
       "priceRangeLabel": "R$ 450,00 até R$ 18.000.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-05T11:09:09.974Z",
+      "generatedAt": "2026-04-05T11:31:43.860Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -38,19 +38,19 @@
           "ok": true,
           "marketKey": "recife",
           "marketLabel": "Recife",
-          "updatedAt": "2026-04-05T10:09:29.731Z",
-          "startedAt": "2026-04-05T10:05:01.335Z",
-          "finishedAt": "2026-04-05T10:09:29.731Z",
-          "durationMs": 268396,
+          "updatedAt": "2026-04-05T11:09:24.204Z",
+          "startedAt": "2026-04-05T11:05:01.351Z",
+          "finishedAt": "2026-04-05T11:09:24.204Z",
+          "durationMs": 262853,
           "totals": {
-            "totalListings": 315,
-            "venda": 164,
-            "aluguel": 151
+            "totalListings": 320,
+            "venda": 172,
+            "aluguel": 148
           },
           "changeCounts": {
-            "newCount": 2,
-            "priceUpdateCount": 5,
-            "priceDropCount": 2
+            "newCount": 20,
+            "priceUpdateCount": 14,
+            "priceDropCount": 11
           },
           "source": "all",
           "sources": [
@@ -61,7 +61,7 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-05T10:05:02.399Z",
+          "scrapedAt": "2026-04-05T11:05:02.523Z",
           "telegram": {
             "marketKey": "recife",
             "ok": true,
@@ -86,8 +86,8 @@
           }
         },
         "channelsLabel": "n8n • site • supabase",
-        "lastRunLabel": "05/04/2026, 07:09",
-        "runtimeCoverageLabel": "315 ativos na ultima varredura",
+        "lastRunLabel": "05/04/2026, 08:09",
+        "runtimeCoverageLabel": "320 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep desativado",
         "alertStatusLabel": "Alertas desligados",
         "reportStatusLabel": "Relatorio ativo",
@@ -123,11 +123,11 @@
         "sourceBreakdown": [
           {
             "source": "olx",
-            "total": 200
+            "total": 198
           },
           {
             "source": "zap",
-            "total": 103
+            "total": 99
           },
           {
             "source": "chaves",
@@ -135,7 +135,7 @@
           },
           {
             "source": "apto",
-            "total": 23
+            "total": 24
           },
           {
             "source": "vivareal",
@@ -146,10 +146,10 @@
             "total": 3
           }
         ],
-        "activeCanonical": 315,
-        "multiPortalActive": 9,
-        "multiPortalShare": 2.9,
-        "lastRunAt": "2026-04-05T10:09:29.731Z",
+        "activeCanonical": 320,
+        "multiPortalActive": 8,
+        "multiPortalShare": 2.5,
+        "lastRunAt": "2026-04-05T11:09:24.204Z",
         "summaryPath": null,
         "outOfMarketSampleCount": 0,
         "sampleRowsChecked": 0
@@ -164,13 +164,13 @@
       "radarHref": "./radar-olinda.html",
       "analyticsHref": "./analises-olinda.html",
       "sourceSummary": "Zap + Chaves na Mão + OLX + Viva Real",
-      "totalActive": 158,
-      "newListings24h": 55,
-      "totalUpdates24h": 147,
-      "avgPriceAll": 395566.42,
+      "totalActive": 161,
+      "newListings24h": 64,
+      "totalUpdates24h": 176,
+      "avgPriceAll": 412831.89,
       "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-05T11:09:13.518Z",
+      "generatedAt": "2026-04-05T11:31:47.493Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -247,8 +247,8 @@
         "reportStatusLabel": "Relatorio ativo",
         "healthLevel": "critical",
         "healthLabel": "Critico",
-        "healthSummary": "A réplica do Supabase não está saudável para este recorte.",
-        "healthIssueCount": 1
+        "healthSummary": "A última execução está acima da janela esperada (3h).",
+        "healthIssueCount": 2
       },
       "health": {
         "marketKey": "olinda",
@@ -257,13 +257,18 @@
         "healthScore": 38,
         "issues": [
           {
+            "severity": "warning",
+            "code": "stale_run",
+            "message": "A última execução está acima da janela esperada (3h)."
+          },
+          {
             "severity": "critical",
             "code": "replica_sync",
             "message": "A réplica do Supabase não está saudável para este recorte."
           }
         ],
-        "issueCount": 1,
-        "summary": "A réplica do Supabase não está saudável para este recorte.",
+        "issueCount": 2,
+        "summary": "A última execução está acima da janela esperada (3h).",
         "expectedSources": [
           "olx",
           "zap",
@@ -320,7 +325,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-05T11:09:15.350Z",
+      "generatedAt": "2026-04-05T11:31:49.375Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -464,7 +469,7 @@
       "avgPriceAll": 232363.06,
       "priceRangeLabel": "R$ 700,00 até R$ 7.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-05T11:09:18.692Z",
+      "generatedAt": "2026-04-05T11:31:52.789Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -608,7 +613,7 @@
       "avgPriceAll": 654813.69,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-05T11:09:21.630Z",
+      "generatedAt": "2026-04-05T11:31:55.778Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
