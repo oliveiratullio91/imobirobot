@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-06T05:00:54.371Z",
+  "generatedAt": "2026-04-06T05:03:04.617Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -17,7 +17,7 @@
       "avgPriceAll": 657310.16,
       "priceRangeLabel": "R$ 150,00 até R$ 18.000.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-06T05:00:41.749Z",
+      "generatedAt": "2026-04-06T05:02:52.242Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -170,7 +170,7 @@
       "avgPriceAll": 393978.83,
       "priceRangeLabel": "R$ 500,00 até R$ 14.000.000,00",
       "summaryText": "Olinda concentra a leitura mais forte de Olinda agora.",
-      "generatedAt": "2026-04-06T05:00:45.778Z",
+      "generatedAt": "2026-04-06T05:02:56.152Z",
       "operation": {
         "marketKey": "olinda",
         "scopeLabel": "Expansao monitorada",
@@ -320,7 +320,7 @@
       "avgPriceAll": 0,
       "priceRangeLabel": "Faixa em atualização",
       "summaryText": "Relatório operacional de Jaboatão dos Guararapes com radar, mapa e base comercial.",
-      "generatedAt": "2026-04-06T05:00:47.615Z",
+      "generatedAt": "2026-04-06T05:02:57.986Z",
       "operation": {
         "marketKey": "jaboatao-dos-guararapes",
         "scopeLabel": "Expansao monitorada",
@@ -470,7 +470,7 @@
       "avgPriceAll": 1260520.82,
       "priceRangeLabel": "R$ 450,00 até R$ 160.000.000,00",
       "summaryText": "Paulista concentra a leitura mais forte de Paulista agora.",
-      "generatedAt": "2026-04-06T05:00:51.231Z",
+      "generatedAt": "2026-04-06T05:03:01.505Z",
       "operation": {
         "marketKey": "paulista",
         "scopeLabel": "Expansao monitorada",
@@ -620,7 +620,7 @@
       "avgPriceAll": 659803.18,
       "priceRangeLabel": "R$ 630,00 até R$ 13.000.000,00",
       "summaryText": "Camaragibe concentra a leitura mais forte de Camaragibe agora.",
-      "generatedAt": "2026-04-06T05:00:54.368Z",
+      "generatedAt": "2026-04-06T05:03:04.614Z",
       "operation": {
         "marketKey": "camaragibe",
         "scopeLabel": "Expansao monitorada",
