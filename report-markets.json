@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-08T00:30:33.064Z",
+  "generatedAt": "2026-04-08T00:37:11.466Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -11,13 +11,13 @@
       "radarHref": "./radar.html",
       "analyticsHref": "./analises.html",
       "sourceSummary": "OLX + Zap + Chaves na Mão + Apto + Viva Real + QuintoAndar",
-      "totalActive": 308,
-      "newListings24h": 320,
-      "totalUpdates24h": 2323,
-      "avgPriceAll": 540335.77,
+      "totalActive": 309,
+      "newListings24h": 321,
+      "totalUpdates24h": 2431,
+      "avgPriceAll": 548210.66,
       "priceRangeLabel": "R$ 300,00 até R$ 18.000.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-08T00:30:33.063Z",
+      "generatedAt": "2026-04-08T00:37:11.464Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
