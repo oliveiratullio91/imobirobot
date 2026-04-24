@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T06:08:09.240Z",
+  "generatedAt": "2026-04-24T07:07:54.712Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -11,13 +11,13 @@
       "radarHref": "./radar.html",
       "analyticsHref": "./analises.html",
       "sourceSummary": "OLX + Zap + Chaves na Mão + Apto + Viva Real + QuintoAndar",
-      "totalActive": 304,
-      "newListings24h": 206,
+      "totalActive": 302,
+      "newListings24h": 200,
       "totalUpdates24h": 3229,
-      "avgPriceAll": 594671.34,
+      "avgPriceAll": 605200.79,
       "priceRangeLabel": "R$ 750,00 até R$ 7.500.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-24T06:08:09.238Z",
+      "generatedAt": "2026-04-24T07:07:54.709Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -38,19 +38,19 @@
           "ok": true,
           "marketKey": "recife",
           "marketLabel": "Recife",
-          "updatedAt": "2026-04-24T05:08:11.430Z",
-          "startedAt": "2026-04-24T05:00:02.992Z",
-          "finishedAt": "2026-04-24T05:08:11.430Z",
-          "durationMs": 488438,
+          "updatedAt": "2026-04-24T06:08:14.486Z",
+          "startedAt": "2026-04-24T06:00:02.536Z",
+          "finishedAt": "2026-04-24T06:08:14.486Z",
+          "durationMs": 491950,
           "totals": {
-            "totalListings": 296,
-            "venda": 183,
-            "aluguel": 113
+            "totalListings": 304,
+            "venda": 186,
+            "aluguel": 118
           },
           "changeCounts": {
-            "newCount": 2,
-            "priceUpdateCount": 12,
-            "priceDropCount": 6
+            "newCount": 14,
+            "priceUpdateCount": 17,
+            "priceDropCount": 13
           },
           "source": "all",
           "sources": [
@@ -61,7 +61,7 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-24T05:00:11.089Z",
+          "scrapedAt": "2026-04-24T06:00:04.103Z",
           "telegram": {
             "marketKey": "recife",
             "ok": true,
@@ -86,8 +86,8 @@
           }
         },
         "channelsLabel": "n8n • site • supabase",
-        "lastRunLabel": "24/04/2026, 02:08",
-        "runtimeCoverageLabel": "296 ativos na ultima varredura",
+        "lastRunLabel": "24/04/2026, 03:08",
+        "runtimeCoverageLabel": "304 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep desativado",
         "alertStatusLabel": "Alertas desligados",
         "reportStatusLabel": "Relatorio ativo",
@@ -123,11 +123,11 @@
         "sourceBreakdown": [
           {
             "source": "olx",
-            "total": 199
+            "total": 200
           },
           {
             "source": "zap",
-            "total": 110
+            "total": 105
           },
           {
             "source": "chaves",
@@ -135,7 +135,7 @@
           },
           {
             "source": "vivareal",
-            "total": 52
+            "total": 50
           },
           {
             "source": "apto",
@@ -146,10 +146,10 @@
             "total": 3
           }
         ],
-        "activeCanonical": 296,
-        "multiPortalActive": 43,
+        "activeCanonical": 304,
+        "multiPortalActive": 44,
         "multiPortalShare": 14.5,
-        "lastRunAt": "2026-04-24T05:08:11.430Z",
+        "lastRunAt": "2026-04-24T06:08:14.486Z",
         "summaryPath": null,
         "outOfMarketSampleCount": 0,
         "sampleRowsChecked": 0
