@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-25T23:09:40.389Z",
+  "generatedAt": "2026-04-26T00:08:25.350Z",
   "defaultMarketKey": "recife",
   "markets": [
     {
@@ -11,13 +11,13 @@
       "radarHref": "./radar.html",
       "analyticsHref": "./analises.html",
       "sourceSummary": "OLX + Zap + Chaves na Mão + Apto + Viva Real + QuintoAndar",
-      "totalActive": 295,
-      "newListings24h": 180,
-      "totalUpdates24h": 3395,
-      "avgPriceAll": 483444.68,
-      "priceRangeLabel": "R$ 700,00 até R$ 7.500.000,00",
+      "totalActive": 292,
+      "newListings24h": 176,
+      "totalUpdates24h": 3413,
+      "avgPriceAll": 527206.35,
+      "priceRangeLabel": "R$ 750,00 até R$ 7.500.000,00",
       "summaryText": "Boa Viagem concentra a leitura mais forte de Recife agora.",
-      "generatedAt": "2026-04-25T23:09:40.386Z",
+      "generatedAt": "2026-04-26T00:08:25.347Z",
       "operation": {
         "marketKey": "recife",
         "scopeLabel": "Operacao principal",
@@ -38,19 +38,19 @@
           "ok": true,
           "marketKey": "recife",
           "marketLabel": "Recife",
-          "updatedAt": "2026-04-25T22:08:30.504Z",
-          "startedAt": "2026-04-25T22:00:04.643Z",
-          "finishedAt": "2026-04-25T22:08:30.504Z",
-          "durationMs": 505861,
+          "updatedAt": "2026-04-25T23:09:49.648Z",
+          "startedAt": "2026-04-25T23:00:10.664Z",
+          "finishedAt": "2026-04-25T23:09:49.648Z",
+          "durationMs": 578986,
           "totals": {
-            "totalListings": 291,
-            "venda": 168,
-            "aluguel": 123
+            "totalListings": 295,
+            "venda": 170,
+            "aluguel": 125
           },
           "changeCounts": {
-            "newCount": 4,
-            "priceUpdateCount": 17,
-            "priceDropCount": 10
+            "newCount": 3,
+            "priceUpdateCount": 13,
+            "priceDropCount": 4
           },
           "source": "all",
           "sources": [
@@ -61,7 +61,7 @@
             "quintoandar",
             "vivareal"
           ],
-          "scrapedAt": "2026-04-25T22:00:09.931Z",
+          "scrapedAt": "2026-04-25T23:00:28.901Z",
           "telegram": {
             "marketKey": "recife",
             "ok": true,
@@ -86,8 +86,8 @@
           }
         },
         "channelsLabel": "n8n • site • supabase",
-        "lastRunLabel": "25/04/2026, 19:08",
-        "runtimeCoverageLabel": "291 ativos na ultima varredura",
+        "lastRunLabel": "25/04/2026, 20:09",
+        "runtimeCoverageLabel": "295 ativos na ultima varredura",
         "sweepStatusLabel": "Sweep desativado",
         "alertStatusLabel": "Alertas desligados",
         "reportStatusLabel": "Relatorio ativo",
@@ -123,11 +123,11 @@
         "sourceBreakdown": [
           {
             "source": "olx",
-            "total": 200
+            "total": 199
           },
           {
             "source": "zap",
-            "total": 101
+            "total": 104
           },
           {
             "source": "chaves",
@@ -135,7 +135,7 @@
           },
           {
             "source": "vivareal",
-            "total": 47
+            "total": 48
           },
           {
             "source": "apto",
@@ -146,10 +146,10 @@
             "total": 3
           }
         ],
-        "activeCanonical": 291,
-        "multiPortalActive": 42,
-        "multiPortalShare": 14.4,
-        "lastRunAt": "2026-04-25T22:08:30.504Z",
+        "activeCanonical": 295,
+        "multiPortalActive": 41,
+        "multiPortalShare": 13.9,
+        "lastRunAt": "2026-04-25T23:09:49.648Z",
         "summaryPath": null,
         "outOfMarketSampleCount": 0,
         "sampleRowsChecked": 0
